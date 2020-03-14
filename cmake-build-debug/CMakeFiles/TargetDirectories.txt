@@ -1,0 +1,3 @@
+/Users/orepro/Desktop/MIAGE-Port-Management/cmake-build-debug/CMakeFiles/rebuild_cache.dir
+/Users/orepro/Desktop/MIAGE-Port-Management/cmake-build-debug/CMakeFiles/edit_cache.dir
+/Users/orepro/Desktop/MIAGE-Port-Management/cmake-build-debug/CMakeFiles/MIAGE_Port_Management.dir
