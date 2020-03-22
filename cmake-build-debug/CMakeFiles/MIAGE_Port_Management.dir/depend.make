@@ -8,7 +8,11 @@ CMakeFiles/MIAGE_Port_Management.dir/GestionPort/GestionPort.cpp.o: ../Bateau/Ba
 CMakeFiles/MIAGE_Port_Management.dir/GestionPort/GestionPort.cpp.o: ../GestionPort/GestionPort.cpp
 CMakeFiles/MIAGE_Port_Management.dir/GestionPort/GestionPort.cpp.o: ../GestionPort/GestionPort.h
 
+CMakeFiles/MIAGE_Port_Management.dir/Interface/Interface.cpp.o: ../Interface/Interface.cpp
+CMakeFiles/MIAGE_Port_Management.dir/Interface/Interface.cpp.o: ../Interface/Interface.h
+
 CMakeFiles/MIAGE_Port_Management.dir/main.cpp.o: ../Bateau/Bateau.h
 CMakeFiles/MIAGE_Port_Management.dir/main.cpp.o: ../GestionPort/GestionPort.h
+CMakeFiles/MIAGE_Port_Management.dir/main.cpp.o: ../Interface/Interface.h
 CMakeFiles/MIAGE_Port_Management.dir/main.cpp.o: ../main.cpp
 

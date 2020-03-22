@@ -1,12 +1,14 @@
 #include <iostream>
 #include "Bateau/Bateau.h"
 #include "GestionPort/GestionPort.h"
+#include "Interface/Interface.h"
 
 using namespace std;
 
 GestionPort gp;
+Interface it;
+
 void home();
-int homeResponse();
 void homeResponseCheck(int homeResponse);
 void createReservation();
 void createBoat();
@@ -26,22 +28,9 @@ int main() {
  * Affichage de la page d'accueil de l'application.
  */
 void home() {
-    cout << "~~~ GESTION PORT DE LA ROCHELLE ~~~" << endl;
-    cout << " " << endl;
-    cout << "1 : Statistiques du port" << endl;
-    cout << "2 : Nouvelle réservation" << endl;
-    cout << " " << endl;
-    cout << "0 : Quitter (sauv. auto)" << endl;
-    cout << " " << endl;
-    int choice = homeResponse();
+    it.interfaceHome();
+    int choice = it.interfaceHomeResponse();
     homeResponseCheck(choice);
-}
-
-int homeResponse() {
-    int choice;
-    cout << "Choix ? ", cin >> choice;
-    cout << " " << endl;
-    return choice;
 }
 
 void homeResponseCheck(int homeResponse) {

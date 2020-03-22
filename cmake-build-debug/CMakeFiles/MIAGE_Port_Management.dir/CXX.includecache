@@ -12,6 +12,10 @@ string
 
 /Users/orepro/Desktop/MIAGE-Port-Management/GestionPort/GestionPort.h
 
+/Users/orepro/Desktop/MIAGE-Port-Management/Interface/Interface.h
+string
+-
+
 /Users/orepro/Desktop/MIAGE-Port-Management/main.cpp
 iostream
 -
@@ -19,4 +23,6 @@ Bateau/Bateau.h
 /Users/orepro/Desktop/MIAGE-Port-Management/Bateau/Bateau.h
 GestionPort/GestionPort.h
 /Users/orepro/Desktop/MIAGE-Port-Management/GestionPort/GestionPort.h
+Interface/Interface.h
+/Users/orepro/Desktop/MIAGE-Port-Management/Interface/Interface.h
 

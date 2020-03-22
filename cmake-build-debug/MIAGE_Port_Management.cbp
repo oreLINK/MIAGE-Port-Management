@@ -92,6 +92,12 @@
 		<Unit filename="/Users/orepro/Desktop/MIAGE-Port-Management/GestionPort/GestionPort.h">
 			<Option target="MIAGE_Port_Management"/>
 		</Unit>
+		<Unit filename="/Users/orepro/Desktop/MIAGE-Port-Management/Interface/Interface.cpp">
+			<Option target="MIAGE_Port_Management"/>
+		</Unit>
+		<Unit filename="/Users/orepro/Desktop/MIAGE-Port-Management/Interface/Interface.h">
+			<Option target="MIAGE_Port_Management"/>
+		</Unit>
 		<Unit filename="/Users/orepro/Desktop/MIAGE-Port-Management/main.cpp">
 			<Option target="MIAGE_Port_Management"/>
 		</Unit>

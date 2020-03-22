@@ -177,6 +177,33 @@ GestionPort/GestionPort.cpp.s:
 	$(MAKE) -f CMakeFiles/MIAGE_Port_Management.dir/build.make CMakeFiles/MIAGE_Port_Management.dir/GestionPort/GestionPort.cpp.s
 .PHONY : GestionPort/GestionPort.cpp.s
 
+Interface/Interface.o: Interface/Interface.cpp.o
+
+.PHONY : Interface/Interface.o
+
+# target to build an object file
+Interface/Interface.cpp.o:
+	$(MAKE) -f CMakeFiles/MIAGE_Port_Management.dir/build.make CMakeFiles/MIAGE_Port_Management.dir/Interface/Interface.cpp.o
+.PHONY : Interface/Interface.cpp.o
+
+Interface/Interface.i: Interface/Interface.cpp.i
+
+.PHONY : Interface/Interface.i
+
+# target to preprocess a source file
+Interface/Interface.cpp.i:
+	$(MAKE) -f CMakeFiles/MIAGE_Port_Management.dir/build.make CMakeFiles/MIAGE_Port_Management.dir/Interface/Interface.cpp.i
+.PHONY : Interface/Interface.cpp.i
+
+Interface/Interface.s: Interface/Interface.cpp.s
+
+.PHONY : Interface/Interface.s
+
+# target to generate assembly for a file
+Interface/Interface.cpp.s:
+	$(MAKE) -f CMakeFiles/MIAGE_Port_Management.dir/build.make CMakeFiles/MIAGE_Port_Management.dir/Interface/Interface.cpp.s
+.PHONY : Interface/Interface.cpp.s
+
 main.o: main.cpp.o
 
 .PHONY : main.o
@@ -219,6 +246,9 @@ help:
 	@echo "... GestionPort/GestionPort.o"
 	@echo "... GestionPort/GestionPort.i"
 	@echo "... GestionPort/GestionPort.s"
+	@echo "... Interface/Interface.o"
+	@echo "... Interface/Interface.i"
+	@echo "... Interface/Interface.s"
 	@echo "... main.o"
 	@echo "... main.i"
 	@echo "... main.s"
