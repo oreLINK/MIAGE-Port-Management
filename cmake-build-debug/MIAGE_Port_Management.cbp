@@ -80,10 +80,16 @@
 				</MakeCommands>
 			</Target>
 		</Build>
-		<Unit filename="/Users/orepro/Desktop/MIAGE-Port-Management/gestionPort.cpp">
+		<Unit filename="/Users/orepro/Desktop/MIAGE-Port-Management/Bateau/Bateau.cpp">
 			<Option target="MIAGE_Port_Management"/>
 		</Unit>
-		<Unit filename="/Users/orepro/Desktop/MIAGE-Port-Management/gestionPort.h">
+		<Unit filename="/Users/orepro/Desktop/MIAGE-Port-Management/Bateau/Bateau.h">
+			<Option target="MIAGE_Port_Management"/>
+		</Unit>
+		<Unit filename="/Users/orepro/Desktop/MIAGE-Port-Management/GestionPort/GestionPort.cpp">
+			<Option target="MIAGE_Port_Management"/>
+		</Unit>
+		<Unit filename="/Users/orepro/Desktop/MIAGE-Port-Management/GestionPort/GestionPort.h">
 			<Option target="MIAGE_Port_Management"/>
 		</Unit>
 		<Unit filename="/Users/orepro/Desktop/MIAGE-Port-Management/main.cpp">

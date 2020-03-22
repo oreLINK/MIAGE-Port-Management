@@ -123,32 +123,59 @@ MIAGE_Port_Management/fast:
 	$(MAKE) -f CMakeFiles/MIAGE_Port_Management.dir/build.make CMakeFiles/MIAGE_Port_Management.dir/build
 .PHONY : MIAGE_Port_Management/fast
 
-gestionPort.o: gestionPort.cpp.o
+Bateau/Bateau.o: Bateau/Bateau.cpp.o
 
-.PHONY : gestionPort.o
+.PHONY : Bateau/Bateau.o
 
 # target to build an object file
-gestionPort.cpp.o:
-	$(MAKE) -f CMakeFiles/MIAGE_Port_Management.dir/build.make CMakeFiles/MIAGE_Port_Management.dir/gestionPort.cpp.o
-.PHONY : gestionPort.cpp.o
+Bateau/Bateau.cpp.o:
+	$(MAKE) -f CMakeFiles/MIAGE_Port_Management.dir/build.make CMakeFiles/MIAGE_Port_Management.dir/Bateau/Bateau.cpp.o
+.PHONY : Bateau/Bateau.cpp.o
 
-gestionPort.i: gestionPort.cpp.i
+Bateau/Bateau.i: Bateau/Bateau.cpp.i
 
-.PHONY : gestionPort.i
+.PHONY : Bateau/Bateau.i
 
 # target to preprocess a source file
-gestionPort.cpp.i:
-	$(MAKE) -f CMakeFiles/MIAGE_Port_Management.dir/build.make CMakeFiles/MIAGE_Port_Management.dir/gestionPort.cpp.i
-.PHONY : gestionPort.cpp.i
+Bateau/Bateau.cpp.i:
+	$(MAKE) -f CMakeFiles/MIAGE_Port_Management.dir/build.make CMakeFiles/MIAGE_Port_Management.dir/Bateau/Bateau.cpp.i
+.PHONY : Bateau/Bateau.cpp.i
 
-gestionPort.s: gestionPort.cpp.s
+Bateau/Bateau.s: Bateau/Bateau.cpp.s
 
-.PHONY : gestionPort.s
+.PHONY : Bateau/Bateau.s
 
 # target to generate assembly for a file
-gestionPort.cpp.s:
-	$(MAKE) -f CMakeFiles/MIAGE_Port_Management.dir/build.make CMakeFiles/MIAGE_Port_Management.dir/gestionPort.cpp.s
-.PHONY : gestionPort.cpp.s
+Bateau/Bateau.cpp.s:
+	$(MAKE) -f CMakeFiles/MIAGE_Port_Management.dir/build.make CMakeFiles/MIAGE_Port_Management.dir/Bateau/Bateau.cpp.s
+.PHONY : Bateau/Bateau.cpp.s
+
+GestionPort/GestionPort.o: GestionPort/GestionPort.cpp.o
+
+.PHONY : GestionPort/GestionPort.o
+
+# target to build an object file
+GestionPort/GestionPort.cpp.o:
+	$(MAKE) -f CMakeFiles/MIAGE_Port_Management.dir/build.make CMakeFiles/MIAGE_Port_Management.dir/GestionPort/GestionPort.cpp.o
+.PHONY : GestionPort/GestionPort.cpp.o
+
+GestionPort/GestionPort.i: GestionPort/GestionPort.cpp.i
+
+.PHONY : GestionPort/GestionPort.i
+
+# target to preprocess a source file
+GestionPort/GestionPort.cpp.i:
+	$(MAKE) -f CMakeFiles/MIAGE_Port_Management.dir/build.make CMakeFiles/MIAGE_Port_Management.dir/GestionPort/GestionPort.cpp.i
+.PHONY : GestionPort/GestionPort.cpp.i
+
+GestionPort/GestionPort.s: GestionPort/GestionPort.cpp.s
+
+.PHONY : GestionPort/GestionPort.s
+
+# target to generate assembly for a file
+GestionPort/GestionPort.cpp.s:
+	$(MAKE) -f CMakeFiles/MIAGE_Port_Management.dir/build.make CMakeFiles/MIAGE_Port_Management.dir/GestionPort/GestionPort.cpp.s
+.PHONY : GestionPort/GestionPort.cpp.s
 
 main.o: main.cpp.o
 
@@ -186,9 +213,12 @@ help:
 	@echo "... rebuild_cache"
 	@echo "... edit_cache"
 	@echo "... MIAGE_Port_Management"
-	@echo "... gestionPort.o"
-	@echo "... gestionPort.i"
-	@echo "... gestionPort.s"
+	@echo "... Bateau/Bateau.o"
+	@echo "... Bateau/Bateau.i"
+	@echo "... Bateau/Bateau.s"
+	@echo "... GestionPort/GestionPort.o"
+	@echo "... GestionPort/GestionPort.i"
+	@echo "... GestionPort/GestionPort.s"
 	@echo "... main.o"
 	@echo "... main.i"
 	@echo "... main.s"

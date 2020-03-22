@@ -6,8 +6,14 @@
 #define MIAGE_PORT_MANAGEMENT_GESTIONPORT_H
 
 
-class gestionPort {
+class GestionPort {
+private:
 
+public:
+    GestionPort();
+    void createReservation();
+    void createBoat();
+    int createBoatAskSize();
 };
 
 
