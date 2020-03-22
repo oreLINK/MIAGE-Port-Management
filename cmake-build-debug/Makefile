@@ -123,6 +123,33 @@ MIAGE_Port_Management/fast:
 	$(MAKE) -f CMakeFiles/MIAGE_Port_Management.dir/build.make CMakeFiles/MIAGE_Port_Management.dir/build
 .PHONY : MIAGE_Port_Management/fast
 
+gestionPort.o: gestionPort.cpp.o
+
+.PHONY : gestionPort.o
+
+# target to build an object file
+gestionPort.cpp.o:
+	$(MAKE) -f CMakeFiles/MIAGE_Port_Management.dir/build.make CMakeFiles/MIAGE_Port_Management.dir/gestionPort.cpp.o
+.PHONY : gestionPort.cpp.o
+
+gestionPort.i: gestionPort.cpp.i
+
+.PHONY : gestionPort.i
+
+# target to preprocess a source file
+gestionPort.cpp.i:
+	$(MAKE) -f CMakeFiles/MIAGE_Port_Management.dir/build.make CMakeFiles/MIAGE_Port_Management.dir/gestionPort.cpp.i
+.PHONY : gestionPort.cpp.i
+
+gestionPort.s: gestionPort.cpp.s
+
+.PHONY : gestionPort.s
+
+# target to generate assembly for a file
+gestionPort.cpp.s:
+	$(MAKE) -f CMakeFiles/MIAGE_Port_Management.dir/build.make CMakeFiles/MIAGE_Port_Management.dir/gestionPort.cpp.s
+.PHONY : gestionPort.cpp.s
+
 main.o: main.cpp.o
 
 .PHONY : main.o
@@ -159,6 +186,9 @@ help:
 	@echo "... rebuild_cache"
 	@echo "... edit_cache"
 	@echo "... MIAGE_Port_Management"
+	@echo "... gestionPort.o"
+	@echo "... gestionPort.i"
+	@echo "... gestionPort.s"
 	@echo "... main.o"
 	@echo "... main.i"
 	@echo "... main.s"
