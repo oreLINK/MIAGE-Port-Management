@@ -35,7 +35,7 @@ void GestionPort::createBoat() {
         boat.setSiCabine(true);
         boat.setTypeBateau("Voilier de type 2");
     }
-    cout << "Votre bateau a été catégorisé comme " << boat.getTypeBateau() << endl;
+    cout << "Bateau catégorisé comme " << boat.getTypeBateau() << endl;
     cout << " " << endl;
 }
 /**
