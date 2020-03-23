@@ -6,6 +6,8 @@
 #define MIAGE_PORT_MANAGEMENT_GESTIONPORT_H
 
 
+#include "../Reservation/Reservation.h"
+
 class GestionPort {
 private:
 
@@ -14,6 +16,8 @@ public:
     void createReservation();
     void createBoat();
     int createBoatAskSize();
+
+    void createBoat(Reservation r);
 };
 
 

@@ -5,13 +5,16 @@
 #include "GestionPort.h"
 #include <iostream>
 #include "../Bateau/Bateau.h"
+#include "../Reservation/Reservation.h"
+#include "../Interface/Interface.h"
 
 GestionPort::GestionPort() {}
 
 void GestionPort::createReservation() {
+    Reservation r;
     cout << "~~~ NOUVELLE RESERVATION ~~~" << endl;
     cout << " " << endl;
-    createBoat(); //details Bateau
+    createBoat(r); //details Bateau
     //liste places dispo en fonction Bateau
     //choix place
     //creation usager (abonne ou passager aussi)
@@ -21,7 +24,7 @@ void GestionPort::createReservation() {
     //edition facture pour abonne
 }
 
-void GestionPort::createBoat() {
+void GestionPort::createBoat(Reservation r) {
     Bateau boat;
     int size = createBoatAskSize();
     boat.setTaille(size);
@@ -37,6 +40,7 @@ void GestionPort::createBoat() {
     }
     cout << "Bateau catégorisé comme " << boat.getTypeBateau() << endl;
     cout << " " << endl;
+    r.setBateau(boat);
 }
 /**
  * Fonction.
@@ -51,9 +55,9 @@ int GestionPort::createBoatAskSize() {
     int size;
     cout << "Taille du bateau ? (en mètres) ", cin >> size;
     while(size <= 0) {
-        cin.clear();
-        cout << "Erreur. Valeur négative, trop grande ou format incompatible." << endl;
-        cout << "Taille du bateau ? (en mètres) ", cin >> size;
+            cin.clear();
+            cout << "Erreur. Valeur négative, trop grande ou format incompatible." << endl;
+            cout << "Taille du bateau ? (en mètres) ", cin >> size;
     }
     return size;
 }
