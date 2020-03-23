@@ -26,7 +26,9 @@ Latest ✔ | Untested ✕ | Untested ✕ |
 
 ## Prerequisites
 
-`Description coming soon...`
+![CLion](https://user-images.githubusercontent.com/35436186/77319294-e0666c80-6d0e-11ea-821b-0a3387dab635.png) |
+--- |
+[CLion](https://www.jetbrains.com/clion/) ✔ |
 
 ## Installation
 
