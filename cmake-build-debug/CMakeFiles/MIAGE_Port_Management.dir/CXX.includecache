@@ -10,6 +10,12 @@
 string
 -
 
+/Users/orepro/Desktop/MIAGE-Port-Management/Client/Client.h
+string
+-
+
+/Users/orepro/Desktop/MIAGE-Port-Management/Date/Date.h
+
 /Users/orepro/Desktop/MIAGE-Port-Management/GestionPort/GestionPort.cpp
 GestionPort.h
 /Users/orepro/Desktop/MIAGE-Port-Management/GestionPort/GestionPort.h
@@ -17,20 +23,28 @@ iostream
 -
 ../Bateau/Bateau.h
 /Users/orepro/Desktop/MIAGE-Port-Management/Bateau/Bateau.h
+../Reservation/Reservation.h
+/Users/orepro/Desktop/MIAGE-Port-Management/Reservation/Reservation.h
+../Interface/Interface.h
+/Users/orepro/Desktop/MIAGE-Port-Management/Interface/Interface.h
 
 /Users/orepro/Desktop/MIAGE-Port-Management/GestionPort/GestionPort.h
+../Reservation/Reservation.h
+/Users/orepro/Desktop/MIAGE-Port-Management/Reservation/Reservation.h
 
 /Users/orepro/Desktop/MIAGE-Port-Management/Interface/Interface.h
 string
 -
 
-/Users/orepro/Desktop/MIAGE-Port-Management/main.cpp
-iostream
--
-Bateau/Bateau.h
+/Users/orepro/Desktop/MIAGE-Port-Management/Place/Place.h
+
+/Users/orepro/Desktop/MIAGE-Port-Management/Reservation/Reservation.h
+../Client/Client.h
+/Users/orepro/Desktop/MIAGE-Port-Management/Client/Client.h
+../Bateau/Bateau.h
 /Users/orepro/Desktop/MIAGE-Port-Management/Bateau/Bateau.h
-GestionPort/GestionPort.h
-/Users/orepro/Desktop/MIAGE-Port-Management/GestionPort/GestionPort.h
-Interface/Interface.h
-/Users/orepro/Desktop/MIAGE-Port-Management/Interface/Interface.h
+../Place/Place.h
+/Users/orepro/Desktop/MIAGE-Port-Management/Place/Place.h
+../Date/Date.h
+/Users/orepro/Desktop/MIAGE-Port-Management/Date/Date.h
 
