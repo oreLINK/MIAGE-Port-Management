@@ -34,11 +34,41 @@ In the context of L3 MIAGE's semester 6 OOP project, we were asked to create a t
 
 ### macOS & Linux
 
-`Description coming soon...`
+1. Clone the project in the directory of your choice.
+
+```sh
+git clone https://github.com/oreLINK/MIAGE-Port-Management.git
+```
+
+If you don't want to proceed as above you can always download the project with the graphical interface by clicking on `Clone or download` then `Download ZIP`.
+
+2. Open the CLion IDE.
+
+3. Click on `New CMake Project from Sources`.
+
+4. Find the `MIAGE-Port-Management` git folder, select it and click `Open`.
+
+5. Finally, click on `Open Existing Project`. 
 
 ### Windows
 
-`Description coming soon...`
+*To use the command line or lines to come, use [Windows PowerShell](https://www.malekal.com/powershell-windows-10-quest-ce-comment-ouvrir-commandes/) or [Git Bash](https://gitforwindows.org/).*
+
+1. Clone the project in the directory of your choice.
+
+```sh
+git clone https://github.com/oreLINK/MIAGE-Port-Management.git
+```
+
+If you don't want to proceed as above you can always download the project with the graphical interface by clicking on `Clone or download` then `Download ZIP`.
+
+2. Open the CLion IDE.
+
+3. Click on `New CMake Project from Sources`.
+
+4. Find the `MIAGE-Port-Management` git folder, select it and click `Open`.
+
+5. Finally, click on `Open Existing Project`. 
 
 ## Demo
 
