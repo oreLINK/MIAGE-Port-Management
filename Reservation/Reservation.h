@@ -38,17 +38,17 @@ public:
 
     void setDateDepart(const Date &dateDepart);
 
-    bool isSiSupplementElec() const;
+    bool isSupplementElec() const;
 
-    void setSiSupplementElec(bool siSupplementElec);
+    void setSupplementElec(bool supplementElec);
 
-    bool isSiSupplementEau() const;
+    bool isSupplementEau() const;
 
-    void setSiSupplementEau(bool siSupplementEau);
+    void setSupplementEau(bool supplementEau);
 
-    bool isSiAbonnement() const;
+    bool isAbonnement() const;
 
-    void setSiAbonnement(bool siAbonnement);
+    void setAbonnement(bool abonnement);
 
 private:
     Client client;
@@ -56,9 +56,9 @@ private:
     Place place;
     Date dateArrivee;
     Date dateDepart;
-    bool siSupplementElec;
-    bool siSupplementEau;
-    bool siAbonnement;
+    bool supplementElec;
+    bool supplementEau;
+    bool abonnement;
 };
 
 

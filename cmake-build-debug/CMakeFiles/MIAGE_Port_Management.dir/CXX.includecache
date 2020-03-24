@@ -27,10 +27,22 @@ iostream
 /Users/orepro/Desktop/MIAGE-Port-Management/Reservation/Reservation.h
 ../Interface/Interface.h
 /Users/orepro/Desktop/MIAGE-Port-Management/Interface/Interface.h
+sstream
+-
+cctype
+-
 
 /Users/orepro/Desktop/MIAGE-Port-Management/GestionPort/GestionPort.h
 ../Reservation/Reservation.h
 /Users/orepro/Desktop/MIAGE-Port-Management/Reservation/Reservation.h
+
+/Users/orepro/Desktop/MIAGE-Port-Management/Interface/Interface.cpp
+Interface.h
+/Users/orepro/Desktop/MIAGE-Port-Management/Interface/Interface.h
+../GestionPort/GestionPort.h
+/Users/orepro/Desktop/MIAGE-Port-Management/GestionPort/GestionPort.h
+iostream
+-
 
 /Users/orepro/Desktop/MIAGE-Port-Management/Interface/Interface.h
 string
@@ -47,4 +59,14 @@ string
 /Users/orepro/Desktop/MIAGE-Port-Management/Place/Place.h
 ../Date/Date.h
 /Users/orepro/Desktop/MIAGE-Port-Management/Date/Date.h
+
+/Users/orepro/Desktop/MIAGE-Port-Management/main.cpp
+iostream
+-
+Bateau/Bateau.h
+/Users/orepro/Desktop/MIAGE-Port-Management/Bateau/Bateau.h
+GestionPort/GestionPort.h
+/Users/orepro/Desktop/MIAGE-Port-Management/GestionPort/GestionPort.h
+Interface/Interface.h
+/Users/orepro/Desktop/MIAGE-Port-Management/Interface/Interface.h
 

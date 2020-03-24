@@ -9,7 +9,7 @@ Reservation::Reservation() {}
 Reservation::Reservation(const Client &client, const Bateau &bateau, const Place &place, const Date &dateArrivee,
                          const Date &dateDepart, bool siSupplementElec, bool siSupplementEau, bool siAbonnement)
         : client(client), bateau(bateau), place(place), dateArrivee(dateArrivee), dateDepart(dateDepart),
-          siSupplementElec(siSupplementElec), siSupplementEau(siSupplementEau), siAbonnement(siAbonnement) {}
+          supplementElec(siSupplementElec), supplementEau(siSupplementEau), abonnement(siAbonnement) {}
 
 const Client &Reservation::getClient() const {
     return client;
@@ -51,26 +51,26 @@ void Reservation::setDateDepart(const Date &dateDepart) {
     Reservation::dateDepart = dateDepart;
 }
 
-bool Reservation::isSiSupplementElec() const {
-    return siSupplementElec;
+bool Reservation::isSupplementElec() const {
+    return supplementElec;
 }
 
-void Reservation::setSiSupplementElec(bool siSupplementElec) {
-    Reservation::siSupplementElec = siSupplementElec;
+void Reservation::setSupplementElec(bool supplementElec) {
+    Reservation::supplementElec = supplementElec;
 }
 
-bool Reservation::isSiSupplementEau() const {
-    return siSupplementEau;
+bool Reservation::isSupplementEau() const {
+    return supplementEau;
 }
 
-void Reservation::setSiSupplementEau(bool siSupplementEau) {
-    Reservation::siSupplementEau = siSupplementEau;
+void Reservation::setSupplementEau(bool supplementEau) {
+    Reservation::supplementEau = supplementEau;
 }
 
-bool Reservation::isSiAbonnement() const {
-    return siAbonnement;
+bool Reservation::isAbonnement() const {
+    return abonnement;
 }
 
-void Reservation::setSiAbonnement(bool siAbonnement) {
-    Reservation::siAbonnement = siAbonnement;
+void Reservation::setAbonnement(bool abonnement) {
+    Reservation::abonnement = abonnement;
 }

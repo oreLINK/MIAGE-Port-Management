@@ -13,7 +13,19 @@ private:
 public:
     void interfaceHome();
 
-    int interfaceHomeResponse();
+    std::string interfaceHomeResponse();
+
+    bool ifWantGoHome(std::string cin);
+
+    void erreur(std::string message, bool avecEspace);
+
+    void home();
+
+    void homeResponseCheck(std::string homeResponse);
+
+    void info(std::string message, bool avecEspace);
+
+    std::string getCin(std::string message, bool ifEspace);
 };
 
 
