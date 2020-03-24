@@ -76,7 +76,9 @@ If you don't want to proceed as above you can always download the project with t
 
 ## Utilisation
 
-`Description coming soon...`
+To start the program, choose `Run`.
+
+To use the program, go to the [wiki](https://github.com/oreLINK/MIAGE-Port-Management/wiki) of this repository.
 
 ## Release history
 
