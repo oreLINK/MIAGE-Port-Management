@@ -7,13 +7,29 @@
 
 #include "../Place/Place.h"
 
+#include <string>
+
+using namespace std;
+
 class Data {
 public:
     Data();
-    void createPlacesFile();
+    void createFirstPlacesFile();
 private:
-    int tailleMax = 30;
-    Place* listePlace = new Place[tailleMax];
+    char const *linkPlacesXMLFile = "Places.xml";
+    //Attention
+    //nbPlacesQuai <= nbPlaces et
+    //nbPlacesQuaiPetites <= nbPlacesQuai et
+    //nbPlacesHorsQuaiPetites <= (nbPlaces-nbPlacesQuai)
+    int const nbPlaces = 40;
+    int const nbPlacesQuai = 30;
+    int const nbPlacesQuaiPetites = 20;
+    int const nbPlacesQuaiGrandes = nbPlacesQuai-nbPlacesQuaiPetites;
+    int const nbPlacesHorsQuai = nbPlaces - nbPlacesQuai;
+    int const nbPlacesHorsQuaiPetites = 7;
+    int const nbPlacesHorsQuaiGrandes = nbPlacesHorsQuai-nbPlacesHorsQuaiPetites;
+
+    void importPlacesFile();
 };
 
 

@@ -17,6 +17,7 @@ CMakeFiles/MIAGE_Port_Management.dir/Date/Date.cpp.o: ../Date/Date.h
 
 CMakeFiles/MIAGE_Port_Management.dir/GestionPort/GestionPort.cpp.o: ../Bateau/Bateau.h
 CMakeFiles/MIAGE_Port_Management.dir/GestionPort/GestionPort.cpp.o: ../Client/Client.h
+CMakeFiles/MIAGE_Port_Management.dir/GestionPort/GestionPort.cpp.o: ../Data/Data.h
 CMakeFiles/MIAGE_Port_Management.dir/GestionPort/GestionPort.cpp.o: ../Date/Date.h
 CMakeFiles/MIAGE_Port_Management.dir/GestionPort/GestionPort.cpp.o: ../GestionPort/GestionPort.cpp
 CMakeFiles/MIAGE_Port_Management.dir/GestionPort/GestionPort.cpp.o: ../GestionPort/GestionPort.h

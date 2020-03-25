@@ -10,29 +10,39 @@ class Place {
 public:
     Place();
 
-    Place(int tailleMax, bool siElec, bool siEau, bool siOccupe);
+    Place(int number, bool dock, bool tall, bool elec, bool water, bool busy);
 
-    int getTailleMax() const;
+    int getNumber() const;
 
-    void setTailleMax(int tailleMax);
+    void setNumber(int number);
 
-    bool isSiElec() const;
+    bool isDock() const;
 
-    void setSiElec(bool siElec);
+    void setDock(bool dock);
 
-    bool isSiEau() const;
+    bool isTall() const;
 
-    void setSiEau(bool siEau);
+    void setTall(bool tall);
 
-    bool isSiOccupe() const;
+    bool isElec() const;
 
-    void setSiOccupe(bool siOccupe);
+    void setElec(bool elec);
+
+    bool isWater() const;
+
+    void setWater(bool water);
+
+    bool isBusy() const;
+
+    void setBusy(bool busy);
 
 private:
-    int tailleMax;
-    bool siElec;
-    bool siEau;
-    bool siOccupe;
+    int number;
+    bool dock;
+    bool tall;
+    bool elec;
+    bool water;
+    bool busy;
 };
 
 

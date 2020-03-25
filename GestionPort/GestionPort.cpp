@@ -7,11 +7,13 @@
 #include "../Bateau/Bateau.h"
 #include "../Reservation/Reservation.h"
 #include "../Interface/Interface.h"
+#include "../Data//Data.h"
 
 #include <sstream>
 #include <cctype>
 
 Interface igp;
+Data datagp;
 
 GestionPort::GestionPort() {}
 
@@ -23,7 +25,7 @@ void GestionPort::createReservation() {
     cout << "~~~ NOUVELLE RESERVATION ~~~" << endl;
     cout << " " << endl;
     createBoat(r); //details Bateau
-    //liste places dispo en fonction Bateau
+    datagp.createFirstPlacesFile(); //liste places dispo en fonction Bateau
     //choix place
     //creation usager (abonne ou passager aussi)
     //si supplements
