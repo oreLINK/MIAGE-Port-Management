@@ -15,6 +15,9 @@ Interface igp;
 
 GestionPort::GestionPort() {}
 
+/**
+ * Action pour créer une nouvelle réservation.
+ */
 void GestionPort::createReservation() {
     Reservation r;
     cout << "~~~ NOUVELLE RESERVATION ~~~" << endl;
@@ -83,87 +86,6 @@ void GestionPort::createBoat(Reservation r) {
             }
         }
     }
-
-    /**
-    //si la réponse est de retourner au menu d'accueil
-    if (checkWantHome(choice)) {
-        error = false; //il n'y a pas d'erreurs de format
-        igp.info("Vous avez choisi de revenir à l'accueil",true); //affichage d'une information
-        igp.home(); //affichage de l'interface d'accueil
-    } //sinon
-    else {
-        while (error) {
-            if(!firstTime) {
-                //récupération de la taille du bateau donnée par le client
-                choice = igp.getCin("Taille du bateau ? (en mètres)");
-            } else {
-                firstTime = false;
-                //si le format n'est pas compatible
-                if (!checkBoatLength(choice)) {
-                    igp.erreur("Valeur négative ou format incompatible", false);
-                } else {
-                    //on convertit le string en int
-                    size = stoi(choice);
-                    //il n'y a pas d'erreurs de format
-                    error = false;
-                }
-            }
-        }
-        boat.setTaille(size);
-        if (size < 10) {
-            boat.setSiCabine(false);
-            boat.setTypeBateau("Voilier non habitable");
-        } else if (size >= 10 && size <= 25) {
-            boat.setSiCabine(true);
-            boat.setTypeBateau("Voilier de type 1");
-        } else {
-            boat.setSiCabine(true);
-            boat.setTypeBateau("Voilier de type 2");
-        }
-        cout << "Bateau catégorisé comme " << boat.getTypeBateau() << endl;
-        cout << " " << endl;
-        r.setBateau(boat);
-    }
-    **/
-}
-
-/**
- * Fonction.
- * Lors de la création d'un bateau, demande la taille en mètres de celui-ci au client.
- * Ne prend pas en compte les valeurs négatives ou égales à 0.
- *
- * /!\ VOIR POUR CHECK LE CIN ET N'ACCEPTER QUE LES NOMBRES /!\
- *
- * @return la taille du bateau
- */
-int GestionPort::createBoatAskSize() {
-    int size;
-    string choice = igp.getCin("Taille du bateau ? (en mètres)",false);
-    if (choice == "q") {
-
-    }
-    /**
-    while(size <= 0) {
-            cin.clear();
-            cout << "Erreur. Valeur négative, trop grande ou format incompatible." << endl;
-            cout << "Taille du bateau ? (en mètres) ", cin >> size;
-    }
-     **/
-    return size;
-}
-
-int GestionPort::createBoatCheckChoice(string choice) {
-    int size = stoi(choice);
-    while (size <= 0) {
-        cin.clear();
-        igp.erreur("Valeur négative ou format incompatible", false);
-        size = stoi(igp.getCin("Taille du bateau ? (en mètres)",false));
-        /**
-        cout << "Erreur. Valeur négative, trop grande ou format incompatible." << endl;
-        cout << "Taille du bateau ? (en mètres) ", cin >> size;
-         **/
-    }
-
 }
 
 /**
@@ -184,6 +106,11 @@ bool GestionPort::checkBoatLength(string choice) {
     return ifValid;
 }
 
+/**
+ * Fonction booléen qui va vérifier si la valeur rentrée dans le terminal est celle pour retourner à l'accueil
+ * @param choice valeur rentrée dans le terminal
+ * @return vrai si la valeur est celle pour revenir à l'accueil sinon faux
+ */
 bool GestionPort::checkWantHome(string choice) {
     if (choice == "q") {
         return true;

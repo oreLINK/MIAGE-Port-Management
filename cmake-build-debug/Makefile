@@ -177,6 +177,33 @@ Client/Client.cpp.s:
 	$(MAKE) -f CMakeFiles/MIAGE_Port_Management.dir/build.make CMakeFiles/MIAGE_Port_Management.dir/Client/Client.cpp.s
 .PHONY : Client/Client.cpp.s
 
+Data/Data.o: Data/Data.cpp.o
+
+.PHONY : Data/Data.o
+
+# target to build an object file
+Data/Data.cpp.o:
+	$(MAKE) -f CMakeFiles/MIAGE_Port_Management.dir/build.make CMakeFiles/MIAGE_Port_Management.dir/Data/Data.cpp.o
+.PHONY : Data/Data.cpp.o
+
+Data/Data.i: Data/Data.cpp.i
+
+.PHONY : Data/Data.i
+
+# target to preprocess a source file
+Data/Data.cpp.i:
+	$(MAKE) -f CMakeFiles/MIAGE_Port_Management.dir/build.make CMakeFiles/MIAGE_Port_Management.dir/Data/Data.cpp.i
+.PHONY : Data/Data.cpp.i
+
+Data/Data.s: Data/Data.cpp.s
+
+.PHONY : Data/Data.s
+
+# target to generate assembly for a file
+Data/Data.cpp.s:
+	$(MAKE) -f CMakeFiles/MIAGE_Port_Management.dir/build.make CMakeFiles/MIAGE_Port_Management.dir/Data/Data.cpp.s
+.PHONY : Data/Data.cpp.s
+
 Date/Date.o: Date/Date.cpp.o
 
 .PHONY : Date/Date.o
@@ -312,6 +339,33 @@ Reservation/Reservation.cpp.s:
 	$(MAKE) -f CMakeFiles/MIAGE_Port_Management.dir/build.make CMakeFiles/MIAGE_Port_Management.dir/Reservation/Reservation.cpp.s
 .PHONY : Reservation/Reservation.cpp.s
 
+TinyXML/tinyxml2.o: TinyXML/tinyxml2.cpp.o
+
+.PHONY : TinyXML/tinyxml2.o
+
+# target to build an object file
+TinyXML/tinyxml2.cpp.o:
+	$(MAKE) -f CMakeFiles/MIAGE_Port_Management.dir/build.make CMakeFiles/MIAGE_Port_Management.dir/TinyXML/tinyxml2.cpp.o
+.PHONY : TinyXML/tinyxml2.cpp.o
+
+TinyXML/tinyxml2.i: TinyXML/tinyxml2.cpp.i
+
+.PHONY : TinyXML/tinyxml2.i
+
+# target to preprocess a source file
+TinyXML/tinyxml2.cpp.i:
+	$(MAKE) -f CMakeFiles/MIAGE_Port_Management.dir/build.make CMakeFiles/MIAGE_Port_Management.dir/TinyXML/tinyxml2.cpp.i
+.PHONY : TinyXML/tinyxml2.cpp.i
+
+TinyXML/tinyxml2.s: TinyXML/tinyxml2.cpp.s
+
+.PHONY : TinyXML/tinyxml2.s
+
+# target to generate assembly for a file
+TinyXML/tinyxml2.cpp.s:
+	$(MAKE) -f CMakeFiles/MIAGE_Port_Management.dir/build.make CMakeFiles/MIAGE_Port_Management.dir/TinyXML/tinyxml2.cpp.s
+.PHONY : TinyXML/tinyxml2.cpp.s
+
 main.o: main.cpp.o
 
 .PHONY : main.o
@@ -354,6 +408,9 @@ help:
 	@echo "... Client/Client.o"
 	@echo "... Client/Client.i"
 	@echo "... Client/Client.s"
+	@echo "... Data/Data.o"
+	@echo "... Data/Data.i"
+	@echo "... Data/Data.s"
 	@echo "... Date/Date.o"
 	@echo "... Date/Date.i"
 	@echo "... Date/Date.s"
@@ -369,6 +426,9 @@ help:
 	@echo "... Reservation/Reservation.o"
 	@echo "... Reservation/Reservation.i"
 	@echo "... Reservation/Reservation.s"
+	@echo "... TinyXML/tinyxml2.o"
+	@echo "... TinyXML/tinyxml2.i"
+	@echo "... TinyXML/tinyxml2.s"
 	@echo "... main.o"
 	@echo "... main.i"
 	@echo "... main.s"

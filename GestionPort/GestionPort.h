@@ -13,19 +13,14 @@ private:
 
 public:
     GestionPort();
+
     void createReservation();
-    void createBoat();
-    int createBoatAskSize();
 
     void createBoat(Reservation r);
 
     bool checkWantHome(string choice);
 
-    int createBoatCheckChoice(string choice);
-
     bool checkBoatLength(string choice);
-
-    int CountWords(const char *str);
 };
 
 
