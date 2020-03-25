@@ -6,25 +6,45 @@
 
 #IncludeRegexTransform: 
 
-/Users/orepro/Desktop/MIAGE-Port-Management/Bateau/Bateau.h
-string
--
+/Users/orepro/Desktop/MIAGE-Port-Management/Data/Data.cpp
+Data.h
+/Users/orepro/Desktop/MIAGE-Port-Management/Data/Data.h
+../TinyXML/tinyxml2.h
+/Users/orepro/Desktop/MIAGE-Port-Management/TinyXML/tinyxml2.h
 
-/Users/orepro/Desktop/MIAGE-Port-Management/GestionPort/GestionPort.cpp
-GestionPort.h
-/Users/orepro/Desktop/MIAGE-Port-Management/GestionPort/GestionPort.h
-iostream
--
-../Bateau/Bateau.h
-/Users/orepro/Desktop/MIAGE-Port-Management/Bateau/Bateau.h
+/Users/orepro/Desktop/MIAGE-Port-Management/Data/Data.h
+../Place/Place.h
+/Users/orepro/Desktop/MIAGE-Port-Management/Place/Place.h
 
-/Users/orepro/Desktop/MIAGE-Port-Management/GestionPort/GestionPort.h
+/Users/orepro/Desktop/MIAGE-Port-Management/Place/Place.h
 
-/Users/orepro/Desktop/MIAGE-Port-Management/main.cpp
-iostream
+/Users/orepro/Desktop/MIAGE-Port-Management/TinyXML/tinyxml2.h
+ctype.h
 -
-Bateau/Bateau.h
-/Users/orepro/Desktop/MIAGE-Port-Management/Bateau/Bateau.h
-GestionPort/GestionPort.h
-/Users/orepro/Desktop/MIAGE-Port-Management/GestionPort/GestionPort.h
+limits.h
+-
+stdio.h
+-
+stdlib.h
+-
+string.h
+-
+stddef.h
+-
+cctype
+-
+climits
+-
+cstdio
+-
+cstdlib
+-
+cstring
+-
+stdint.h
+-
+android/log.h
+-
+assert.h
+-
 
