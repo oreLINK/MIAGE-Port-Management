@@ -14,6 +14,12 @@
 # EXTERNAL cache entries
 ########################
 
+//build as shared library
+BUILD_SHARED_LIBS:BOOL=ON
+
+//build xmltest (deprecated: Use BUILD_TESTING)
+BUILD_TESTS:BOOL=ON
+
 //Path to a program.
 CMAKE_AR:FILEPATH=/Library/Developer/CommandLineTools/usr/bin/ar
 
