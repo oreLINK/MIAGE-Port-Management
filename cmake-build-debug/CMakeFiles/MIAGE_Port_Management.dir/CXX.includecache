@@ -6,10 +6,42 @@
 
 #IncludeRegexTransform: 
 
+../TinyXML/tinyxml2.h
+ctype.h
+-
+limits.h
+-
+stdio.h
+-
+stdlib.h
+-
+string.h
+-
+stddef.h
+-
+cctype
+-
+climits
+-
+cstdio
+-
+cstdlib
+-
+cstring
+-
+stdint.h
+-
+android/log.h
+-
+assert.h
+-
+
 /Users/orepro/Desktop/MIAGE-Port-Management/Data/Data.cpp
 iostream
 -
 array
+-
+vector
 -
 Data.h
 /Users/orepro/Desktop/MIAGE-Port-Management/Data/Data.h
@@ -20,6 +52,8 @@ Data.h
 ../Place/Place.h
 /Users/orepro/Desktop/MIAGE-Port-Management/Place/Place.h
 string
+-
+TinyXML/tinyxml2.h
 -
 
 /Users/orepro/Desktop/MIAGE-Port-Management/Place/Place.h

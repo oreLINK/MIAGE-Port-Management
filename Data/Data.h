@@ -17,6 +17,7 @@ public:
     Data();
     void createFirstPlacesFile();
     void importPlacesFile();
+    void importPlacesFileCriteriaLength(bool isTall, bool isFree);
 private:
     char const *linkPlacesXMLFile = "Places.xml";
     //Attention

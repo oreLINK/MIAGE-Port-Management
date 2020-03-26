@@ -21,12 +21,23 @@ GestionPort::GestionPort() {}
  * Action pour créer une nouvelle réservation.
  */
 void GestionPort::createReservation() {
+
+    igp.interfaceNewReservation();
     Reservation r;
-    cout << "~~~ NOUVELLE RESERVATION ~~~" << endl;
-    cout << " " << endl;
-    createBoat(r); //details Bateau
+
+    igp.interfaceNewBoat();
+    Bateau boat = createBoat(); //details Bateau
+    r.setBateau(boat);
+
+    igp.interfaceNewPlace();
+    if(r.getBateau().getTypeBateau() == "Voilier de type 2"){
+        datagp.importPlacesFileCriteriaLength(true,true);
+    } else {
+        datagp.importPlacesFileCriteriaLength(false,true);
+    }
+
+
     //datagp.createFirstPlacesFile(); //liste places dispo en fonction Bateau
-    datagp.importPlacesFile();
     //choix place
     //creation usager (abonne ou passager aussi)
     //si supplements
@@ -39,7 +50,7 @@ void GestionPort::createReservation() {
  * Action de création d'un bateau et de son enregistrement dans la réservation
  * @param r réservation où enregistrer le bateau
  */
-void GestionPort::createBoat(Reservation r) {
+Bateau GestionPort::createBoat() {
     Bateau boat; //création d'un bateau
     int size = 0; //initialisation de la taille du bateau
     bool error = true; //initialisation de la boucle d'erreur
@@ -83,12 +94,11 @@ void GestionPort::createBoat(Reservation r) {
                     boat.setSiCabine(true);
                     boat.setTypeBateau("Voilier de type 2");
                 }
-                cout << "Bateau catégorisé comme " << boat.getTypeBateau() << endl;
-                cout << " " << endl;
-                r.setBateau(boat);
+                igp.typeBateauInfos(boat);
             }
         }
     }
+    return boat;
 }
 
 /**
@@ -119,6 +129,11 @@ bool GestionPort::checkWantHome(string choice) {
         return true;
     }
     return false;
+}
+
+Place GestionPort::choosePlace() {
+    string choice = igp.getCin("Numéro de place ?",false);
+
 }
 
 
