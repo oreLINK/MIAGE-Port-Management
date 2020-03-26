@@ -25,7 +25,8 @@ void GestionPort::createReservation() {
     cout << "~~~ NOUVELLE RESERVATION ~~~" << endl;
     cout << " " << endl;
     createBoat(r); //details Bateau
-    datagp.createFirstPlacesFile(); //liste places dispo en fonction Bateau
+    //datagp.createFirstPlacesFile(); //liste places dispo en fonction Bateau
+    datagp.importPlacesFile();
     //choix place
     //creation usager (abonne ou passager aussi)
     //si supplements
@@ -119,3 +120,5 @@ bool GestionPort::checkWantHome(string choice) {
     }
     return false;
 }
+
+

@@ -8,6 +8,7 @@
 #include "../Place/Place.h"
 
 #include <string>
+#include <TinyXML/tinyxml2.h>
 
 using namespace std;
 
@@ -15,6 +16,7 @@ class Data {
 public:
     Data();
     void createFirstPlacesFile();
+    void importPlacesFile();
 private:
     char const *linkPlacesXMLFile = "Places.xml";
     //Attention
@@ -29,7 +31,13 @@ private:
     int const nbPlacesHorsQuaiPetites = 7;
     int const nbPlacesHorsQuaiGrandes = nbPlacesHorsQuai-nbPlacesHorsQuaiPetites;
 
-    void importPlacesFile();
+    int extractIntFromXML(tinyxml2::XMLError eResult, tinyxml2::XMLElement *elementFather, const char *id);
+
+    bool extractBoolFromXML(tinyxml2::XMLError eResult, tinyxml2::XMLElement *elementFather, const char *id);
+
+    void displayPlace(Place p);
+
+    void displayPlaces(vector<Place> p);
 };
 
 

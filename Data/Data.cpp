@@ -4,6 +4,7 @@
 
 #include <iostream>
 #include <array>
+#include <vector>
 #include "Data.h"
 #include "../TinyXML/tinyxml2.h"
 
@@ -120,21 +121,71 @@ void Data::createFirstPlacesFile() {
     }
     xmlDoc.InsertFirstChild(pRoot);
     XMLError eResult = xmlDoc.SaveFile(linkPlacesXMLFile);
-    importPlacesFile();
 }
 
+/**
+ * Action qui va importer le fichier XML de la liste des places en vector
+ */
 void Data::importPlacesFile() {
     XMLDocument xmlDoc;
     XMLError eResult = xmlDoc.LoadFile(linkPlacesXMLFile);
     XMLNode * pRoot = xmlDoc.FirstChild();
-    if(pRoot == nullptr){
-        cout << XML_ERROR_FILE_READ_ERROR << endl;
-    }
     XMLElement * pElement = pRoot->FirstChildElement("Place");
     if(pElement == nullptr){
-        cout << XML_ERROR_PARSING_ELEMENT << endl;
+        cout << "1. " << XML_ERROR_PARSING_ELEMENT << endl;
+    } else {
+        vector<Place> placesList;
+        while(pElement != nullptr){
+            Place p;
+            p.setNumber(extractIntFromXML(eResult,pElement,"number"));
+            p.setDock(extractBoolFromXML(eResult,pElement,"ifDock"));
+            p.setTall(extractBoolFromXML(eResult,pElement,"ifTall"));
+            p.setElec(extractBoolFromXML(eResult,pElement,"ifElec"));
+            p.setWater(extractBoolFromXML(eResult,pElement,"ifWater"));
+            p.setBusy(extractBoolFromXML(eResult,pElement,"ifBusy"));
+            placesList.push_back(p);
+            pElement = pElement->NextSiblingElement("Place");
+        }
+        displayPlaces(placesList);
     }
-    int * number = nullptr;
-    eResult = pElement->QueryIntAttribute("number",number);
-    cout << number << endl;
 }
+
+int Data::extractIntFromXML(XMLError eResult, XMLElement * elementFather, const char * id){
+    int iNumber = 0;
+    XMLElement * pElement = elementFather->FirstChildElement(id);
+    if(pElement == nullptr){
+        cout << "extractIntFromXML(...) " << XML_ERROR_PARSING_ELEMENT << endl;
+    } else {
+        eResult = pElement->QueryIntText(&iNumber);
+    }
+    return iNumber;
+}
+
+bool Data::extractBoolFromXML(XMLError eResult, XMLElement * elementFather, const char * id){
+    bool iBool = false;
+    XMLElement * pElement = elementFather->FirstChildElement(id);
+    if(pElement == nullptr){
+        cout << "extractBoolFromXML(...) " << XML_ERROR_PARSING_ELEMENT << endl;
+    } else {
+        eResult = pElement->QueryBoolText(&iBool);
+    }
+    return iBool;
+}
+
+void Data::displayPlace(Place p){
+    string isDock = (p.isDock() == 0) ? "Hors quai" : "Sur quai";
+    string isTall = (p.isTall() == 0) ? "taille normale" : "grande taille";
+    string isElec = (p.isElec() == 0) ? "Pas d\'electricite" : "Acces a l\'electricite";
+    string isWater = (p.isWater() == 0) ? "pas d\'eau" : "acces a l\'eau";
+    string isBusy = (p.isBusy() == 0) ? "LIBRE" : "OCCUPEE";
+    cout << "Place n°" << p.getNumber()
+    << " [" << isBusy << "] - " << isDock << " et " << isTall << " (" << isElec << ", " << isWater << ")" << endl;
+}
+
+void Data::displayPlaces(vector<Place> p){
+    for(int i = 0; i < p.size(); i++){
+        displayPlace(p[i]);
+    }
+}
+
+
