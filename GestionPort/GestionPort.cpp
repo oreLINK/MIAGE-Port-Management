@@ -43,7 +43,7 @@ void GestionPort::createReservation() {
     igp.interfacePlaceInfos(r.getPlace());
 
     igp.interfaceChoixClient();
-
+    Client c = chooseClient();
     //datagp.createFirstPlacesFile(); //liste places dispo en fonction Bateau
     //choix place
     //creation usager (abonne ou passager aussi)
@@ -170,6 +170,14 @@ Place GestionPort::choosePlace() {
         }
     }
     return place;
+}
+
+Client GestionPort::chooseClient() {
+    Client c;
+    vector<Client> listClients = datagp.importClientsFile();
+    igp.interfaceListeClients();
+    datagp.displayClients(listClients);
+    igp.getCin("[n pour nouveau] Numéro du client ?",false);
 }
 
 

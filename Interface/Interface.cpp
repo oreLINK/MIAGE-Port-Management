@@ -148,4 +148,8 @@ void Interface::interfaceChoixClient(){
     cout << " " << endl;
 }
 
+void Interface::interfaceListeClients(){
+    info("Liste des clients",false);
+}
+
 

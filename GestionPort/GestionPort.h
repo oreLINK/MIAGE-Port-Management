@@ -25,6 +25,8 @@ public:
     Bateau createBoat();
 
     Place choosePlace();
+
+    Client chooseClient();
 };
 
 

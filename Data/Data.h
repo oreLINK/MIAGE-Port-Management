@@ -24,6 +24,9 @@ public:
     bool checkIfPlacesFileExist();
     void createFirstClientFile();
     bool checkIfClientsFileExist();
+    vector<struct Client> importClientsFile();
+    void displayClient(Client c);
+    void displayClients(vector<Client> c);
 private:
     char const *linkPlacesXMLFile = "Places.xml";
     char const* linkClientXMLFile = "Clients.xml";
@@ -44,6 +47,8 @@ private:
     bool extractBoolFromXML(tinyxml2::XMLError eResult, tinyxml2::XMLElement *elementFather, const char *id);
 
     void displayPlace(Place p);
+
+    const char *extractCharFromXML(tinyxml2::XMLError eResult, tinyxml2::XMLElement *elementFather, const char *id);
 };
 
 

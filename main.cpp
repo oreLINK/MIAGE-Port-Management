@@ -1,5 +1,6 @@
 #include <iostream>
 #include <Data/Data.h>
+#include <vector>
 #include "Bateau/Bateau.h"
 #include "GestionPort/GestionPort.h"
 #include "Interface/Interface.h"

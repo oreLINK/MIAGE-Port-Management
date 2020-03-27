@@ -13,8 +13,12 @@ class Client {
 public:
     Client();
 
-    Client(int id, const char *nom, const char *prenom, const char *email, const char *adresse, const char *cp,
-           const char *ville);
+    Client(int id, const char *nom, const char *prenom, const char *email, int numeroAdresse, const char *adresse,
+           const char *cp, const char *ville);
+
+    int getId() const;
+
+    void setId(int id);
 
     const char *getNom() const;
 
@@ -28,6 +32,10 @@ public:
 
     void setEmail(const char *email);
 
+    int getNumeroAdresse() const;
+
+    void setNumeroAdresse(int numeroAdresse);
+
     const char *getAdresse() const;
 
     void setAdresse(const char *adresse);
@@ -40,15 +48,13 @@ public:
 
     void setVille(const char *ville);
 
-    int getId() const;
-
-    void setId(int id);
 
 private:
     int id;
     const char * nom;
     const char * prenom;
     const char * email;
+    int numeroAdresse;
     const char * adresse;
     const char * cp;
     const char * ville;

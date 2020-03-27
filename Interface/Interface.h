@@ -42,6 +42,8 @@ public:
     void interfacePlaceInfos(Place p);
 
     void interfaceChoixClient();
+
+    void interfaceListeClients();
 };
 
 

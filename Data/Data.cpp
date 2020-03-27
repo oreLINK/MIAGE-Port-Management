@@ -6,6 +6,7 @@
 #include <array>
 #include <vector>
 #include <Client/Client.h>
+#include <Tcl/tclTomMath.h>
 #include "Data.h"
 #include "../TinyXML/tinyxml2.h"
 
@@ -188,6 +189,24 @@ bool Data::extractBoolFromXML(XMLError eResult, XMLElement *elementFather, const
 }
 
 /**
+ * Fonction qui va retourner le booléen d'un élément XML
+ * @param eResult element de retour, soit le booléen soit le message d'erreur
+ * @param elementFather noeud XML parent (le premier qui est décalé à gauche en remontant)
+ * @param id le nom de l'attribut à retrouver
+ * @return 0 si le booléen est faux, 1 sinon.
+ */
+const char * Data::extractCharFromXML(XMLError eResult, XMLElement *elementFather, const char *id) {
+    const char * iChar = nullptr;
+    XMLElement *pElement = elementFather->FirstChildElement(id);
+    if (pElement == nullptr) {
+        cout << "extractBoolFromXML(...) " << XML_ERROR_PARSING_ELEMENT << endl;
+    } else {
+        iChar = pElement->GetText();
+    }
+    return iChar;
+}
+
+/**
  * Action qui va afficher dans le terminal les détails de la place choisie
  * @param p place choisie
  */
@@ -325,14 +344,16 @@ void Data::createFirstClientFile(){
     XMLDocument xmlDoc;
     XMLNode *pRoot = xmlDoc.NewElement("ListeDesClients");
 
-    Client c1(1,"DUPONT","Martin","dupont.martin@gmail.com","7 Avenue des Eglantiers","75000","Paris");
-    Client c2(2,"BERNIER","Sophia","berniersophia33@hotmail.com","9 rue des Cordeliers","33000","Bordeaux");
-    Client c3(3,"LAFONT","Richard","lafont-richard@gmail.com","8 impasse des Deux","64100","Bayonne");
+    Client c1(1,"DUPONT","Martin","dupont.martin@gmail.com",7,"avenue des Eglantiers","75000","Paris");
+    Client c2(2,"BERNIER","Sophia","berniersophia33@hotmail.com",9,"rue des Cordeliers","33000","Bordeaux");
+    Client c3(3,"LAFONT","Richard","lafont-richard@gmail.com",8,"impasse des Deux","64100","Bayonne");
 
     vector<Client> listeClientInitial;
     listeClientInitial.push_back(c3);
     listeClientInitial.push_back(c2);
     listeClientInitial.push_back(c1);
+
+    displayClients(listeClientInitial);
 
     for (int i = 0; i < listeClientInitial.size(); i++) {
         XMLNode *nRoot = xmlDoc.NewElement("Client");
@@ -344,6 +365,8 @@ void Data::createFirstClientFile(){
         ePrenom->SetText(listeClientInitial[i].getPrenom());
         XMLElement *eEmail = xmlDoc.NewElement("email");
         eEmail->SetText(listeClientInitial[i].getEmail());
+        XMLElement *eNumAdresse = xmlDoc.NewElement("numadresse");
+        eNumAdresse->SetText(listeClientInitial[i].getNumeroAdresse());
         XMLElement *eAdresse = xmlDoc.NewElement("adresse");
         eAdresse->SetText(listeClientInitial[i].getAdresse());
         XMLElement *eCP = xmlDoc.NewElement("cp");
@@ -354,7 +377,8 @@ void Data::createFirstClientFile(){
         nRoot->InsertAfterChild(eID, eNom);
         nRoot->InsertAfterChild(eNom, ePrenom);
         nRoot->InsertAfterChild(ePrenom, eEmail);
-        nRoot->InsertAfterChild(eEmail, eAdresse);
+        nRoot->InsertAfterChild(eEmail, eNumAdresse);
+        nRoot->InsertAfterChild(eNumAdresse, eAdresse);
         nRoot->InsertAfterChild(eAdresse, eCP);
         nRoot->InsertEndChild(eVille);
         pRoot->InsertFirstChild(nRoot);
@@ -375,6 +399,55 @@ bool Data::checkIfClientsFileExist() {
     } else {
         return true;
     }
+}
+
+/**
+ * Action qui va importer le fichier XML de la liste des clients en vector, sans critères
+ */
+vector<Client> Data::importClientsFile() {
+    vector<Client> clientsList;
+    XMLDocument xmlDoc;
+    XMLError eResult = xmlDoc.LoadFile(linkClientXMLFile);
+    XMLNode *pRoot = xmlDoc.FirstChild();
+    XMLElement *pElement = pRoot->FirstChildElement("Client");
+    if (pElement == nullptr) {
+        cout << "1. " << XML_ERROR_PARSING_ELEMENT << endl;
+    } else {
+        while (pElement != nullptr) {
+            Client c;
+            c.setId(extractIntFromXML(eResult,pElement,"id"));
+            c.setNom(extractCharFromXML(eResult,pElement,"nom"));
+            c.setPrenom(extractCharFromXML(eResult,pElement,"prenom"));
+            c.setEmail(extractCharFromXML(eResult,pElement,"email"));
+            c.setNumeroAdresse(extractIntFromXML(eResult,pElement,"numadresse"));
+            c.setAdresse(extractCharFromXML(eResult,pElement,"adresse"));
+            c.setCp(extractCharFromXML(eResult,pElement,"cp"));
+            c.setVille(extractCharFromXML(eResult,pElement,"ville"));
+            clientsList.push_back(c);
+            pElement = pElement->NextSiblingElement("Client");
+        }
+    }
+    return clientsList;
+}
+
+/**
+ * Action qui va afficher dans le terminal les détails de la place choisie
+ * @param p place choisie
+ */
+void Data::displayClient(Client c) {
+    cout << "Client n°" << c.getId() << " - " << c.getNom() << " " << c.getPrenom()
+    << " (" << c.getEmail() << ") " << c.getNumeroAdresse() << " " << c.getAdresse() << " " << c.getCp() << " " << c.getVille() << endl;
+}
+
+/**
+ * Action qui va afficher l'ensemble des places enregistrées dans le vecteur
+ * @param p ensemble des places enregistrées dans ce vecteur
+ */
+void Data::displayClients(vector<Client> c) {
+    for (int i = 0; i < c.size(); i++) {
+        displayClient(c[i]);
+    }
+    cout << " " << endl;
 }
 
 

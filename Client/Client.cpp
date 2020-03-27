@@ -6,9 +6,10 @@
 
 Client::Client() {}
 
-Client::Client(int id, const char *nom, const char *prenom, const char *email, const char *adresse, const char *cp,
-               const char *ville) : id(id), nom(nom), prenom(prenom), email(email), adresse(adresse), cp(cp),
-                                    ville(ville) {}
+Client::Client(int id, const char *nom, const char *prenom, const char *email, int numeroAdresse, const char *adresse,
+               const char *cp, const char *ville) : id(id), nom(nom), prenom(prenom), email(email),
+                                                    numeroAdresse(numeroAdresse), adresse(adresse), cp(cp),
+                                                    ville(ville) {}
 
 int Client::getId() const {
     return id;
@@ -40,6 +41,14 @@ const char *Client::getEmail() const {
 
 void Client::setEmail(const char *email) {
     Client::email = email;
+}
+
+int Client::getNumeroAdresse() const {
+    return numeroAdresse;
+}
+
+void Client::setNumeroAdresse(int numeroAdresse) {
+    Client::numeroAdresse = numeroAdresse;
 }
 
 const char *Client::getAdresse() const {
