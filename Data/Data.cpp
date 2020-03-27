@@ -5,6 +5,7 @@
 #include <iostream>
 #include <array>
 #include <vector>
+#include <Client/Client.h>
 #include "Data.h"
 #include "../TinyXML/tinyxml2.h"
 
@@ -212,9 +213,24 @@ void Data::displayPlaces(vector<Place> p) {
 }
 
 /**
+ * Fonction qui va vérifier si la fichier de la liste des places existe
+ * @return vrai si le fichier existe déjà, faux sinon.
+ */
+bool Data::checkIfPlacesFileExist() {
+    XMLDocument xmlDoc;
+    XMLError eResult = xmlDoc.LoadFile(linkPlacesXMLFile);
+    if(eResult == XML_ERROR_FILE_NOT_FOUND){
+        return false;
+    } else {
+        return true;
+    }
+}
+
+/**
  * Action qui va importer le fichier XML de la liste des places en vector, avec critères
  */
-void Data::importPlacesFileCriteriaLength(bool isTall, bool isFree) {
+vector<Place> Data::importPlacesFileCriteriaLength(bool isTall, bool isFree) {
+    vector<Place> placesList;
     XMLDocument xmlDoc;
     XMLError eResult = xmlDoc.LoadFile(linkPlacesXMLFile);
     XMLNode *pRoot = xmlDoc.FirstChild();
@@ -222,7 +238,6 @@ void Data::importPlacesFileCriteriaLength(bool isTall, bool isFree) {
     if (pElement == nullptr) {
         cout << "1. " << XML_ERROR_PARSING_ELEMENT << endl;
     } else {
-        vector<Place> placesList;
         while (pElement != nullptr) {
             Place p;
             bool ifError = false;
@@ -262,7 +277,100 @@ void Data::importPlacesFileCriteriaLength(bool isTall, bool isFree) {
             }
             pElement = pElement->NextSiblingElement("Place");
         }
-        displayPlaces(placesList);
+    }
+    return placesList;
+}
+
+/**
+ * Fonction qui va vérifier dans le numéro de la place choisi est bien dans la liste des places donnée
+ * @param listPlaces liste des places donnée
+ * @param choice numéro de place choisi
+ * @return vrai si le numéro est présent dans la liste, sinon faux.
+ */
+bool Data::checkNumberPlace(vector<Place> listPlaces, int choice){
+    bool ifOK = false;
+    for (int i = 0; i < listPlaces.size(); i++) {
+        if(listPlaces[i].getNumber() == choice){
+            ifOK = true;
+        }
+    }
+    return ifOK;
+}
+
+/**
+ * Fonction qui va retourner les informations de la place choisie à partir de son numéro
+ * @param listPlaces liste des places donnée
+ * @param choice numéro de place choisi
+ * @return la place à partir du numéro choisi
+ */
+Place Data::extractPlaceFromNumber(vector<Place> listPlaces, int choice){
+    Place p;
+    for (int i = 0; i < listPlaces.size(); i++) {
+        if(listPlaces[i].getNumber() == choice){
+            p.setNumber(listPlaces[i].getNumber());
+            p.setDock(listPlaces[i].isDock());
+            p.setTall(listPlaces[i].isTall());
+            p.setElec(listPlaces[i].isElec());
+            p.setWater(listPlaces[i].isWater());
+            p.setBusy(true);
+        }
+    }
+    return p;
+}
+
+/**
+ * Action qui va créer le fichier XML initial des clients de la marina lors du premier lancement du programme.
+ */
+void Data::createFirstClientFile(){
+    XMLDocument xmlDoc;
+    XMLNode *pRoot = xmlDoc.NewElement("ListeDesClients");
+
+    Client c1("DUPONT","Martin","dupont.martin@gmail.com","7 Avenue des Eglantiers","75000","Paris");
+    Client c2("BERNIER","Sophia","berniersophia33@hotmail.com","9 rue des Cordeliers","33000","Bordeaux");
+    Client c3("LAFONT","Richard","lafont-richard@gmail.com","8 impasse des Deux","64100","Bayonne");
+
+    vector<Client> listeClientInitial;
+    listeClientInitial.push_back(c1);
+    listeClientInitial.push_back(c2);
+    listeClientInitial.push_back(c3);
+
+    for (int i = 0; i < listeClientInitial.size(); i++) {
+        XMLNode *nRoot = xmlDoc.NewElement("Client");
+        XMLElement *eNom = xmlDoc.NewElement("nom");
+        eNom->SetText(listeClientInitial[i].getNom());
+        XMLElement *ePrenom = xmlDoc.NewElement("prenom");
+        ePrenom->SetText(listeClientInitial[i].getPrenom());
+        XMLElement *eEmail = xmlDoc.NewElement("email");
+        eEmail->SetText(listeClientInitial[i].getEmail());
+        XMLElement *eAdresse = xmlDoc.NewElement("adresse");
+        eAdresse->SetText(listeClientInitial[i].getAdresse());
+        XMLElement *eCP = xmlDoc.NewElement("cp");
+        eCP->SetText(listeClientInitial[i].getCp());
+        XMLElement *eVille = xmlDoc.NewElement("ville");
+        eVille->SetText(listeClientInitial[i].getVille());
+        nRoot->InsertFirstChild(eNom);
+        nRoot->InsertAfterChild(eNom, ePrenom);
+        nRoot->InsertAfterChild(ePrenom, eEmail);
+        nRoot->InsertAfterChild(eEmail, eAdresse);
+        nRoot->InsertAfterChild(eAdresse, eCP);
+        nRoot->InsertEndChild(eVille);
+        pRoot->InsertFirstChild(nRoot);
+    }
+    xmlDoc.InsertFirstChild(pRoot);
+    XMLError eResult = xmlDoc.SaveFile(linkClientXMLFile);
+}
+
+/**
+ * Fonction qui va vérifier si la fichier de la liste des clients existe
+ * @return vrai si le fichier existe déjà, faux sinon.
+ */
+bool Data::checkIfClientsFileExist() {
+    XMLDocument xmlDoc;
+    XMLError eResult = xmlDoc.LoadFile(linkClientXMLFile);
+    if(eResult == XML_ERROR_FILE_NOT_FOUND){
+        return false;
+    } else {
+        return true;
     }
 }
 

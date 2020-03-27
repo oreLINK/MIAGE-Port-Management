@@ -6,6 +6,10 @@
 
 #IncludeRegexTransform: 
 
+../Client/Client.h
+string
+-
+
 ../TinyXML/tinyxml2.h
 ctype.h
 -
@@ -42,6 +46,8 @@ iostream
 array
 -
 vector
+-
+Client/Client.h
 -
 Data.h
 /Users/orepro/Desktop/MIAGE-Port-Management/Data/Data.h

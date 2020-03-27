@@ -7,6 +7,7 @@
 
 #include <string>
 #include <Bateau/Bateau.h>
+#include <Place/Place.h>
 
 using namespace std;
 
@@ -37,6 +38,10 @@ public:
     void interfaceNewBoat();
 
     void interfaceNewPlace();
+
+    void interfacePlaceInfos(Place p);
+
+    void interfaceChoixClient();
 };
 
 

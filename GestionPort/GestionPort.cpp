@@ -11,9 +11,11 @@
 
 #include <sstream>
 #include <cctype>
+#include <vector>
 
 Interface igp;
 Data datagp;
+vector<Place> listPlacesFree;
 
 GestionPort::GestionPort() {}
 
@@ -31,11 +33,16 @@ void GestionPort::createReservation() {
 
     igp.interfaceNewPlace();
     if(r.getBateau().getTypeBateau() == "Voilier de type 2"){
-        datagp.importPlacesFileCriteriaLength(true,true);
+        listPlacesFree = datagp.importPlacesFileCriteriaLength(true,true);
     } else {
-        datagp.importPlacesFileCriteriaLength(false,true);
+        listPlacesFree = datagp.importPlacesFileCriteriaLength(false,true);
     }
+    datagp.displayPlaces(listPlacesFree);
+    Place place = choosePlace();
+    r.setPlace(place);
+    igp.interfacePlaceInfos(r.getPlace());
 
+    igp.interfaceChoixClient();
 
     //datagp.createFirstPlacesFile(); //liste places dispo en fonction Bateau
     //choix place
@@ -68,11 +75,11 @@ Bateau GestionPort::createBoat() {
         ifFirst = false;
         //si le mot rentré est celui pour retourner à l'accueil
         if(checkWantHome(choice)) {
-            error = false; //on sort de la boucle d'erreur
-            igp.info("Vous avez choisi de revenir à l'accueil",true); //affichage d'une information
-            igp.home(); //affichage de l'interface d'accueil
-        } //sinon
-        else {
+                error = false; //on sort de la boucle d'erreur
+                igp.info("Vous avez choisi de revenir à l'accueil",true); //affichage d'une information
+                igp.home(); //affichage de l'interface d'accueil
+            } //sinon
+            else {
             //si le format rentré est incompatible (contient lettres ou inférieur ou égal à 0)
             if (!checkBoatLength(choice)) {
                 //on reste dans la boucle d'erreur
@@ -132,8 +139,37 @@ bool GestionPort::checkWantHome(string choice) {
 }
 
 Place GestionPort::choosePlace() {
+    Place place;
     string choice = igp.getCin("Numéro de place ?",false);
+    bool error = true; //initialisation de la boucle d'erreur
+    bool ifFirst = true; //initialisation du premier essai pour éviter de revenir ici
 
+    while(error){
+        if(!ifFirst) {
+            choice = igp.getCin("Numéro de place ?",false);
+            //cout << choice << endl;
+        }
+        ifFirst = false;
+        if (!checkBoatLength(choice)) {
+            //on reste dans la boucle d'erreur
+            igp.erreur("Valeur négative ou format incompatible", false); //affichage d'une erreur
+            cin.clear();
+            choice.empty();
+        } //sinon le format est compatible
+        else {
+            int numberPlace;
+            istringstream(choice) >> numberPlace;
+            if(datagp.checkNumberPlace(listPlacesFree, numberPlace)){
+                error = false; //on sort de la boucle d'erreur
+                place = datagp.extractPlaceFromNumber(listPlacesFree,numberPlace);
+            } else {
+                igp.erreur("Numéro de place non valide",false);
+                cin.clear();
+                choice.empty();
+            }
+        }
+    }
+    return place;
 }
 
 

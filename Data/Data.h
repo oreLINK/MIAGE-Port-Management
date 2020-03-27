@@ -17,9 +17,16 @@ public:
     Data();
     void createFirstPlacesFile();
     void importPlacesFile();
-    void importPlacesFileCriteriaLength(bool isTall, bool isFree);
+    vector<struct Place> importPlacesFileCriteriaLength(bool isTall, bool isFree);
+    void displayPlaces(vector<Place> p);
+    bool checkNumberPlace(vector<Place> listPlaces, int choice);
+    Place extractPlaceFromNumber(vector<Place> listPlaces, int choice);
+    bool checkIfPlacesFileExist();
+    void createFirstClientFile();
+    bool checkIfClientsFileExist();
 private:
     char const *linkPlacesXMLFile = "Places.xml";
+    char const* linkClientXMLFile = "Clients.xml";
     //Attention
     //nbPlacesQuai <= nbPlaces et
     //nbPlacesQuaiPetites <= nbPlacesQuai et
@@ -37,8 +44,6 @@ private:
     bool extractBoolFromXML(tinyxml2::XMLError eResult, tinyxml2::XMLElement *elementFather, const char *id);
 
     void displayPlace(Place p);
-
-    void displayPlaces(vector<Place> p);
 };
 
 

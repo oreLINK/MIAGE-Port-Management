@@ -134,4 +134,18 @@ void Interface::interfaceNewPlace(){
     cout << " " << endl;
 }
 
+void Interface::interfacePlaceInfos(Place p){
+    cout << "Info. Vous avez choisi la place n°"<< p.getNumber() << endl;
+    cout << " " << endl;
+}
+
+/**
+ * CLIENTS
+ */
+
+void Interface::interfaceChoixClient(){
+    cout << "~ Choix du client ~" << endl;
+    cout << " " << endl;
+}
+
 
