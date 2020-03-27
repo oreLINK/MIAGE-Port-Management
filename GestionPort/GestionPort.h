@@ -16,11 +16,15 @@ public:
 
     void createReservation();
 
-    void createBoat(Reservation r);
+    Bateau createBoat(Reservation r);
 
     bool checkWantHome(string choice);
 
     bool checkBoatLength(string choice);
+
+    Bateau createBoat();
+
+    Place choosePlace();
 };
 
 

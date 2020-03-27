@@ -95,7 +95,57 @@ void Interface::info(string message, bool avecEspace) {
 }
 
 /**
+ * RESERVATION
+ */
+
+void Interface::interfaceNewReservation(){
+    cout << "~~~ NOUVELLE RESERVATION ~~~" << endl;
+    cout << " " << endl;
+}
+
+/**
  * BOAT CREATION
  */
+
+void Interface::interfaceNewBoat(){
+    cout << "~ Choix du bateau ~" << endl;
+    cout << " " << endl;
+}
+
+/**
+ * Action qui va afficher le type de place requis en fonction du type de bateau
+ * @param b le bateau
+ */
+void Interface::typeBateauInfos(Bateau b){
+    info("Bateau catégorisé comme "+b.getTypeBateau(),false);
+    if(b.getTypeBateau()=="Voilier de type 2"){
+        info("Place de grande taille requise",true);
+    } else {
+        info("Place de taille normale requise",true);
+    }
+}
+
+/**
+ * LISTE DES PLACES
+ */
+
+void Interface::interfaceNewPlace(){
+    cout << "~ Choix de la place ~" << endl;
+    cout << " " << endl;
+}
+
+void Interface::interfacePlaceInfos(Place p){
+    cout << "Info. Vous avez choisi la place n°"<< p.getNumber() << endl;
+    cout << " " << endl;
+}
+
+/**
+ * CLIENTS
+ */
+
+void Interface::interfaceChoixClient(){
+    cout << "~ Choix du client ~" << endl;
+    cout << " " << endl;
+}
 
 

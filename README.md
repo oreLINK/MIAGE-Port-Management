@@ -19,24 +19,56 @@ Latest ✔ | Untested ✕ | Untested ✕ |
 
 --->
 
-`Description coming soon...`
+In the context of L3 MIAGE's semester 6 OOP project, we were asked to create a terminal program for the management of a marina in C++. This will allow to consult the list of available places, to create a reservation, to manage prices and the list of clients, to issue an invoice and to save the transactions carried out in a text file via [TinyXML2](https://github.com/leethomason/tinyxml2).   
 
 ![#ffa500](https://placehold.it/15/ffa500/000000?text=+)   *Ongoing project*
 <!---![#008000](https://placehold.it/15/008000/000000?text=+)   *Project completed*--->
 
 ## Prerequisites
 
-`Description coming soon...`
+![CLion](https://user-images.githubusercontent.com/35436186/77319294-e0666c80-6d0e-11ea-821b-0a3387dab635.png) |
+--- |
+[CLion](https://www.jetbrains.com/clion/) ✔ |
 
 ## Installation
 
 ### macOS & Linux
 
-`Description coming soon...`
+1. Clone the project in the directory of your choice.
+
+```sh
+git clone https://github.com/oreLINK/MIAGE-Port-Management.git
+```
+
+If you don't want to proceed as above you can always download the project with the graphical interface by clicking on `Clone or download` then `Download ZIP`.
+
+2. Open the CLion IDE.
+
+3. Click on `New CMake Project from Sources`.
+
+4. Find the `MIAGE-Port-Management` git folder, select it and click `Open`.
+
+5. Finally, click on `Open Existing Project`. 
 
 ### Windows
 
-`Description coming soon...`
+*To use the command line or lines to come, use [Windows PowerShell](https://www.malekal.com/powershell-windows-10-quest-ce-comment-ouvrir-commandes/) or [Git Bash](https://gitforwindows.org/).*
+
+1. Clone the project in the directory of your choice.
+
+```sh
+git clone https://github.com/oreLINK/MIAGE-Port-Management.git
+```
+
+If you don't want to proceed as above you can always download the project with the graphical interface by clicking on `Clone or download` then `Download ZIP`.
+
+2. Open the CLion IDE.
+
+3. Click on `New CMake Project from Sources`.
+
+4. Find the `MIAGE-Port-Management` git folder, select it and click `Open`.
+
+5. Finally, click on `Open Existing Project`. 
 
 ## Demo
 
@@ -44,7 +76,9 @@ Latest ✔ | Untested ✕ | Untested ✕ |
 
 ## Utilisation
 
-`Description coming soon...`
+To start the program, choose `Run`.
+
+To use the program, go to the [wiki](https://github.com/oreLINK/MIAGE-Port-Management/wiki) of this repository.
 
 ## Release history
 
@@ -58,7 +92,7 @@ Latest ✔ | Untested ✕ | Untested ✕ |
     
 ## License
 
-`Description coming soon...`
+The license is available [here](https://github.com/oreLINK/MIAGE-Port-Management/blob/master/LICENSE.md).
 
 ## Contributors
 
@@ -68,4 +102,3 @@ Latest ✔ | Untested ✕ | Untested ✕ |
 
 *This project doesn't accept external contributions.*
 <!---*This project accepts external contributions.*--->
-

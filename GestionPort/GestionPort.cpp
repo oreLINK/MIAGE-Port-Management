@@ -7,11 +7,15 @@
 #include "../Bateau/Bateau.h"
 #include "../Reservation/Reservation.h"
 #include "../Interface/Interface.h"
+#include "../Data//Data.h"
 
 #include <sstream>
 #include <cctype>
+#include <vector>
 
 Interface igp;
+Data datagp;
+vector<Place> listPlacesFree;
 
 GestionPort::GestionPort() {}
 
@@ -19,11 +23,28 @@ GestionPort::GestionPort() {}
  * Action pour créer une nouvelle réservation.
  */
 void GestionPort::createReservation() {
+
+    igp.interfaceNewReservation();
     Reservation r;
-    cout << "~~~ NOUVELLE RESERVATION ~~~" << endl;
-    cout << " " << endl;
-    createBoat(r); //details Bateau
-    //liste places dispo en fonction Bateau
+
+    igp.interfaceNewBoat();
+    Bateau boat = createBoat(); //details Bateau
+    r.setBateau(boat);
+
+    igp.interfaceNewPlace();
+    if(r.getBateau().getTypeBateau() == "Voilier de type 2"){
+        listPlacesFree = datagp.importPlacesFileCriteriaLength(true,true);
+    } else {
+        listPlacesFree = datagp.importPlacesFileCriteriaLength(false,true);
+    }
+    datagp.displayPlaces(listPlacesFree);
+    Place place = choosePlace();
+    r.setPlace(place);
+    igp.interfacePlaceInfos(r.getPlace());
+
+    igp.interfaceChoixClient();
+
+    //datagp.createFirstPlacesFile(); //liste places dispo en fonction Bateau
     //choix place
     //creation usager (abonne ou passager aussi)
     //si supplements
@@ -36,7 +57,7 @@ void GestionPort::createReservation() {
  * Action de création d'un bateau et de son enregistrement dans la réservation
  * @param r réservation où enregistrer le bateau
  */
-void GestionPort::createBoat(Reservation r) {
+Bateau GestionPort::createBoat() {
     Bateau boat; //création d'un bateau
     int size = 0; //initialisation de la taille du bateau
     bool error = true; //initialisation de la boucle d'erreur
@@ -54,11 +75,11 @@ void GestionPort::createBoat(Reservation r) {
         ifFirst = false;
         //si le mot rentré est celui pour retourner à l'accueil
         if(checkWantHome(choice)) {
-            error = false; //on sort de la boucle d'erreur
-            igp.info("Vous avez choisi de revenir à l'accueil",true); //affichage d'une information
-            igp.home(); //affichage de l'interface d'accueil
-        } //sinon
-        else {
+                error = false; //on sort de la boucle d'erreur
+                igp.info("Vous avez choisi de revenir à l'accueil",true); //affichage d'une information
+                igp.home(); //affichage de l'interface d'accueil
+            } //sinon
+            else {
             //si le format rentré est incompatible (contient lettres ou inférieur ou égal à 0)
             if (!checkBoatLength(choice)) {
                 //on reste dans la boucle d'erreur
@@ -80,12 +101,11 @@ void GestionPort::createBoat(Reservation r) {
                     boat.setSiCabine(true);
                     boat.setTypeBateau("Voilier de type 2");
                 }
-                cout << "Bateau catégorisé comme " << boat.getTypeBateau() << endl;
-                cout << " " << endl;
-                r.setBateau(boat);
+                igp.typeBateauInfos(boat);
             }
         }
     }
+    return boat;
 }
 
 /**
@@ -117,3 +137,39 @@ bool GestionPort::checkWantHome(string choice) {
     }
     return false;
 }
+
+Place GestionPort::choosePlace() {
+    Place place;
+    string choice = igp.getCin("Numéro de place ?",false);
+    bool error = true; //initialisation de la boucle d'erreur
+    bool ifFirst = true; //initialisation du premier essai pour éviter de revenir ici
+
+    while(error){
+        if(!ifFirst) {
+            choice = igp.getCin("Numéro de place ?",false);
+            //cout << choice << endl;
+        }
+        ifFirst = false;
+        if (!checkBoatLength(choice)) {
+            //on reste dans la boucle d'erreur
+            igp.erreur("Valeur négative ou format incompatible", false); //affichage d'une erreur
+            cin.clear();
+            choice.empty();
+        } //sinon le format est compatible
+        else {
+            int numberPlace;
+            istringstream(choice) >> numberPlace;
+            if(datagp.checkNumberPlace(listPlacesFree, numberPlace)){
+                error = false; //on sort de la boucle d'erreur
+                place = datagp.extractPlaceFromNumber(listPlacesFree,numberPlace);
+            } else {
+                igp.erreur("Numéro de place non valide",false);
+                cin.clear();
+                choice.empty();
+            }
+        }
+    }
+    return place;
+}
+
+

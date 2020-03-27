@@ -13,40 +13,40 @@ class Client {
 public:
     Client();
 
-    Client(const string &nom, const string &prenom, const string &email, const string &adresse, const string &cp,
-           const string &ville);
+    Client(const char *nom, const char *prenom, const char *email, const char *adresse, const char *cp,
+           const char *ville);
 
-    const string &getNom() const;
+    const char *getNom() const;
 
-    void setNom(const string &nom);
+    void setNom(const char *nom);
 
-    const string &getPrenom() const;
+    const char *getPrenom() const;
 
-    void setPrenom(const string &prenom);
+    void setPrenom(const char *prenom);
 
-    const string &getEmail() const;
+    const char *getEmail() const;
 
-    void setEmail(const string &email);
+    void setEmail(const char *email);
 
-    const string &getAdresse() const;
+    const char *getAdresse() const;
 
-    void setAdresse(const string &adresse);
+    void setAdresse(const char *adresse);
 
-    const string &getCp() const;
+    const char *getCp() const;
 
-    void setCp(const string &cp);
+    void setCp(const char *cp);
 
-    const string &getVille() const;
+    const char *getVille() const;
 
-    void setVille(const string &ville);
+    void setVille(const char *ville);
 
 private:
-    string nom;
-    string prenom;
-    string email;
-    string adresse;
-    string cp;
-    string ville;
+    const char * nom;
+    const char * prenom;
+    const char * email;
+    const char * adresse;
+    const char * cp;
+    const char * ville;
 public:
 };
 

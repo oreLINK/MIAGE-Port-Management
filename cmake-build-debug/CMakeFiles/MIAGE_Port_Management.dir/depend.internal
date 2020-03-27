@@ -8,6 +8,8 @@ CMakeFiles/MIAGE_Port_Management.dir/Client/Client.cpp.o
  /Users/orepro/Desktop/MIAGE-Port-Management/Client/Client.cpp
  /Users/orepro/Desktop/MIAGE-Port-Management/Client/Client.h
 CMakeFiles/MIAGE_Port_Management.dir/Data/Data.cpp.o
+ ../Client/Client.h
+ ../TinyXML/tinyxml2.h
  /Users/orepro/Desktop/MIAGE-Port-Management/Data/Data.cpp
  /Users/orepro/Desktop/MIAGE-Port-Management/Data/Data.h
  /Users/orepro/Desktop/MIAGE-Port-Management/Place/Place.h
@@ -16,8 +18,12 @@ CMakeFiles/MIAGE_Port_Management.dir/Date/Date.cpp.o
  /Users/orepro/Desktop/MIAGE-Port-Management/Date/Date.cpp
  /Users/orepro/Desktop/MIAGE-Port-Management/Date/Date.h
 CMakeFiles/MIAGE_Port_Management.dir/GestionPort/GestionPort.cpp.o
+ ../Bateau/Bateau.h
+ ../Place/Place.h
+ ../TinyXML/tinyxml2.h
  /Users/orepro/Desktop/MIAGE-Port-Management/Bateau/Bateau.h
  /Users/orepro/Desktop/MIAGE-Port-Management/Client/Client.h
+ /Users/orepro/Desktop/MIAGE-Port-Management/Data/Data.h
  /Users/orepro/Desktop/MIAGE-Port-Management/Date/Date.h
  /Users/orepro/Desktop/MIAGE-Port-Management/GestionPort/GestionPort.cpp
  /Users/orepro/Desktop/MIAGE-Port-Management/GestionPort/GestionPort.h
@@ -25,6 +31,8 @@ CMakeFiles/MIAGE_Port_Management.dir/GestionPort/GestionPort.cpp.o
  /Users/orepro/Desktop/MIAGE-Port-Management/Place/Place.h
  /Users/orepro/Desktop/MIAGE-Port-Management/Reservation/Reservation.h
 CMakeFiles/MIAGE_Port_Management.dir/Interface/Interface.cpp.o
+ ../Bateau/Bateau.h
+ ../Place/Place.h
  /Users/orepro/Desktop/MIAGE-Port-Management/Bateau/Bateau.h
  /Users/orepro/Desktop/MIAGE-Port-Management/Client/Client.h
  /Users/orepro/Desktop/MIAGE-Port-Management/Date/Date.h
@@ -47,11 +55,13 @@ CMakeFiles/MIAGE_Port_Management.dir/TinyXML/tinyxml2.cpp.o
  /Users/orepro/Desktop/MIAGE-Port-Management/TinyXML/tinyxml2.cpp
  /Users/orepro/Desktop/MIAGE-Port-Management/TinyXML/tinyxml2.h
 CMakeFiles/MIAGE_Port_Management.dir/main.cpp.o
+ ../Data/Data.h
+ ../Place/Place.h
+ ../TinyXML/tinyxml2.h
  /Users/orepro/Desktop/MIAGE-Port-Management/Bateau/Bateau.h
  /Users/orepro/Desktop/MIAGE-Port-Management/Client/Client.h
  /Users/orepro/Desktop/MIAGE-Port-Management/Date/Date.h
  /Users/orepro/Desktop/MIAGE-Port-Management/GestionPort/GestionPort.h
  /Users/orepro/Desktop/MIAGE-Port-Management/Interface/Interface.h
- /Users/orepro/Desktop/MIAGE-Port-Management/Place/Place.h
  /Users/orepro/Desktop/MIAGE-Port-Management/Reservation/Reservation.h
  /Users/orepro/Desktop/MIAGE-Port-Management/main.cpp

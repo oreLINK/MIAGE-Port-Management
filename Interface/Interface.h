@@ -6,6 +6,10 @@
 #define MIAGE_PORT_MANAGEMENT_INTERFACE_H
 
 #include <string>
+#include <Bateau/Bateau.h>
+#include <Place/Place.h>
+
+using namespace std;
 
 class Interface {
 private:
@@ -13,19 +17,31 @@ private:
 public:
     void interfaceHome();
 
-    std::string interfaceHomeResponse();
+    string interfaceHomeResponse();
 
-    bool ifWantGoHome(std::string cin);
+    bool ifWantGoHome(string cin);
 
-    void erreur(std::string message, bool avecEspace);
+    void erreur(string message, bool avecEspace);
 
     void home();
 
-    void homeResponseCheck(std::string homeResponse);
+    void homeResponseCheck(string homeResponse);
 
-    void info(std::string message, bool avecEspace);
+    void info(string message, bool avecEspace);
 
-    std::string getCin(std::string message, bool ifEspace);
+    string getCin(string message, bool ifEspace);
+
+    void typeBateauInfos(Bateau b);
+
+    void interfaceNewReservation();
+
+    void interfaceNewBoat();
+
+    void interfaceNewPlace();
+
+    void interfacePlaceInfos(Place p);
+
+    void interfaceChoixClient();
 };
 
 

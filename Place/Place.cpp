@@ -6,37 +6,54 @@
 
 Place::Place() {}
 
-Place::Place(int tailleMax, bool siElec, bool siEau, bool siOccupe) : tailleMax(tailleMax), siElec(siElec),
-                                                                      siEau(siEau), siOccupe(siOccupe) {}
+Place::Place(int number, bool dock, bool tall, bool elec, bool water, bool busy) : number(number), dock(dock),
+                                                                                   tall(tall), elec(elec), water(water),
+                                                                                   busy(busy) {}
 
-int Place::getTailleMax() const {
-    return tailleMax;
+int Place::getNumber() const {
+    return number;
 }
 
-void Place::setTailleMax(int tailleMax) {
-    Place::tailleMax = tailleMax;
+void Place::setNumber(int number) {
+    Place::number = number;
 }
 
-bool Place::isSiElec() const {
-    return siElec;
+bool Place::isDock() const {
+    return dock;
 }
 
-void Place::setSiElec(bool siElec) {
-    Place::siElec = siElec;
+void Place::setDock(bool dock) {
+    Place::dock = dock;
 }
 
-bool Place::isSiEau() const {
-    return siEau;
+bool Place::isTall() const {
+    return tall;
 }
 
-void Place::setSiEau(bool siEau) {
-    Place::siEau = siEau;
+void Place::setTall(bool tall) {
+    Place::tall = tall;
 }
 
-bool Place::isSiOccupe() const {
-    return siOccupe;
+bool Place::isElec() const {
+    return elec;
 }
 
-void Place::setSiOccupe(bool siOccupe) {
-    Place::siOccupe = siOccupe;
+void Place::setElec(bool elec) {
+    Place::elec = elec;
+}
+
+bool Place::isWater() const {
+    return water;
+}
+
+void Place::setWater(bool water) {
+    Place::water = water;
+}
+
+bool Place::isBusy() const {
+    return busy;
+}
+
+void Place::setBusy(bool busy) {
+    Place::busy = busy;
 }

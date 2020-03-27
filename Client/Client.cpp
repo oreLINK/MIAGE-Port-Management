@@ -6,53 +6,53 @@
 
 Client::Client() {}
 
-Client::Client(const string &nom, const string &prenom, const string &email, const string &adresse, const string &cp,
-        const string &ville) : nom(nom), prenom(prenom), email(email), adresse(adresse), cp(cp), ville(ville) {}
+Client::Client(const char *nom, const char *prenom, const char *email, const char *adresse, const char *cp,
+               const char *ville) : nom(nom), prenom(prenom), email(email), adresse(adresse), cp(cp), ville(ville) {}
 
-const string &Client::getNom() const {
+const char *Client::getNom() const {
     return nom;
 }
 
-void Client::setNom(const string &nom) {
+void Client::setNom(const char *nom) {
     Client::nom = nom;
 }
 
-const string &Client::getPrenom() const {
+const char *Client::getPrenom() const {
     return prenom;
 }
 
-void Client::setPrenom(const string &prenom) {
+void Client::setPrenom(const char *prenom) {
     Client::prenom = prenom;
 }
 
-const string &Client::getEmail() const {
+const char *Client::getEmail() const {
     return email;
 }
 
-void Client::setEmail(const string &email) {
+void Client::setEmail(const char *email) {
     Client::email = email;
 }
 
-const string &Client::getAdresse() const {
+const char *Client::getAdresse() const {
     return adresse;
 }
 
-void Client::setAdresse(const string &adresse) {
+void Client::setAdresse(const char *adresse) {
     Client::adresse = adresse;
 }
 
-const string &Client::getCp() const {
+const char *Client::getCp() const {
     return cp;
 }
 
-void Client::setCp(const string &cp) {
+void Client::setCp(const char *cp) {
     Client::cp = cp;
 }
 
-const string &Client::getVille() const {
+const char *Client::getVille() const {
     return ville;
 }
 
-void Client::setVille(const string &ville) {
+void Client::setVille(const char *ville) {
     Client::ville = ville;
 }
