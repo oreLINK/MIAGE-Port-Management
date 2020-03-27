@@ -325,17 +325,19 @@ void Data::createFirstClientFile(){
     XMLDocument xmlDoc;
     XMLNode *pRoot = xmlDoc.NewElement("ListeDesClients");
 
-    Client c1("DUPONT","Martin","dupont.martin@gmail.com","7 Avenue des Eglantiers","75000","Paris");
-    Client c2("BERNIER","Sophia","berniersophia33@hotmail.com","9 rue des Cordeliers","33000","Bordeaux");
-    Client c3("LAFONT","Richard","lafont-richard@gmail.com","8 impasse des Deux","64100","Bayonne");
+    Client c1(1,"DUPONT","Martin","dupont.martin@gmail.com","7 Avenue des Eglantiers","75000","Paris");
+    Client c2(2,"BERNIER","Sophia","berniersophia33@hotmail.com","9 rue des Cordeliers","33000","Bordeaux");
+    Client c3(3,"LAFONT","Richard","lafont-richard@gmail.com","8 impasse des Deux","64100","Bayonne");
 
     vector<Client> listeClientInitial;
-    listeClientInitial.push_back(c1);
-    listeClientInitial.push_back(c2);
     listeClientInitial.push_back(c3);
+    listeClientInitial.push_back(c2);
+    listeClientInitial.push_back(c1);
 
     for (int i = 0; i < listeClientInitial.size(); i++) {
         XMLNode *nRoot = xmlDoc.NewElement("Client");
+        XMLElement *eID = xmlDoc.NewElement("id");
+        eID->SetText(listeClientInitial[i].getId());
         XMLElement *eNom = xmlDoc.NewElement("nom");
         eNom->SetText(listeClientInitial[i].getNom());
         XMLElement *ePrenom = xmlDoc.NewElement("prenom");
@@ -348,7 +350,8 @@ void Data::createFirstClientFile(){
         eCP->SetText(listeClientInitial[i].getCp());
         XMLElement *eVille = xmlDoc.NewElement("ville");
         eVille->SetText(listeClientInitial[i].getVille());
-        nRoot->InsertFirstChild(eNom);
+        nRoot->InsertFirstChild(eID);
+        nRoot->InsertAfterChild(eID, eNom);
         nRoot->InsertAfterChild(eNom, ePrenom);
         nRoot->InsertAfterChild(ePrenom, eEmail);
         nRoot->InsertAfterChild(eEmail, eAdresse);

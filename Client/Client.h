@@ -13,7 +13,7 @@ class Client {
 public:
     Client();
 
-    Client(const char *nom, const char *prenom, const char *email, const char *adresse, const char *cp,
+    Client(int id, const char *nom, const char *prenom, const char *email, const char *adresse, const char *cp,
            const char *ville);
 
     const char *getNom() const;
@@ -40,7 +40,12 @@ public:
 
     void setVille(const char *ville);
 
+    int getId() const;
+
+    void setId(int id);
+
 private:
+    int id;
     const char * nom;
     const char * prenom;
     const char * email;
