@@ -92,7 +92,7 @@ To use the program, go to the [wiki](https://github.com/oreLINK/MIAGE-Port-Manag
     
 ## License
 
-`Description coming soon...`
+The license is available [here](https://github.com/oreLINK/MIAGE-Port-Management/blob/master/LICENSE.md).
 
 ## Contributors
 
