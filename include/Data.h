@@ -5,10 +5,10 @@
 #ifndef MIAGE_PORT_MANAGEMENT_DATA_H
 #define MIAGE_PORT_MANAGEMENT_DATA_H
 
-#include "../Place/Place.h"
+#include "Place.h"
 
 #include <string>
-#include <TinyXML/tinyxml2.h>
+#include <include/tinyxml2.h>
 
 using namespace std;
 
@@ -24,9 +24,16 @@ public:
     bool checkIfPlacesFileExist();
     void createFirstClientFile();
     bool checkIfClientsFileExist();
+    vector<struct Client> importClientsFile();
+    void displayClient(Client c);
+    void displayClients(vector<Client> c);
+    Client extractClientFromID(vector<Client> listClient, int choice);
+    bool checkIDClient(vector<Client> listClient, int choice);
+    vector<Client> addNewClient(vector<Client> listClient, Client c);
+    void createNewClientFile(vector<Client> listClients);
 private:
-    char const *linkPlacesXMLFile = "Places.xml";
-    char const* linkClientXMLFile = "Clients.xml";
+    char const * linkPlacesXMLFile = "../xml/Places.xml";
+    char const * linkClientXMLFile = "../xml/Clients.xml";
     //Attention
     //nbPlacesQuai <= nbPlaces et
     //nbPlacesQuaiPetites <= nbPlacesQuai et
@@ -44,6 +51,10 @@ private:
     bool extractBoolFromXML(tinyxml2::XMLError eResult, tinyxml2::XMLElement *elementFather, const char *id);
 
     void displayPlace(Place p);
+
+    const char *extractCharFromXML(tinyxml2::XMLError eResult, tinyxml2::XMLElement *elementFather, const char *id);
+
+    int numberOfClients(vector<Client> c);
 };
 
 

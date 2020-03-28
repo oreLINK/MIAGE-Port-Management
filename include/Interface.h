@@ -6,8 +6,9 @@
 #define MIAGE_PORT_MANAGEMENT_INTERFACE_H
 
 #include <string>
-#include <Bateau/Bateau.h>
-#include <Place/Place.h>
+#include <include/Bateau.h>
+#include <include/Place.h>
+#include "Client.h"
 
 using namespace std;
 
@@ -42,6 +43,14 @@ public:
     void interfacePlaceInfos(Place p);
 
     void interfaceChoixClient();
+
+    void interfaceListeClients();
+
+    void interfaceClientInfo(Client c);
+
+    void interfaceNewClient();
+
+    string getCinLine(string message, bool ifEspace);
 };
 
 

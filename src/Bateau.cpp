@@ -2,7 +2,7 @@
 // Created by Aurélien BERTRAND on 22/03/2020.
 //
 
-#include "Bateau.h"
+#include "include/Bateau.h"
 
 Bateau::Bateau(int taille, bool siCabine, const string &typeBateau) : taille(taille), siCabine(siCabine), typeBateau(typeBateau) {}
 

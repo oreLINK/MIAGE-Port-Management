@@ -1,8 +1,9 @@
 #include <iostream>
-#include <Data/Data.h>
-#include "Bateau/Bateau.h"
-#include "GestionPort/GestionPort.h"
-#include "Interface/Interface.h"
+#include <include/Data.h>
+#include <vector>
+#include "include/Bateau.h"
+#include "include/GestionPort.h"
+#include "include/Interface.h"
 
 using namespace std;
 
@@ -17,9 +18,12 @@ int main() {
     if(!dmain.checkIfPlacesFileExist()){
         dmain.createFirstPlacesFile();
     }
+    /**
     if(!dmain.checkIfClientsFileExist()){
         dmain.createFirstClientFile();
     }
+     **/
+    dmain.createFirstClientFile();
     it.home();
     return 0;
 }

@@ -84,61 +84,61 @@
 				</MakeCommands>
 			</Target>
 		</Build>
-		<Unit filename="/Users/orepro/Desktop/MIAGE-Port-Management/Bateau/Bateau.cpp">
+		<Unit filename="/Users/orepro/Desktop/MIAGE-Port-Management/include/Bateau.h">
 			<Option target="MIAGE_Port_Management"/>
 		</Unit>
-		<Unit filename="/Users/orepro/Desktop/MIAGE-Port-Management/Bateau/Bateau.h">
+		<Unit filename="/Users/orepro/Desktop/MIAGE-Port-Management/include/Client.h">
 			<Option target="MIAGE_Port_Management"/>
 		</Unit>
-		<Unit filename="/Users/orepro/Desktop/MIAGE-Port-Management/Client/Client.cpp">
+		<Unit filename="/Users/orepro/Desktop/MIAGE-Port-Management/include/Data.h">
 			<Option target="MIAGE_Port_Management"/>
 		</Unit>
-		<Unit filename="/Users/orepro/Desktop/MIAGE-Port-Management/Client/Client.h">
+		<Unit filename="/Users/orepro/Desktop/MIAGE-Port-Management/include/Date.h">
 			<Option target="MIAGE_Port_Management"/>
 		</Unit>
-		<Unit filename="/Users/orepro/Desktop/MIAGE-Port-Management/Data/Data.cpp">
+		<Unit filename="/Users/orepro/Desktop/MIAGE-Port-Management/include/GestionPort.h">
 			<Option target="MIAGE_Port_Management"/>
 		</Unit>
-		<Unit filename="/Users/orepro/Desktop/MIAGE-Port-Management/Data/Data.h">
+		<Unit filename="/Users/orepro/Desktop/MIAGE-Port-Management/include/Interface.h">
 			<Option target="MIAGE_Port_Management"/>
 		</Unit>
-		<Unit filename="/Users/orepro/Desktop/MIAGE-Port-Management/Date/Date.cpp">
+		<Unit filename="/Users/orepro/Desktop/MIAGE-Port-Management/include/Place.h">
 			<Option target="MIAGE_Port_Management"/>
 		</Unit>
-		<Unit filename="/Users/orepro/Desktop/MIAGE-Port-Management/Date/Date.h">
+		<Unit filename="/Users/orepro/Desktop/MIAGE-Port-Management/include/Reservation.h">
 			<Option target="MIAGE_Port_Management"/>
 		</Unit>
-		<Unit filename="/Users/orepro/Desktop/MIAGE-Port-Management/GestionPort/GestionPort.cpp">
-			<Option target="MIAGE_Port_Management"/>
-		</Unit>
-		<Unit filename="/Users/orepro/Desktop/MIAGE-Port-Management/GestionPort/GestionPort.h">
-			<Option target="MIAGE_Port_Management"/>
-		</Unit>
-		<Unit filename="/Users/orepro/Desktop/MIAGE-Port-Management/Interface/Interface.cpp">
-			<Option target="MIAGE_Port_Management"/>
-		</Unit>
-		<Unit filename="/Users/orepro/Desktop/MIAGE-Port-Management/Interface/Interface.h">
-			<Option target="MIAGE_Port_Management"/>
-		</Unit>
-		<Unit filename="/Users/orepro/Desktop/MIAGE-Port-Management/Place/Place.cpp">
-			<Option target="MIAGE_Port_Management"/>
-		</Unit>
-		<Unit filename="/Users/orepro/Desktop/MIAGE-Port-Management/Place/Place.h">
-			<Option target="MIAGE_Port_Management"/>
-		</Unit>
-		<Unit filename="/Users/orepro/Desktop/MIAGE-Port-Management/Reservation/Reservation.cpp">
-			<Option target="MIAGE_Port_Management"/>
-		</Unit>
-		<Unit filename="/Users/orepro/Desktop/MIAGE-Port-Management/Reservation/Reservation.h">
-			<Option target="MIAGE_Port_Management"/>
-		</Unit>
-		<Unit filename="/Users/orepro/Desktop/MIAGE-Port-Management/TinyXML/tinyxml2.cpp">
-			<Option target="MIAGE_Port_Management"/>
-		</Unit>
-		<Unit filename="/Users/orepro/Desktop/MIAGE-Port-Management/TinyXML/tinyxml2.h">
+		<Unit filename="/Users/orepro/Desktop/MIAGE-Port-Management/include/tinyxml2.h">
 			<Option target="MIAGE_Port_Management"/>
 		</Unit>
 		<Unit filename="/Users/orepro/Desktop/MIAGE-Port-Management/main.cpp">
+			<Option target="MIAGE_Port_Management"/>
+		</Unit>
+		<Unit filename="/Users/orepro/Desktop/MIAGE-Port-Management/src/Bateau.cpp">
+			<Option target="MIAGE_Port_Management"/>
+		</Unit>
+		<Unit filename="/Users/orepro/Desktop/MIAGE-Port-Management/src/Client.cpp">
+			<Option target="MIAGE_Port_Management"/>
+		</Unit>
+		<Unit filename="/Users/orepro/Desktop/MIAGE-Port-Management/src/Data.cpp">
+			<Option target="MIAGE_Port_Management"/>
+		</Unit>
+		<Unit filename="/Users/orepro/Desktop/MIAGE-Port-Management/src/Date.cpp">
+			<Option target="MIAGE_Port_Management"/>
+		</Unit>
+		<Unit filename="/Users/orepro/Desktop/MIAGE-Port-Management/src/GestionPort.cpp">
+			<Option target="MIAGE_Port_Management"/>
+		</Unit>
+		<Unit filename="/Users/orepro/Desktop/MIAGE-Port-Management/src/Interface.cpp">
+			<Option target="MIAGE_Port_Management"/>
+		</Unit>
+		<Unit filename="/Users/orepro/Desktop/MIAGE-Port-Management/src/Place.cpp">
+			<Option target="MIAGE_Port_Management"/>
+		</Unit>
+		<Unit filename="/Users/orepro/Desktop/MIAGE-Port-Management/src/Reservation.cpp">
+			<Option target="MIAGE_Port_Management"/>
+		</Unit>
+		<Unit filename="/Users/orepro/Desktop/MIAGE-Port-Management/src/tinyxml2.cpp">
 			<Option target="MIAGE_Port_Management"/>
 		</Unit>
 		<Unit filename="/Users/orepro/Desktop/MIAGE-Port-Management/CMakeLists.txt">

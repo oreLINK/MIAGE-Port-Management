@@ -5,9 +5,10 @@
 #include <iostream>
 #include <array>
 #include <vector>
-#include <Client/Client.h>
-#include "Data.h"
-#include "../TinyXML/tinyxml2.h"
+#include <include/Client.h>
+#include <Tcl/tclTomMath.h>
+#include "include/Data.h"
+#include "include/tinyxml2.h"
 
 using namespace tinyxml2;
 using namespace std;
@@ -188,6 +189,24 @@ bool Data::extractBoolFromXML(XMLError eResult, XMLElement *elementFather, const
 }
 
 /**
+ * Fonction qui va retourner le booléen d'un élément XML
+ * @param eResult element de retour, soit le booléen soit le message d'erreur
+ * @param elementFather noeud XML parent (le premier qui est décalé à gauche en remontant)
+ * @param id le nom de l'attribut à retrouver
+ * @return 0 si le booléen est faux, 1 sinon.
+ */
+const char * Data::extractCharFromXML(XMLError eResult, XMLElement *elementFather, const char *id) {
+    const char * iChar = nullptr;
+    XMLElement *pElement = elementFather->FirstChildElement(id);
+    if (pElement == nullptr) {
+        cout << "extractBoolFromXML(...) " << XML_ERROR_PARSING_ELEMENT << endl;
+    } else {
+        iChar = pElement->GetText();
+    }
+    return iChar;
+}
+
+/**
  * Action qui va afficher dans le terminal les détails de la place choisie
  * @param p place choisie
  */
@@ -325,33 +344,41 @@ void Data::createFirstClientFile(){
     XMLDocument xmlDoc;
     XMLNode *pRoot = xmlDoc.NewElement("ListeDesClients");
 
-    Client c1("DUPONT","Martin","dupont.martin@gmail.com","7 Avenue des Eglantiers","75000","Paris");
-    Client c2("BERNIER","Sophia","berniersophia33@hotmail.com","9 rue des Cordeliers","33000","Bordeaux");
-    Client c3("LAFONT","Richard","lafont-richard@gmail.com","8 impasse des Deux","64100","Bayonne");
+    Client c1(1,"DUPONT","Martin","dupont.martin@gmail.com",7,"avenue des Eglantiers","75000","Paris");
+    Client c2(2,"BERNIER","Sophia","berniersophia33@hotmail.com",9,"rue des Cordeliers","33000","Bordeaux");
+    Client c3(3,"LAFONT","Richard","lafont-richard@gmail.com",8,"impasse des Deux","64100","Bayonne");
 
     vector<Client> listeClientInitial;
-    listeClientInitial.push_back(c1);
-    listeClientInitial.push_back(c2);
     listeClientInitial.push_back(c3);
+    listeClientInitial.push_back(c2);
+    listeClientInitial.push_back(c1);
+
+    displayClients(listeClientInitial);
 
     for (int i = 0; i < listeClientInitial.size(); i++) {
         XMLNode *nRoot = xmlDoc.NewElement("Client");
+        XMLElement *eID = xmlDoc.NewElement("id");
+        eID->SetText(listeClientInitial[i].getId());
         XMLElement *eNom = xmlDoc.NewElement("nom");
-        eNom->SetText(listeClientInitial[i].getNom());
+        eNom->SetText(listeClientInitial[i].getNom().c_str());
         XMLElement *ePrenom = xmlDoc.NewElement("prenom");
-        ePrenom->SetText(listeClientInitial[i].getPrenom());
+        ePrenom->SetText(listeClientInitial[i].getPrenom().c_str());
         XMLElement *eEmail = xmlDoc.NewElement("email");
-        eEmail->SetText(listeClientInitial[i].getEmail());
+        eEmail->SetText(listeClientInitial[i].getEmail().c_str());
+        XMLElement *eNumAdresse = xmlDoc.NewElement("numadresse");
+        eNumAdresse->SetText(listeClientInitial[i].getNumeroAdresse());
         XMLElement *eAdresse = xmlDoc.NewElement("adresse");
-        eAdresse->SetText(listeClientInitial[i].getAdresse());
+        eAdresse->SetText(listeClientInitial[i].getAdresse().c_str());
         XMLElement *eCP = xmlDoc.NewElement("cp");
-        eCP->SetText(listeClientInitial[i].getCp());
+        eCP->SetText(listeClientInitial[i].getCp().c_str());
         XMLElement *eVille = xmlDoc.NewElement("ville");
-        eVille->SetText(listeClientInitial[i].getVille());
-        nRoot->InsertFirstChild(eNom);
+        eVille->SetText(listeClientInitial[i].getVille().c_str());
+        nRoot->InsertFirstChild(eID);
+        nRoot->InsertAfterChild(eID, eNom);
         nRoot->InsertAfterChild(eNom, ePrenom);
         nRoot->InsertAfterChild(ePrenom, eEmail);
-        nRoot->InsertAfterChild(eEmail, eAdresse);
+        nRoot->InsertAfterChild(eEmail, eNumAdresse);
+        nRoot->InsertAfterChild(eNumAdresse, eAdresse);
         nRoot->InsertAfterChild(eAdresse, eCP);
         nRoot->InsertEndChild(eVille);
         pRoot->InsertFirstChild(nRoot);
@@ -372,6 +399,152 @@ bool Data::checkIfClientsFileExist() {
     } else {
         return true;
     }
+}
+
+/**
+ * Action qui va importer le fichier XML de la liste des clients en vector, sans critères
+ */
+vector<Client> Data::importClientsFile() {
+    vector<Client> clientsList;
+    XMLDocument xmlDoc;
+    XMLError eResult = xmlDoc.LoadFile(linkClientXMLFile);
+    XMLNode *pRoot = xmlDoc.FirstChild();
+    XMLElement *pElement = pRoot->FirstChildElement("Client");
+    if (pElement == nullptr) {
+        cout << "1. " << XML_ERROR_PARSING_ELEMENT << endl;
+    } else {
+        while (pElement != nullptr) {
+            Client * c = new Client();
+            c->setId(extractIntFromXML(eResult,pElement,"id"));
+            c->setNom(extractCharFromXML(eResult,pElement,"nom"));
+            c->setPrenom(extractCharFromXML(eResult,pElement,"prenom"));
+            c->setEmail(extractCharFromXML(eResult,pElement,"email"));
+            c->setNumeroAdresse(extractIntFromXML(eResult,pElement,"numadresse"));
+            c->setAdresse(extractCharFromXML(eResult,pElement,"adresse"));
+            c->setCp(extractCharFromXML(eResult,pElement,"cp"));
+            c->setVille(extractCharFromXML(eResult,pElement,"ville"));
+            clientsList.push_back(*c);
+            cout << "import Clients File" << endl;
+            displayClient(*c);
+            pElement = pElement->NextSiblingElement("Client");
+        }
+    }
+    cout << "import Clients File END" << endl;
+    displayClients(clientsList);
+    return clientsList;
+}
+
+/**
+ * Action qui va afficher dans le terminal les détails de la place choisie
+ * @param p place choisie
+ */
+void Data::displayClient(Client c) {
+    cout << "Client n°" << c.getId() << " - " << c.getNom() << " " << c.getPrenom()
+    << " (" << c.getEmail() << ") " << c.getNumeroAdresse() << " " << c.getAdresse() << " " << c.getCp() << " " << c.getVille() << endl;
+}
+
+/**
+ * Action qui va afficher l'ensemble des places enregistrées dans le vecteur
+ * @param p ensemble des places enregistrées dans ce vecteur
+ */
+void Data::displayClients(vector<Client> c) {
+    for (int i = 0; i < c.size(); i++) {
+        displayClient(c[i]);
+    }
+    cout << " " << endl;
+}
+
+ /**
+  * Fonction qui va vérifier si l'ID entré dans le programme existe bien
+  * @param listClient liste des clients
+  * @param choice ID choisi
+  * @return vrai si l'ID est présent dans la liste, faux sinon.
+  */
+bool Data::checkIDClient(vector<Client> listClient, int choice){
+    bool ifOK = false;
+    for (int i = 0; i < listClient.size(); i++) {
+        if(listClient[i].getId() == choice){
+            ifOK = true;
+        }
+    }
+    return ifOK;
+}
+
+ /**
+  * Fonction qui va retourner les informations du client choisi à partir de son ID
+  * @param listClient liste des clients
+  * @param choice ID de client choisi
+  * @return le client à partir de l'ID choisi
+  */
+Client Data::extractClientFromID(vector<Client> listClient, int choice){
+    Client c;
+    for (int i = 0; i < listClient.size(); i++) {
+        if(listClient[i].getId() == choice){
+            c.setId(listClient[i].getId());
+            c.setNom(listClient[i].getNom());
+            c.setPrenom(listClient[i].getPrenom());
+            c.setEmail(listClient[i].getEmail());
+            c.setNumeroAdresse(listClient[i].getNumeroAdresse());
+            c.setAdresse(listClient[i].getAdresse());
+            c.setCp(listClient[i].getCp());
+            c.setVille(listClient[i].getVille());
+        }
+    }
+    return c;
+}
+
+int Data::numberOfClients(vector<Client> c){
+    int number = 0;
+    for (int i = 0; i < c.size(); i++){
+        number++;
+    }
+    return number;
+}
+
+vector<Client> Data::addNewClient(vector<Client> listClient, Client c){
+    vector<Client> newList;
+    c.setId(numberOfClients(listClient)+1);
+    newList.push_back(c);
+    for(int i = listClient.size(); i>0; i--){
+        newList.push_back(listClient[i]);
+    }
+    return newList;
+}
+
+void Data::createNewClientFile(vector<Client> listClients){
+    XMLDocument xmlDoc;
+    XMLNode *pRoot = xmlDoc.NewElement("ListeDesClients");
+
+    for (int i = 0; i < listClients.size(); i++) {
+        XMLNode *nRoot = xmlDoc.NewElement("Client");
+        XMLElement *eID = xmlDoc.NewElement("id");
+        eID->SetText(listClients[i].getId());
+        XMLElement *eNom = xmlDoc.NewElement("nom");
+        eNom->SetText(listClients[i].getNom().c_str());
+        XMLElement *ePrenom = xmlDoc.NewElement("prenom");
+        ePrenom->SetText(listClients[i].getPrenom().c_str());
+        XMLElement *eEmail = xmlDoc.NewElement("email");
+        eEmail->SetText(listClients[i].getEmail().c_str());
+        XMLElement *eNumAdresse = xmlDoc.NewElement("numadresse");
+        eNumAdresse->SetText(listClients[i].getNumeroAdresse());
+        XMLElement *eAdresse = xmlDoc.NewElement("adresse");
+        eAdresse->SetText(listClients[i].getAdresse().c_str());
+        XMLElement *eCP = xmlDoc.NewElement("cp");
+        eCP->SetText(listClients[i].getCp().c_str());
+        XMLElement *eVille = xmlDoc.NewElement("ville");
+        eVille->SetText(listClients[i].getVille().c_str());
+        nRoot->InsertFirstChild(eID);
+        nRoot->InsertAfterChild(eID, eNom);
+        nRoot->InsertAfterChild(eNom, ePrenom);
+        nRoot->InsertAfterChild(ePrenom, eEmail);
+        nRoot->InsertAfterChild(eEmail, eNumAdresse);
+        nRoot->InsertAfterChild(eNumAdresse, eAdresse);
+        nRoot->InsertAfterChild(eAdresse, eCP);
+        nRoot->InsertEndChild(eVille);
+        pRoot->InsertFirstChild(nRoot);
+    }
+    xmlDoc.InsertFirstChild(pRoot);
+    XMLError eResult = xmlDoc.SaveFile(linkClientXMLFile);
 }
 
 
