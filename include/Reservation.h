@@ -10,6 +10,7 @@
 #include "include/Bateau.h"
 #include "include/Place.h"
 #include "include/Date.h"
+#include "Tarifs.h"
 
 class Reservation {
 public:
@@ -17,6 +18,9 @@ public:
 
     Reservation(const Client &client, const Bateau &bateau, const Place &place, const Date &dateArrivee,
                 const Date &dateDepart, bool siSupplementElec, bool siSupplementEau, bool siAbonnement);
+
+    Reservation(const Client &client, const Bateau &bateau, const Place &place, const Date &dateArrivee,
+                const Date &dateDepart, bool supplementElec, bool supplementEau, bool abonnement, const Tarifs &tarif);
 
     const Client &getClient() const;
 
@@ -50,6 +54,10 @@ public:
 
     void setAbonnement(bool abonnement);
 
+    const Tarifs &getTarif() const;
+
+    void setTarif(const Tarifs &tarif);
+
 private:
     Client client;
     Bateau bateau;
@@ -59,6 +67,7 @@ private:
     bool supplementElec;
     bool supplementEau;
     bool abonnement;
+    Tarifs tarif;
 };
 
 

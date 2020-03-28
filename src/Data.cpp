@@ -424,13 +424,9 @@ vector<Client> Data::importClientsFile() {
             c->setCp(extractCharFromXML(eResult,pElement,"cp"));
             c->setVille(extractCharFromXML(eResult,pElement,"ville"));
             clientsList.push_back(*c);
-            cout << "import Clients File" << endl;
-            displayClient(*c);
             pElement = pElement->NextSiblingElement("Client");
         }
     }
-    cout << "import Clients File END" << endl;
-    displayClients(clientsList);
     return clientsList;
 }
 

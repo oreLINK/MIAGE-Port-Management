@@ -36,6 +36,7 @@ CMakeFiles/MIAGE_Port_Management.dir/src/GestionPort.cpp.o: ../include/GestionPo
 CMakeFiles/MIAGE_Port_Management.dir/src/GestionPort.cpp.o: ../include/Interface.h
 CMakeFiles/MIAGE_Port_Management.dir/src/GestionPort.cpp.o: ../include/Place.h
 CMakeFiles/MIAGE_Port_Management.dir/src/GestionPort.cpp.o: ../include/Reservation.h
+CMakeFiles/MIAGE_Port_Management.dir/src/GestionPort.cpp.o: ../include/Tarif.h
 CMakeFiles/MIAGE_Port_Management.dir/src/GestionPort.cpp.o: ../include/tinyxml2.h
 CMakeFiles/MIAGE_Port_Management.dir/src/GestionPort.cpp.o: ../src/GestionPort.cpp
 
@@ -57,6 +58,9 @@ CMakeFiles/MIAGE_Port_Management.dir/src/Reservation.cpp.o: ../include/Date.h
 CMakeFiles/MIAGE_Port_Management.dir/src/Reservation.cpp.o: ../include/Place.h
 CMakeFiles/MIAGE_Port_Management.dir/src/Reservation.cpp.o: ../include/Reservation.h
 CMakeFiles/MIAGE_Port_Management.dir/src/Reservation.cpp.o: ../src/Reservation.cpp
+
+CMakeFiles/MIAGE_Port_Management.dir/src/Tarif.cpp.o: ../include/Tarif.h
+CMakeFiles/MIAGE_Port_Management.dir/src/Tarif.cpp.o: ../src/Tarif.cpp
 
 CMakeFiles/MIAGE_Port_Management.dir/src/tinyxml2.cpp.o: ../include/tinyxml2.h
 CMakeFiles/MIAGE_Port_Management.dir/src/tinyxml2.cpp.o: ../src/tinyxml2.cpp

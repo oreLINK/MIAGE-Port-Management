@@ -51,6 +51,10 @@ public:
     void interfaceNewClient();
 
     string getCinLine(string message, bool ifEspace);
+
+    void interfaceChoixSupplements();
+
+    void interfaceChoixEngagement();
 };
 
 

@@ -366,6 +366,33 @@ src/Reservation.cpp.s:
 	$(MAKE) -f CMakeFiles/MIAGE_Port_Management.dir/build.make CMakeFiles/MIAGE_Port_Management.dir/src/Reservation.cpp.s
 .PHONY : src/Reservation.cpp.s
 
+src/Tarifs.o: src/Tarifs.cpp.o
+
+.PHONY : src/Tarifs.o
+
+# target to build an object file
+src/Tarifs.cpp.o:
+	$(MAKE) -f CMakeFiles/MIAGE_Port_Management.dir/build.make CMakeFiles/MIAGE_Port_Management.dir/src/Tarifs.cpp.o
+.PHONY : src/Tarifs.cpp.o
+
+src/Tarifs.i: src/Tarifs.cpp.i
+
+.PHONY : src/Tarifs.i
+
+# target to preprocess a source file
+src/Tarifs.cpp.i:
+	$(MAKE) -f CMakeFiles/MIAGE_Port_Management.dir/build.make CMakeFiles/MIAGE_Port_Management.dir/src/Tarifs.cpp.i
+.PHONY : src/Tarifs.cpp.i
+
+src/Tarifs.s: src/Tarifs.cpp.s
+
+.PHONY : src/Tarifs.s
+
+# target to generate assembly for a file
+src/Tarifs.cpp.s:
+	$(MAKE) -f CMakeFiles/MIAGE_Port_Management.dir/build.make CMakeFiles/MIAGE_Port_Management.dir/src/Tarifs.cpp.s
+.PHONY : src/Tarifs.cpp.s
+
 src/tinyxml2.o: src/tinyxml2.cpp.o
 
 .PHONY : src/tinyxml2.o
@@ -429,6 +456,9 @@ help:
 	@echo "... src/Reservation.o"
 	@echo "... src/Reservation.i"
 	@echo "... src/Reservation.s"
+	@echo "... src/Tarifs.o"
+	@echo "... src/Tarifs.i"
+	@echo "... src/Tarifs.s"
 	@echo "... src/tinyxml2.o"
 	@echo "... src/tinyxml2.i"
 	@echo "... src/tinyxml2.s"

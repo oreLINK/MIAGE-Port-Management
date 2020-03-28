@@ -180,4 +180,22 @@ void Interface::interfaceNewClient(){
     cout << " " << endl;
 }
 
+/**
+ * SUPPLEMENTS
+ */
+
+void Interface::interfaceChoixSupplements(){
+    cout << "~ Choix des suppléments ~" << endl;
+    cout << " " << endl;
+}
+
+/**
+ * TARIFS
+ */
+
+void Interface::interfaceChoixEngagement(){
+    cout << "~ Choix du type d'engagement ~" << endl;
+    cout << " " << endl;
+}
+
 

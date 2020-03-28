@@ -49,6 +49,10 @@ include/Place.h
 ../include/include/Place.h
 include/Date.h
 ../include/include/Date.h
+Tarif.h
+../include/Tarif.h
+
+../include/Tarif.h
 
 ../include/tinyxml2.h
 ctype.h
@@ -93,10 +97,16 @@ include/Interface.h
 /Users/orepro/Desktop/MIAGE-Port-Management/src/include/Interface.h
 include/Data.h
 /Users/orepro/Desktop/MIAGE-Port-Management/src/include/Data.h
+include/Tarif.h
+/Users/orepro/Desktop/MIAGE-Port-Management/src/include/Tarif.h
 sstream
 -
 cctype
 -
 vector
 -
+
+/Users/orepro/Desktop/MIAGE-Port-Management/src/Tarif.cpp
+include/Tarif.h
+/Users/orepro/Desktop/MIAGE-Port-Management/src/include/Tarif.h
 

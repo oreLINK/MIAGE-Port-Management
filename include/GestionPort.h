@@ -55,6 +55,8 @@ public:
     bool checkIfClientWantElecSupplement();
 
     bool checkIfClientWantWaterSupplement();
+
+    bool chooseIfClientWantAbonnement();
 };
 
 

@@ -37,6 +37,7 @@ CMakeFiles/MIAGE_Port_Management.dir/src/GestionPort.cpp.o
  ../include/Interface.h
  ../include/Place.h
  ../include/Reservation.h
+ ../include/Tarif.h
  ../include/tinyxml2.h
  /Users/orepro/Desktop/MIAGE-Port-Management/src/GestionPort.cpp
 CMakeFiles/MIAGE_Port_Management.dir/src/Interface.cpp.o
@@ -58,6 +59,9 @@ CMakeFiles/MIAGE_Port_Management.dir/src/Reservation.cpp.o
  ../include/Place.h
  ../include/Reservation.h
  /Users/orepro/Desktop/MIAGE-Port-Management/src/Reservation.cpp
+CMakeFiles/MIAGE_Port_Management.dir/src/Tarif.cpp.o
+ ../include/Tarif.h
+ /Users/orepro/Desktop/MIAGE-Port-Management/src/Tarif.cpp
 CMakeFiles/MIAGE_Port_Management.dir/src/tinyxml2.cpp.o
  ../include/tinyxml2.h
  /Users/orepro/Desktop/MIAGE-Port-Management/src/tinyxml2.cpp

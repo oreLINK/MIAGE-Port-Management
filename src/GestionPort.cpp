@@ -8,6 +8,7 @@
 #include "include/Reservation.h"
 #include "include/Interface.h"
 #include "include/Data.h"
+#include "include/Tarifs.h"
 
 #include <sstream>
 #include <cctype>
@@ -15,6 +16,7 @@
 
 Interface igp;
 Data datagp;
+
 vector<Place> listPlacesFree;
 
 GestionPort::GestionPort() {}
@@ -23,6 +25,9 @@ GestionPort::GestionPort() {}
  * Action pour créer une nouvelle réservation.
  */
 void GestionPort::createReservation() {
+
+    Tarifs t;
+    cout << endl;
 
     igp.interfaceNewReservation();
     Reservation r;
@@ -47,6 +52,7 @@ void GestionPort::createReservation() {
     r.setClient(client);
     igp.interfaceClientInfo(r.getClient());
 
+    igp.interfaceChoixSupplements();
     if(checkIfClientCanHaveSupplements(r)){
         igp.info("Vous avez accès à des suppléments",true);
         r.setSupplementElec(checkIfClientWantElecSupplement());
@@ -55,6 +61,8 @@ void GestionPort::createReservation() {
         igp.info("Vous n'avez pas accès à des suppléments",true);
     }
 
+    igp.interfaceChoixEngagement();
+    r.setAbonnement(chooseIfClientWantAbonnement());
 
     //datagp.createFirstPlacesFile(); //liste places dispo en fonction Bateau
     //choix place
@@ -149,6 +157,10 @@ bool GestionPort::checkWantHome(string choice) {
     return false;
 }
 
+/**
+ * Fonction qui va retourner la place correspondante au numéro donné
+ * @return la place via son numéro
+ */
 Place GestionPort::choosePlace() {
     Place place;
     string choice = igp.getCin("Numéro de place ?",false);
@@ -189,6 +201,10 @@ Place GestionPort::choosePlace() {
     return place;
 }
 
+/**
+ * Fonction qui va retourner le client en fonction de l'ID donné
+ * @return le client par rapport à son numéro (ID)
+ */
 Client GestionPort::chooseClient() {
     Client c;
     vector<Client> listClients = datagp.importClientsFile();
@@ -377,6 +393,10 @@ bool GestionPort::checkIfClientCanHaveSupplements(Reservation r) {
     return ifCan;
 }
 
+/**
+ * Fonction qui va retourner la réponse du client sur son choix du supplément éléctricité
+ * @return vrai si le client veut le supplément éléctricité, faux sinon
+ */
 bool GestionPort::checkIfClientWantElecSupplement() {
     string choice = igp.getCin("Supplément éléctricité ? [oui/non]", false);
     bool error = true;
@@ -407,6 +427,10 @@ bool GestionPort::checkIfClientWantElecSupplement() {
     return ifWant;
 }
 
+/**
+ * Fonction qui va retourner la réponse du client sur son choix du supplément eau
+ * @return vrai si le client veut le supplément eau, faux sinon
+ */
 bool GestionPort::checkIfClientWantWaterSupplement() {
     string choice = igp.getCin("Supplément eau ? [oui/non]", false);
     bool error = true;
@@ -437,6 +461,11 @@ bool GestionPort::checkIfClientWantWaterSupplement() {
     return ifWant;
 }
 
+/**
+ * Fonction qui va vérifier que la réponse rentrée par le client est compatible par rapport à son choix de supplément
+ * @param choice réponse du client
+ * @return vrai si la réponse est soit "oui" ou "non", faux sinon
+ */
 bool GestionPort::checkSupplementsReponse(string choice) {
     bool ifOK = false;
     if(choice == "oui" || choice == "non"){
@@ -445,6 +474,11 @@ bool GestionPort::checkSupplementsReponse(string choice) {
     return ifOK;
 }
 
+/**
+ * Fonction qui va convertir la réponse à un choix de supplément en booléen
+ * @param choice réponse du client
+ * @return vrai si la réponse est oui, faux sinon
+ */
 bool GestionPort::returnSupplementReponse(string choice) {
     bool reponse = false;
     if(choice == "oui"){
@@ -453,5 +487,36 @@ bool GestionPort::returnSupplementReponse(string choice) {
     return reponse;
 }
 
+/**
+ * Fonction qui va retourner la réponse du client sur son choix de prendre un abonnement pour sa réservation ou non
+ * @return vrai s'il veut un abonnement, faux sinon
+ */
+bool GestionPort::chooseIfClientWantAbonnement() {
+    string choice = igp.getCin("Abonnement ? [oui/non]", false);
+    bool error = true;
+    bool ifFirst = true;
+    bool ifWant = false;
 
-
+    while(error){
+        if(!ifFirst) {
+            choice = igp.getCin("Abonnement ? [oui/non]", false);
+        }
+        ifFirst = false;
+        if(checkWantHome(choice)) {
+            error = false;
+            igp.info("Vous avez choisi de revenir à l'accueil",true); //affichage d'une information
+            igp.home(); //affichage de l'interface d'accueil
+        }
+        if(!checkSupplementsReponse(choice)) {
+            //on reste dans la boucle d'erreur
+            igp.erreur("Format incompatible", false); //affichage d'une erreur
+            cin.clear();
+            choice.empty();
+        } //sinon le format est compatible
+        else {
+            error = false;
+            ifWant = returnSupplementReponse(choice);
+        }
+    }
+    return ifWant;
+}
