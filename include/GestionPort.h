@@ -57,6 +57,20 @@ public:
     bool checkIfClientWantWaterSupplement();
 
     bool chooseIfClientWantAbonnement();
+
+    Paiement getPaiement(Reservation r);
+
+    int askClientNombreJours();
+
+    int getPaiementJournalier(Reservation r);
+
+    int getPaiementJournalierSupplements(Reservation r);
+
+    int getPaiementAnnuel(Reservation r);
+
+    int *getPaiementMensuel(Reservation r);
+
+    void showPrices(Reservation r);
 };
 
 

@@ -312,6 +312,33 @@ src/Interface.cpp.s:
 	$(MAKE) -f CMakeFiles/MIAGE_Port_Management.dir/build.make CMakeFiles/MIAGE_Port_Management.dir/src/Interface.cpp.s
 .PHONY : src/Interface.cpp.s
 
+src/Paiement.o: src/Paiement.cpp.o
+
+.PHONY : src/Paiement.o
+
+# target to build an object file
+src/Paiement.cpp.o:
+	$(MAKE) -f CMakeFiles/MIAGE_Port_Management.dir/build.make CMakeFiles/MIAGE_Port_Management.dir/src/Paiement.cpp.o
+.PHONY : src/Paiement.cpp.o
+
+src/Paiement.i: src/Paiement.cpp.i
+
+.PHONY : src/Paiement.i
+
+# target to preprocess a source file
+src/Paiement.cpp.i:
+	$(MAKE) -f CMakeFiles/MIAGE_Port_Management.dir/build.make CMakeFiles/MIAGE_Port_Management.dir/src/Paiement.cpp.i
+.PHONY : src/Paiement.cpp.i
+
+src/Paiement.s: src/Paiement.cpp.s
+
+.PHONY : src/Paiement.s
+
+# target to generate assembly for a file
+src/Paiement.cpp.s:
+	$(MAKE) -f CMakeFiles/MIAGE_Port_Management.dir/build.make CMakeFiles/MIAGE_Port_Management.dir/src/Paiement.cpp.s
+.PHONY : src/Paiement.cpp.s
+
 src/Place.o: src/Place.cpp.o
 
 .PHONY : src/Place.o
@@ -450,6 +477,9 @@ help:
 	@echo "... src/Interface.o"
 	@echo "... src/Interface.i"
 	@echo "... src/Interface.s"
+	@echo "... src/Paiement.o"
+	@echo "... src/Paiement.i"
+	@echo "... src/Paiement.s"
 	@echo "... src/Place.o"
 	@echo "... src/Place.i"
 	@echo "... src/Place.s"

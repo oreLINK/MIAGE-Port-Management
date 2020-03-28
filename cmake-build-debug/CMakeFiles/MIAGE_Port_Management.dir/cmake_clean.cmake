@@ -6,6 +6,7 @@ file(REMOVE_RECURSE
   "CMakeFiles/MIAGE_Port_Management.dir/src/Date.cpp.o"
   "CMakeFiles/MIAGE_Port_Management.dir/src/GestionPort.cpp.o"
   "CMakeFiles/MIAGE_Port_Management.dir/src/Interface.cpp.o"
+  "CMakeFiles/MIAGE_Port_Management.dir/src/Paiement.cpp.o"
   "CMakeFiles/MIAGE_Port_Management.dir/src/Place.cpp.o"
   "CMakeFiles/MIAGE_Port_Management.dir/src/Reservation.cpp.o"
   "CMakeFiles/MIAGE_Port_Management.dir/src/Tarifs.cpp.o"

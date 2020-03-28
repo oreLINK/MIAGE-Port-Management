@@ -189,12 +189,40 @@ void Interface::interfaceChoixSupplements(){
     cout << " " << endl;
 }
 
+void Interface::interfaceInfosSupplements(Reservation r){
+    if(r.isSupplementElec() && !r.isSupplementEau()){
+        info("Le client a choisi le supplément éléctricité uniquement",true);
+    } else if(!r.isSupplementElec() && r.isSupplementEau()){
+        info("Le client a choisi le supplément eau uniquement",true);
+    } else {
+        info("Le client a choisi les suppléments éléctricité et eau",true);
+    }
+}
+
 /**
  * TARIFS
  */
 
 void Interface::interfaceChoixEngagement(){
     cout << "~ Choix du type d'engagement ~" << endl;
+    cout << " " << endl;
+}
+
+void Interface::interfaceInfosEngagement(Reservation r){
+    if(r.isAbonnement()){
+        info("Vous avez choisi un abonnement avec engagement d'1 an",true);
+    } else {
+        info("Vous avez choisi le forfait Journée",true);
+    }
+}
+
+void Interface::interfaceInfosNbJours(Paiement p){
+    cout << "Info. Vous avez choisi le forfait " << p.getNbJours() << " Journée(s)" << endl;
+    cout << " " << endl;
+}
+
+void Interface::interfacePaiement(){
+    cout << "~ Paiement ~" << endl;
     cout << " " << endl;
 }
 

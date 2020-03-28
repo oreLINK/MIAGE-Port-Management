@@ -18,6 +18,9 @@ Interface igp;
 Data datagp;
 
 vector<Place> listPlacesFree;
+string voilierNH = "Voilier non habitable";
+string voilierT1 = "Voilier de type 1";
+string voilierT2 = "Voilier de type 2";
 
 GestionPort::GestionPort() {}
 
@@ -25,9 +28,6 @@ GestionPort::GestionPort() {}
  * Action pour créer une nouvelle réservation.
  */
 void GestionPort::createReservation() {
-
-    Tarifs t;
-    cout << endl;
 
     igp.interfaceNewReservation();
     Reservation r;
@@ -57,21 +57,24 @@ void GestionPort::createReservation() {
         igp.info("Vous avez accès à des suppléments",true);
         r.setSupplementElec(checkIfClientWantElecSupplement());
         r.setSupplementEau(checkIfClientWantWaterSupplement());
+        igp.interfaceInfosSupplements(r);
     } else {
         igp.info("Vous n'avez pas accès à des suppléments",true);
+        r.setSupplementElec(false);
+        r.setSupplementEau(false);
     }
+
 
     igp.interfaceChoixEngagement();
     r.setAbonnement(chooseIfClientWantAbonnement());
+    igp.interfaceInfosEngagement(r);
 
-    //datagp.createFirstPlacesFile(); //liste places dispo en fonction Bateau
-    //choix place
-    //creation usager (abonne ou passager aussi)
-    //si supplements
-    //affichage tarifs
-    //paiement (tout si passager ou cotisation pour abonne)
-    //edition facture pour abonne
-}
+    r.setPaiement(getPaiement(r));
+
+    showPrices(r);
+
+    //enregistrer Reservation dans Reservations.xml
+    //voir pour pdf facture
 
 /**
  * Action de création d'un bateau et de son enregistrement dans la réservation
@@ -520,3 +523,231 @@ bool GestionPort::chooseIfClientWantAbonnement() {
     }
     return ifWant;
 }
+
+
+Paiement GestionPort::getPaiement(Reservation r){
+    Paiement p;
+
+    //si c'est un abonnement
+    if(r.isAbonnement()){
+        int nbJours = 365;
+        int paiementAnnuelSansSupplements = getPaiementAnnuel(r);
+        int paiementAnnuel= paiementAnnuelSansSupplements + (getPaiementJournalierSupplements(r)*365);
+        p.setPaiementAnnuel(paiementAnnuel);
+
+        /**
+        int* paiementMensuelSansSupplements = getPaiementMensuel(r);
+        int paiementJournalierSupplements = getPaiementJournalierSupplements(r);
+        int paiementMensuelSupplements = paiementJournalierSupplements*30;
+        int* paiementMensuel = nullptr;
+
+        for(int i = 0; i< sizeof(paiementMensuelSansSupplements);i++){
+            paiementMensuel[i] = paiementMensuelSansSupplements[i]+paiementMensuelSupplements;
+        }
+        for(int j = 0; j < sizeof(paiementMensuel); j++){
+            r.getPaiement().set
+        }
+        **/
+
+    } else {
+        int nbJours = askClientNombreJours();
+        p.setNbJours(nbJours);
+        igp.interfaceInfosNbJours(p);
+
+        int paiementJournalier = getPaiementJournalier(r)+getPaiementJournalierSupplements(r);
+        p.setPaiementJournalier(paiementJournalier);
+        int total = nbJours*paiementJournalier;
+        p.setTotal(total);
+    }
+    return p;
+}
+
+/**
+ * Fonction qui va demander au client non abonné combien de jours il veut rester
+ * @return le nombre de jours restants
+ */
+int GestionPort::askClientNombreJours(){
+    string choice = igp.getCin("Combien de jours de réservation ?", false);
+    bool error = true;
+    bool ifFirst = true;
+    int nombreJours;
+
+    while(error){
+        if(!ifFirst) {
+            choice = igp.getCin("Combien de jours de réservation ?", false);
+        }
+        ifFirst = false;
+        if(checkWantHome(choice)) {
+            error = false;
+            igp.info("Vous avez choisi de revenir à l'accueil",true); //affichage d'une information
+            igp.home(); //affichage de l'interface d'accueil
+        }
+        if(!checkIfIntegerPositif(choice)) {
+            //on reste dans la boucle d'erreur
+            igp.erreur("Valeur négative ou format incompatible", false); //affichage d'une erreur
+            cin.clear();
+            choice.empty();
+        } //sinon le format est compatible
+        else {
+            error = false;
+            istringstream(choice) >> nombreJours;
+        }
+    }
+    return nombreJours;
+}
+
+/**
+ * Fonction qui va retourner le paiement journalier du client non-abonné en fonction de sa réservation
+ * @param r la réservation du client non-abonné
+ * @return son paiement journalier
+ */
+int GestionPort::getPaiementJournalier(Reservation r){
+    int paiementJournalier = 0;
+    Tarifs t;
+    //si le client est à quai
+    if(r.getPlace().isDock()){
+        //si le bateau est un voilier non habitable
+        if(r.getBateau().getTypeBateau() == voilierNH){
+            paiementJournalier = t.nonAbonne.quai.voilierNonHabitable.paiementJournalier;
+        } //si le bateau est un voilier de type 1
+        else if (r.getBateau().getTypeBateau() == voilierT1) {
+            paiementJournalier = t.nonAbonne.quai.voilierType1.paiementJournalier;
+        } //sinon le bateau est un voilier de type 2
+        else {
+            paiementJournalier = t.nonAbonne.quai.voilierType2.paiementJournalier;
+        }
+    } //sinon il est hors-quai
+    else {
+        //si le bateau est un voilier non habitable
+        if(r.getBateau().getTypeBateau() == voilierNH){
+            paiementJournalier = t.nonAbonne.nonQuai.voilierNonHabitable.paiementJournalier;
+        } //si le bateau est un voilier de type 1
+        else if (r.getBateau().getTypeBateau() == voilierT1) {
+            paiementJournalier = t.nonAbonne.nonQuai.voilierType1.paiementJournalier;
+        } //sinon le bateau est un voilier de type 2
+        else {
+            paiementJournalier = t.nonAbonne.nonQuai.voilierType2.paiementJournalier;
+        }
+    }
+    return paiementJournalier;
+}
+
+/**
+ * Fonction qui va retourner le paiement mensuel du client abonné en fonction de sa réservation
+ * @param r la réservation du client abonné
+ * @return son paiement mensuel
+
+int* GestionPort::getPaiementMensuel(Reservation r){
+    int paiementAnnuel[12] = {0};
+    Tarifs t;
+    //si le client est à quai
+    if(r.getPlace().isDock()){
+        //si le bateau est un voilier non habitable
+        if(r.getBateau().getTypeBateau() == voilierNH){
+            for(int i = 0; i< sizeof(paiementAnnuel);i++){
+                paiementAnnuel[i] = t.abonne.quai.voilierNonHabitable.paiementMensuel[i];
+            }
+        } //si le bateau est un voilier de type 1
+        else if (r.getBateau().getTypeBateau() == voilierT1) {
+            for(int i = 0; i< sizeof(paiementAnnuel);i++){
+                paiementAnnuel[i] = t.abonne.quai.voilierType1.paiementMensuel[i];
+            }
+        } //sinon le bateau est un voilier de type 2
+        else {
+            for(int i = 0; i< sizeof(paiementAnnuel);i++){
+                paiementAnnuel[i] = t.abonne.quai.voilierType2.paiementMensuel[i];
+            }
+        }
+    } //sinon il est hors-quai
+    else {
+        //si le bateau est un voilier non habitable
+        if(r.getBateau().getTypeBateau() == voilierNH){
+            for(int i = 0; i< sizeof(paiementAnnuel);i++){
+                paiementAnnuel[i] = t.abonne.nonQuai.voilierNonHabitable.paiementMensuel[i];
+            }
+        } //si le bateau est un voilier de type 1
+        else if (r.getBateau().getTypeBateau() == voilierT1) {
+            for(int i = 0; i< sizeof(paiementAnnuel);i++){
+                paiementAnnuel[i] = t.abonne.nonQuai.voilierType1.paiementMensuel[i];
+            }
+        } //sinon le bateau est un voilier de type 2
+        else {
+            for(int i = 0; i< sizeof(paiementAnnuel);i++){
+                paiementAnnuel[i] = t.abonne.nonQuai.voilierType2.paiementMensuel[i];
+            }
+        }
+    }
+    return paiementAnnuel;
+}
+**/
+
+/**
+ * Fonction qui va retourner le paiement annuel du client abonné en fonction de sa réservation
+ * @param r la réservation du client abonné
+ * @return son paiement annuel
+ */
+int GestionPort::getPaiementAnnuel(Reservation r){
+    int paiementAnnuel = 0;
+    Tarifs t;
+    //si le client est à quai
+    if(r.getPlace().isDock()){
+        //si le bateau est un voilier non habitable
+        if(r.getBateau().getTypeBateau() == voilierNH){
+            paiementAnnuel = t.abonne.quai.voilierNonHabitable.paiementAnnuel;
+        } //si le bateau est un voilier de type 1
+        else if (r.getBateau().getTypeBateau() == voilierT1) {
+            paiementAnnuel = t.abonne.quai.voilierType1.paiementAnnuel;
+        } //sinon le bateau est un voilier de type 2
+        else {
+            paiementAnnuel = t.abonne.quai.voilierType2.paiementAnnuel;
+        }
+    } //sinon il est hors-quai
+    else {
+        //si le bateau est un voilier non habitable
+        if(r.getBateau().getTypeBateau() == voilierNH){
+            paiementAnnuel = t.abonne.nonQuai.voilierNonHabitable.paiementAnnuel;
+        } //si le bateau est un voilier de type 1
+        else if (r.getBateau().getTypeBateau() == voilierT1) {
+            paiementAnnuel = t.abonne.nonQuai.voilierType1.paiementAnnuel;
+        } //sinon le bateau est un voilier de type 2
+        else {
+            paiementAnnuel = t.abonne.nonQuai.voilierType2.paiementAnnuel;
+        }
+    }
+    return paiementAnnuel;
+}
+
+/**
+ * Fonction qui va donner le paiement journalier des suppléments en fonction de la réservation
+ * @param r la réservation
+ * @return le paiement journalier des suppléments
+ */
+int GestionPort::getPaiementJournalierSupplements(Reservation r){
+    int paiementSupplements = 0;
+    Tarifs t;
+    //si un des deux suppléments a été choisi
+    if((r.isSupplementElec() && !r.isSupplementEau()) || (!r.isSupplementElec() && r.isSupplementEau())){
+        paiementSupplements = t.supplementJournalier;
+    } else if(r.isSupplementElec() && r.isSupplementEau()) {
+        paiementSupplements = t.supplementJournalier*2;
+    }
+    return paiementSupplements;
+}
+
+void GestionPort::showPrices(Reservation r){
+    igp.interfacePaiement();
+    //si c'est un abonnement
+    if(r.isAbonnement()){
+        cout << "Prix de cette réservation pour 1an : "
+        << r.getPaiement().getPaiementAnnuel() << "€/an ou "
+        << "Paiement mensuel non disponible." << endl;
+        cout << "Paiement immédiat de la somme totale." << endl;
+    } //sinon
+    else {
+        cout << "Prix de cette réservation pour " << r.getPaiement().getNbJours() << "jour(s) : "
+        << r.getPaiement().getPaiementJournalier() << "€/jour soit "
+        << r.getPaiement().getTotal() << "€ au total." << endl;
+        cout << "Paiement immédiat de la somme totale." << endl;
+    }
+}
+

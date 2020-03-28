@@ -9,6 +9,7 @@
 #include <include/Bateau.h>
 #include <include/Place.h>
 #include "Client.h"
+#include "Reservation.h"
 
 using namespace std;
 
@@ -55,6 +56,14 @@ public:
     void interfaceChoixSupplements();
 
     void interfaceChoixEngagement();
+
+    void interfaceInfosSupplements(Reservation r);
+
+    void interfaceInfosEngagement(Reservation r);
+
+    void interfaceInfosNbJours(Paiement p);
+
+    void interfacePaiement();
 };
 
 
