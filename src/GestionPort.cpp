@@ -37,10 +37,10 @@ void GestionPort::createReservation() {
     r.setBateau(boat);
 
     igp.interfaceNewPlace();
-    if(r.getBateau().getTypeBateau() == "Voilier de type 2"){
-        listPlacesFree = datagp.importPlacesFileCriteriaLength(true,true);
+    if (r.getBateau().getTypeBateau() == "Voilier de type 2") {
+        listPlacesFree = datagp.importPlacesFileCriteriaLength(true, true);
     } else {
-        listPlacesFree = datagp.importPlacesFileCriteriaLength(false,true);
+        listPlacesFree = datagp.importPlacesFileCriteriaLength(false, true);
     }
     datagp.displayPlaces(listPlacesFree);
     Place place = choosePlace();
@@ -53,13 +53,13 @@ void GestionPort::createReservation() {
     igp.interfaceClientInfo(r.getClient());
 
     igp.interfaceChoixSupplements();
-    if(checkIfClientCanHaveSupplements(r)){
-        igp.info("Vous avez accès à des suppléments",true);
+    if (checkIfClientCanHaveSupplements(r)) {
+        igp.info("Vous avez accès à des suppléments", true);
         r.setSupplementElec(checkIfClientWantElecSupplement());
         r.setSupplementEau(checkIfClientWantWaterSupplement());
         igp.interfaceInfosSupplements(r);
     } else {
-        igp.info("Vous n'avez pas accès à des suppléments",true);
+        igp.info("Vous n'avez pas accès à des suppléments", true);
         r.setSupplementElec(false);
         r.setSupplementEau(false);
     }
@@ -75,6 +75,7 @@ void GestionPort::createReservation() {
 
     //enregistrer Reservation dans Reservations.xml
     //voir pour pdf facture
+}
 
 /**
  * Action de création d'un bateau et de son enregistrement dans la réservation
@@ -86,23 +87,25 @@ Bateau GestionPort::createBoat() {
     bool error = true; //initialisation de la boucle d'erreur
     bool ifFirst = true; //initialisation du premier essai pour éviter de revenir ici
 
-    string choice = igp.getCin("Taille du bateau ? (en mètres)",false); //récupération de la taille du bateau donnée par le client
+    string choice = igp.getCin("Taille du bateau ? (en mètres)",
+                               false); //récupération de la taille du bateau donnée par le client
 
 
     //tant qu'aucune erreur n'a été trouvée on recommence à demander la taille du bateau
-    while(error) {
-        if(!ifFirst) {
-            choice = igp.getCin("Taille du bateau ? (en mètres)",false); //récupération de la taille du bateau donnée par le client
+    while (error) {
+        if (!ifFirst) {
+            choice = igp.getCin("Taille du bateau ? (en mètres)",
+                                false); //récupération de la taille du bateau donnée par le client
             //cout << choice << endl;
         }
         ifFirst = false;
         //si le mot rentré est celui pour retourner à l'accueil
-        if(checkWantHome(choice)) {
-                error = false; //on sort de la boucle d'erreur
-                igp.info("Vous avez choisi de revenir à l'accueil",true); //affichage d'une information
-                igp.home(); //affichage de l'interface d'accueil
-            } //sinon
-            else {
+        if (checkWantHome(choice)) {
+            error = false; //on sort de la boucle d'erreur
+            igp.info("Vous avez choisi de revenir à l'accueil", true); //affichage d'une information
+            igp.home(); //affichage de l'interface d'accueil
+        } //sinon
+        else {
             //si le format rentré est incompatible (contient lettres ou inférieur ou égal à 0)
             if (!checkIfIntegerPositif(choice)) {
                 //on reste dans la boucle d'erreur
@@ -141,7 +144,7 @@ bool GestionPort::checkIfIntegerPositif(string choice) {
     int compare; //declaration d'un integer
     istringstream(choice) >> compare; //conversion du string en integer
     //si l'integer est supérieur (format incompatible)
-    if(compare > 0) {
+    if (compare > 0) {
         //format validé
         ifValid = true;
     }
@@ -166,18 +169,18 @@ bool GestionPort::checkWantHome(string choice) {
  */
 Place GestionPort::choosePlace() {
     Place place;
-    string choice = igp.getCin("Numéro de place ?",false);
+    string choice = igp.getCin("Numéro de place ?", false);
     bool error = true; //initialisation de la boucle d'erreur
     bool ifFirst = true; //initialisation du premier essai pour éviter de revenir ici
 
-    while(error){
-        if(!ifFirst) {
-            choice = igp.getCin("Numéro de place ?",false);
+    while (error) {
+        if (!ifFirst) {
+            choice = igp.getCin("Numéro de place ?", false);
         }
         ifFirst = false;
-        if(checkWantHome(choice)) {
+        if (checkWantHome(choice)) {
             error = false; //on sort de la boucle d'erreur
-            igp.info("Vous avez choisi de revenir à l'accueil",true); //affichage d'une information
+            igp.info("Vous avez choisi de revenir à l'accueil", true); //affichage d'une information
             igp.home(); //affichage de l'interface d'accueil
         } //sinon
         else {
@@ -190,11 +193,11 @@ Place GestionPort::choosePlace() {
             else {
                 int numberPlace;
                 istringstream(choice) >> numberPlace;
-                if(datagp.checkNumberPlace(listPlacesFree, numberPlace)){
+                if (datagp.checkNumberPlace(listPlacesFree, numberPlace)) {
                     error = false; //on sort de la boucle d'erreur
-                    place = datagp.extractPlaceFromNumber(listPlacesFree,numberPlace);
+                    place = datagp.extractPlaceFromNumber(listPlacesFree, numberPlace);
                 } else {
-                    igp.erreur("Numéro de place non valide",false);
+                    igp.erreur("Numéro de place non valide", false);
                     cin.clear();
                     choice.empty();
                 }
@@ -213,29 +216,29 @@ Client GestionPort::chooseClient() {
     vector<Client> listClients = datagp.importClientsFile();
     igp.interfaceListeClients();
     datagp.displayClients(listClients);
-    string choice = igp.getCin("[n pour nouveau] Numéro du client ?",false);
+    string choice = igp.getCin("[n pour nouveau] Numéro du client ?", false);
     bool error = true; //initialisation de la boucle d'erreur
     bool ifFirst = true; //initialisation du premier essai pour éviter de revenir ici
 
     //tant qu'une erreur est detectee on reste dans la boucle
-    while(error){
+    while (error) {
 
         //si ce n'est pas le premier numéro de client rentré
-        if(!ifFirst) {
-            choice = igp.getCin("[n pour nouveau] Numéro du client ?",false);
+        if (!ifFirst) {
+            choice = igp.getCin("[n pour nouveau] Numéro du client ?", false);
         }
         ifFirst = false; //on indique que le premier essai a été utilisé
 
         //si la valeur rentrée est celle pour rentrer à l'accueil
-        if(checkWantHome(choice)) {
+        if (checkWantHome(choice)) {
             error = false; //on sort de la boucle d'erreur
-            igp.info("Vous avez choisi de revenir à l'accueil",true); //affichage d'une information
+            igp.info("Vous avez choisi de revenir à l'accueil", true); //affichage d'une information
             igp.home(); //affichage de l'interface d'accueil
         } //sinon
         else {
             //si la valeur rentrée est celle pour créer un nouveau client
-            if(checkWantNewClient(choice)) {
-                igp.info("Création de client non disponible",false);
+            if (checkWantNewClient(choice)) {
+                igp.info("Création de client non disponible", false);
             } //sinon
             else {
                 //si la valeur rentrée n'est pas compatible (doit être un Integer positif et non nul)
@@ -249,9 +252,9 @@ Client GestionPort::chooseClient() {
                     int IDchoose;
                     istringstream(choice) >> IDchoose; //on convertir le string en Integer
                     //si l'ID client rentré dans le programme existe bien
-                    if(datagp.checkIDClient(listClients,IDchoose)){
+                    if (datagp.checkIDClient(listClients, IDchoose)) {
                         error = false; //on sort de la boucle d'erreur
-                        c = datagp.extractClientFromID(listClients,IDchoose);
+                        c = datagp.extractClientFromID(listClients, IDchoose);
                     } //sinon l'ID client n'existe pas
                     else {
                         igp.erreur("Cet ID client n'existe pas", false); //affichage d'une erreur
@@ -298,8 +301,8 @@ void GestionPort::createNewClient() {
 
 string GestionPort::clientNouveauNom() {
     string choice = igp.getCin("Nom ?", false);
-    if(checkWantHome(choice)) {
-        igp.info("Vous avez choisi de revenir à l'accueil",true); //affichage d'une information
+    if (checkWantHome(choice)) {
+        igp.info("Vous avez choisi de revenir à l'accueil", true); //affichage d'une information
         igp.home(); //affichage de l'interface d'accueil
     }
     return choice;
@@ -307,8 +310,8 @@ string GestionPort::clientNouveauNom() {
 
 string GestionPort::clientNouveauPrenom() {
     string choice = igp.getCin("Prénom ?", false);
-    if(checkWantHome(choice)) {
-        igp.info("Vous avez choisi de revenir à l'accueil",true); //affichage d'une information
+    if (checkWantHome(choice)) {
+        igp.info("Vous avez choisi de revenir à l'accueil", true); //affichage d'une information
         igp.home(); //affichage de l'interface d'accueil
     }
     return choice;
@@ -316,8 +319,8 @@ string GestionPort::clientNouveauPrenom() {
 
 string GestionPort::clientNouveauEmail() {
     string choice = igp.getCin("Email ?", false);
-    if(checkWantHome(choice)) {
-        igp.info("Vous avez choisi de revenir à l'accueil",true); //affichage d'une information
+    if (checkWantHome(choice)) {
+        igp.info("Vous avez choisi de revenir à l'accueil", true); //affichage d'une information
         igp.home(); //affichage de l'interface d'accueil
     }
     return choice;
@@ -329,17 +332,17 @@ int GestionPort::clientNouveauNumeroAdresse() {
     bool ifFirst = true;
     int numAdresse;
 
-    while(error){
-        if(!ifFirst) {
-            choice = igp.getCin("Numéro d'adresse ?",false);
+    while (error) {
+        if (!ifFirst) {
+            choice = igp.getCin("Numéro d'adresse ?", false);
         }
         ifFirst = false;
-        if(checkWantHome(choice)) {
+        if (checkWantHome(choice)) {
             error = false;
-            igp.info("Vous avez choisi de revenir à l'accueil",true); //affichage d'une information
+            igp.info("Vous avez choisi de revenir à l'accueil", true); //affichage d'une information
             igp.home(); //affichage de l'interface d'accueil
         }
-        if(!checkIfIntegerPositif(choice)) {
+        if (!checkIfIntegerPositif(choice)) {
             //on reste dans la boucle d'erreur
             igp.erreur("Valeur négative ou format incompatible", false); //affichage d'une erreur
             cin.clear();
@@ -354,9 +357,9 @@ int GestionPort::clientNouveauNumeroAdresse() {
 }
 
 string GestionPort::clientNouvelleAdresse() {
-    string choice = igp.getCinLine("Adresse ?",false);
-    if(checkWantHome(choice)) {
-        igp.info("Vous avez choisi de revenir à l'accueil",true); //affichage d'une information
+    string choice = igp.getCinLine("Adresse ?", false);
+    if (checkWantHome(choice)) {
+        igp.info("Vous avez choisi de revenir à l'accueil", true); //affichage d'une information
         igp.home(); //affichage de l'interface d'accueil
     }
     return choice;
@@ -364,8 +367,8 @@ string GestionPort::clientNouvelleAdresse() {
 
 string GestionPort::clientNouveauCP() {
     string choice = igp.getCin("Code postal ?", false);
-    if(checkWantHome(choice)) {
-        igp.info("Vous avez choisi de revenir à l'accueil",true); //affichage d'une information
+    if (checkWantHome(choice)) {
+        igp.info("Vous avez choisi de revenir à l'accueil", true); //affichage d'une information
         igp.home(); //affichage de l'interface d'accueil
     }
     return choice;
@@ -373,8 +376,8 @@ string GestionPort::clientNouveauCP() {
 
 string GestionPort::clientNouvelleVille() {
     string choice = igp.getCin("Ville ?", false);
-    if(checkWantHome(choice)) {
-        igp.info("Vous avez choisi de revenir à l'accueil",true); //affichage d'une information
+    if (checkWantHome(choice)) {
+        igp.info("Vous avez choisi de revenir à l'accueil", true); //affichage d'une information
         igp.home(); //affichage de l'interface d'accueil
     }
     return choice;
@@ -387,9 +390,9 @@ string GestionPort::clientNouvelleVille() {
  */
 bool GestionPort::checkIfClientCanHaveSupplements(Reservation r) {
     bool ifCan = false;
-    if(r.getPlace().isDock()){
-        if(r.getBateau().getTypeBateau() == "Voilier de type 1"
-        || r.getBateau().getTypeBateau() == "Voilier de type 2"){
+    if (r.getPlace().isDock()) {
+        if (r.getBateau().getTypeBateau() == "Voilier de type 1"
+            || r.getBateau().getTypeBateau() == "Voilier de type 2") {
             ifCan = true;
         }
     }
@@ -406,17 +409,17 @@ bool GestionPort::checkIfClientWantElecSupplement() {
     bool ifFirst = true;
     bool ifWant = false;
 
-    while(error){
-        if(!ifFirst) {
+    while (error) {
+        if (!ifFirst) {
             choice = igp.getCin("Supplément éléctricité ? [oui/non]", false);
         }
         ifFirst = false;
-        if(checkWantHome(choice)) {
+        if (checkWantHome(choice)) {
             error = false;
-            igp.info("Vous avez choisi de revenir à l'accueil",true); //affichage d'une information
+            igp.info("Vous avez choisi de revenir à l'accueil", true); //affichage d'une information
             igp.home(); //affichage de l'interface d'accueil
         }
-        if(!checkSupplementsReponse(choice)) {
+        if (!checkSupplementsReponse(choice)) {
             //on reste dans la boucle d'erreur
             igp.erreur("Format incompatible", false); //affichage d'une erreur
             cin.clear();
@@ -440,17 +443,17 @@ bool GestionPort::checkIfClientWantWaterSupplement() {
     bool ifFirst = true;
     bool ifWant = false;
 
-    while(error){
-        if(!ifFirst) {
+    while (error) {
+        if (!ifFirst) {
             choice = igp.getCin("Supplément eau ? [oui/non]", false);
         }
         ifFirst = false;
-        if(checkWantHome(choice)) {
+        if (checkWantHome(choice)) {
             error = false;
-            igp.info("Vous avez choisi de revenir à l'accueil",true); //affichage d'une information
+            igp.info("Vous avez choisi de revenir à l'accueil", true); //affichage d'une information
             igp.home(); //affichage de l'interface d'accueil
         }
-        if(!checkSupplementsReponse(choice)) {
+        if (!checkSupplementsReponse(choice)) {
             //on reste dans la boucle d'erreur
             igp.erreur("Format incompatible", false); //affichage d'une erreur
             cin.clear();
@@ -471,7 +474,7 @@ bool GestionPort::checkIfClientWantWaterSupplement() {
  */
 bool GestionPort::checkSupplementsReponse(string choice) {
     bool ifOK = false;
-    if(choice == "oui" || choice == "non"){
+    if (choice == "oui" || choice == "non") {
         ifOK = true;
     }
     return ifOK;
@@ -484,7 +487,7 @@ bool GestionPort::checkSupplementsReponse(string choice) {
  */
 bool GestionPort::returnSupplementReponse(string choice) {
     bool reponse = false;
-    if(choice == "oui"){
+    if (choice == "oui") {
         reponse = true;
     }
     return reponse;
@@ -500,17 +503,17 @@ bool GestionPort::chooseIfClientWantAbonnement() {
     bool ifFirst = true;
     bool ifWant = false;
 
-    while(error){
-        if(!ifFirst) {
+    while (error) {
+        if (!ifFirst) {
             choice = igp.getCin("Abonnement ? [oui/non]", false);
         }
         ifFirst = false;
-        if(checkWantHome(choice)) {
+        if (checkWantHome(choice)) {
             error = false;
-            igp.info("Vous avez choisi de revenir à l'accueil",true); //affichage d'une information
+            igp.info("Vous avez choisi de revenir à l'accueil", true); //affichage d'une information
             igp.home(); //affichage de l'interface d'accueil
         }
-        if(!checkSupplementsReponse(choice)) {
+        if (!checkSupplementsReponse(choice)) {
             //on reste dans la boucle d'erreur
             igp.erreur("Format incompatible", false); //affichage d'une erreur
             cin.clear();
@@ -525,14 +528,14 @@ bool GestionPort::chooseIfClientWantAbonnement() {
 }
 
 
-Paiement GestionPort::getPaiement(Reservation r){
+Paiement GestionPort::getPaiement(Reservation r) {
     Paiement p;
 
     //si c'est un abonnement
-    if(r.isAbonnement()){
+    if (r.isAbonnement()) {
         int nbJours = 365;
         int paiementAnnuelSansSupplements = getPaiementAnnuel(r);
-        int paiementAnnuel= paiementAnnuelSansSupplements + (getPaiementJournalierSupplements(r)*365);
+        int paiementAnnuel = paiementAnnuelSansSupplements + (getPaiementJournalierSupplements(r) * 365);
         p.setPaiementAnnuel(paiementAnnuel);
 
         /**
@@ -554,9 +557,9 @@ Paiement GestionPort::getPaiement(Reservation r){
         p.setNbJours(nbJours);
         igp.interfaceInfosNbJours(p);
 
-        int paiementJournalier = getPaiementJournalier(r)+getPaiementJournalierSupplements(r);
+        int paiementJournalier = getPaiementJournalier(r) + getPaiementJournalierSupplements(r);
         p.setPaiementJournalier(paiementJournalier);
-        int total = nbJours*paiementJournalier;
+        int total = nbJours * paiementJournalier;
         p.setTotal(total);
     }
     return p;
@@ -566,23 +569,23 @@ Paiement GestionPort::getPaiement(Reservation r){
  * Fonction qui va demander au client non abonné combien de jours il veut rester
  * @return le nombre de jours restants
  */
-int GestionPort::askClientNombreJours(){
+int GestionPort::askClientNombreJours() {
     string choice = igp.getCin("Combien de jours de réservation ?", false);
     bool error = true;
     bool ifFirst = true;
     int nombreJours;
 
-    while(error){
-        if(!ifFirst) {
+    while (error) {
+        if (!ifFirst) {
             choice = igp.getCin("Combien de jours de réservation ?", false);
         }
         ifFirst = false;
-        if(checkWantHome(choice)) {
+        if (checkWantHome(choice)) {
             error = false;
-            igp.info("Vous avez choisi de revenir à l'accueil",true); //affichage d'une information
+            igp.info("Vous avez choisi de revenir à l'accueil", true); //affichage d'une information
             igp.home(); //affichage de l'interface d'accueil
         }
-        if(!checkIfIntegerPositif(choice)) {
+        if (!checkIfIntegerPositif(choice)) {
             //on reste dans la boucle d'erreur
             igp.erreur("Valeur négative ou format incompatible", false); //affichage d'une erreur
             cin.clear();
@@ -601,13 +604,13 @@ int GestionPort::askClientNombreJours(){
  * @param r la réservation du client non-abonné
  * @return son paiement journalier
  */
-int GestionPort::getPaiementJournalier(Reservation r){
+int GestionPort::getPaiementJournalier(Reservation r) {
     int paiementJournalier = 0;
     Tarifs t;
     //si le client est à quai
-    if(r.getPlace().isDock()){
+    if (r.getPlace().isDock()) {
         //si le bateau est un voilier non habitable
-        if(r.getBateau().getTypeBateau() == voilierNH){
+        if (r.getBateau().getTypeBateau() == voilierNH) {
             paiementJournalier = t.nonAbonne.quai.voilierNonHabitable.paiementJournalier;
         } //si le bateau est un voilier de type 1
         else if (r.getBateau().getTypeBateau() == voilierT1) {
@@ -619,7 +622,7 @@ int GestionPort::getPaiementJournalier(Reservation r){
     } //sinon il est hors-quai
     else {
         //si le bateau est un voilier non habitable
-        if(r.getBateau().getTypeBateau() == voilierNH){
+        if (r.getBateau().getTypeBateau() == voilierNH) {
             paiementJournalier = t.nonAbonne.nonQuai.voilierNonHabitable.paiementJournalier;
         } //si le bateau est un voilier de type 1
         else if (r.getBateau().getTypeBateau() == voilierT1) {
@@ -686,13 +689,13 @@ int* GestionPort::getPaiementMensuel(Reservation r){
  * @param r la réservation du client abonné
  * @return son paiement annuel
  */
-int GestionPort::getPaiementAnnuel(Reservation r){
+int GestionPort::getPaiementAnnuel(Reservation r) {
     int paiementAnnuel = 0;
     Tarifs t;
     //si le client est à quai
-    if(r.getPlace().isDock()){
+    if (r.getPlace().isDock()) {
         //si le bateau est un voilier non habitable
-        if(r.getBateau().getTypeBateau() == voilierNH){
+        if (r.getBateau().getTypeBateau() == voilierNH) {
             paiementAnnuel = t.abonne.quai.voilierNonHabitable.paiementAnnuel;
         } //si le bateau est un voilier de type 1
         else if (r.getBateau().getTypeBateau() == voilierT1) {
@@ -704,7 +707,7 @@ int GestionPort::getPaiementAnnuel(Reservation r){
     } //sinon il est hors-quai
     else {
         //si le bateau est un voilier non habitable
-        if(r.getBateau().getTypeBateau() == voilierNH){
+        if (r.getBateau().getTypeBateau() == voilierNH) {
             paiementAnnuel = t.abonne.nonQuai.voilierNonHabitable.paiementAnnuel;
         } //si le bateau est un voilier de type 1
         else if (r.getBateau().getTypeBateau() == voilierT1) {
@@ -722,31 +725,31 @@ int GestionPort::getPaiementAnnuel(Reservation r){
  * @param r la réservation
  * @return le paiement journalier des suppléments
  */
-int GestionPort::getPaiementJournalierSupplements(Reservation r){
+int GestionPort::getPaiementJournalierSupplements(Reservation r) {
     int paiementSupplements = 0;
     Tarifs t;
     //si un des deux suppléments a été choisi
-    if((r.isSupplementElec() && !r.isSupplementEau()) || (!r.isSupplementElec() && r.isSupplementEau())){
+    if ((r.isSupplementElec() && !r.isSupplementEau()) || (!r.isSupplementElec() && r.isSupplementEau())) {
         paiementSupplements = t.supplementJournalier;
-    } else if(r.isSupplementElec() && r.isSupplementEau()) {
-        paiementSupplements = t.supplementJournalier*2;
+    } else if (r.isSupplementElec() && r.isSupplementEau()) {
+        paiementSupplements = t.supplementJournalier * 2;
     }
     return paiementSupplements;
 }
 
-void GestionPort::showPrices(Reservation r){
+void GestionPort::showPrices(Reservation r) {
     igp.interfacePaiement();
     //si c'est un abonnement
-    if(r.isAbonnement()){
+    if (r.isAbonnement()) {
         cout << "Prix de cette réservation pour 1an : "
-        << r.getPaiement().getPaiementAnnuel() << "€/an ou "
-        << "Paiement mensuel non disponible." << endl;
+             << r.getPaiement().getPaiementAnnuel() << "€/an ou "
+             << "Paiement mensuel non disponible." << endl;
         cout << "Paiement immédiat de la somme totale." << endl;
     } //sinon
     else {
         cout << "Prix de cette réservation pour " << r.getPaiement().getNbJours() << "jour(s) : "
-        << r.getPaiement().getPaiementJournalier() << "€/jour soit "
-        << r.getPaiement().getTotal() << "€ au total." << endl;
+             << r.getPaiement().getPaiementJournalier() << "€/jour soit "
+             << r.getPaiement().getTotal() << "€ au total." << endl;
         cout << "Paiement immédiat de la somme totale." << endl;
     }
 }
