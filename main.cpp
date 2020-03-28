@@ -18,9 +18,12 @@ int main() {
     if(!dmain.checkIfPlacesFileExist()){
         dmain.createFirstPlacesFile();
     }
+    /**
     if(!dmain.checkIfClientsFileExist()){
         dmain.createFirstClientFile();
     }
+     **/
+    dmain.createFirstClientFile();
     it.home();
     return 0;
 }

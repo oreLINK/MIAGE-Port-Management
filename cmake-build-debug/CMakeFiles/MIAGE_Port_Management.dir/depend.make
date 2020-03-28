@@ -7,6 +7,7 @@ CMakeFiles/MIAGE_Port_Management.dir/main.cpp.o: ../include/Date.h
 CMakeFiles/MIAGE_Port_Management.dir/main.cpp.o: ../include/Place.h
 CMakeFiles/MIAGE_Port_Management.dir/main.cpp.o: ../include/tinyxml2.h
 CMakeFiles/MIAGE_Port_Management.dir/main.cpp.o: ../include/Bateau.h
+CMakeFiles/MIAGE_Port_Management.dir/main.cpp.o: ../include/Client.h
 CMakeFiles/MIAGE_Port_Management.dir/main.cpp.o: ../include/GestionPort.h
 CMakeFiles/MIAGE_Port_Management.dir/main.cpp.o: ../include/Interface.h
 CMakeFiles/MIAGE_Port_Management.dir/main.cpp.o: ../include/Reservation.h

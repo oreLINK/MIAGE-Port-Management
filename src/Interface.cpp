@@ -6,6 +6,8 @@
 #include "include/GestionPort.h"
 #include <iostream>
 
+string version = "1.0";
+
 using namespace std;
 
 GestionPort gp;
@@ -38,7 +40,7 @@ void Interface::homeResponseCheck(string homeResponse) {
 }
 
 void Interface::interfaceHome() {
-    cout << "~~~ GESTION PORT DE LA ROCHELLE ~~~" << endl;
+    cout << "~~~ GESTION PORT DE LA ROCHELLE ~~~ " << version << endl;
     cout << " " << endl;
     cout << "1 : Statistiques du port" << endl;
     cout << "2 : Nouvelle réservation" << endl;
@@ -61,6 +63,18 @@ string Interface::getCin(string message, bool ifEspace) {
     if(ifEspace) {
         cout << " " << endl;
     }
+    return choice;
+}
+
+string Interface::getCinLine(string message, bool ifEspace) {
+    string choice;
+    char input[150];
+    cout << "[q pour accueil] " << message << " ", cin >> choice;
+    if(ifEspace) {
+        cout << " " << endl;
+    }
+    cin.getline(input, sizeof(input));
+    choice = input;
     return choice;
 }
 
@@ -150,6 +164,20 @@ void Interface::interfaceChoixClient(){
 
 void Interface::interfaceListeClients(){
     info("Liste des clients",false);
+}
+
+void Interface::interfaceClientInfo(Client c){
+    cout << "Info. Le client choisi est le n°"<< c.getId() << " ("<< c.getNom() << " " << c.getPrenom() << ")"<< endl;
+    cout << " " << endl;
+}
+
+/**
+ * NOUVEAU CLIENT
+ */
+
+void Interface::interfaceNewClient(){
+    cout << "~~~ NOUVEAU CLIENT ~~~" << endl;
+    cout << " " << endl;
 }
 
 

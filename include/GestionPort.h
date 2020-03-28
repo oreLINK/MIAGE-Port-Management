@@ -29,6 +29,32 @@ public:
     Client chooseClient();
 
     bool checkWantNewClient(string choice);
+
+    void createNewClient();
+
+    string clientNouveauNom();
+
+    string clientNouveauPrenom();
+
+    string clientNouveauEmail();
+
+    int clientNouveauNumeroAdresse();
+
+    string clientNouvelleAdresse();
+
+    string clientNouveauCP();
+
+    string clientNouvelleVille();
+
+    bool checkIfClientCanHaveSupplements(Reservation r);
+
+    bool checkSupplementsReponse(string choice);
+
+    bool returnSupplementReponse(string choice);
+
+    bool checkIfClientWantElecSupplement();
+
+    bool checkIfClientWantWaterSupplement();
 };
 
 

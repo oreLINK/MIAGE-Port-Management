@@ -8,6 +8,7 @@
 #include <string>
 #include <include/Bateau.h>
 #include <include/Place.h>
+#include "Client.h"
 
 using namespace std;
 
@@ -44,6 +45,12 @@ public:
     void interfaceChoixClient();
 
     void interfaceListeClients();
+
+    void interfaceClientInfo(Client c);
+
+    void interfaceNewClient();
+
+    string getCinLine(string message, bool ifEspace);
 };
 
 

@@ -27,6 +27,10 @@ public:
     vector<struct Client> importClientsFile();
     void displayClient(Client c);
     void displayClients(vector<Client> c);
+    Client extractClientFromID(vector<Client> listClient, int choice);
+    bool checkIDClient(vector<Client> listClient, int choice);
+    vector<Client> addNewClient(vector<Client> listClient, Client c);
+    void createNewClientFile(vector<Client> listClients);
 private:
     char const * linkPlacesXMLFile = "../xml/Places.xml";
     char const * linkClientXMLFile = "../xml/Clients.xml";
@@ -49,6 +53,8 @@ private:
     void displayPlace(Place p);
 
     const char *extractCharFromXML(tinyxml2::XMLError eResult, tinyxml2::XMLElement *elementFather, const char *id);
+
+    int numberOfClients(vector<Client> c);
 };
 
 

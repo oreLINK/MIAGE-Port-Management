@@ -13,51 +13,51 @@ class Client {
 public:
     Client();
 
-    Client(int id, const char *nom, const char *prenom, const char *email, int numeroAdresse, const char *adresse,
-           const char *cp, const char *ville);
+    Client(int id, const string &nom, const string &prenom, const string &email, int numeroAdresse,
+           const string &adresse, const string &cp, const string &ville);
 
     int getId() const;
 
     void setId(int id);
 
-    const char *getNom() const;
+    const string &getNom() const;
 
-    void setNom(const char *nom);
+    void setNom(const string &nom);
 
-    const char *getPrenom() const;
+    const string &getPrenom() const;
 
-    void setPrenom(const char *prenom);
+    void setPrenom(const string &prenom);
 
-    const char *getEmail() const;
+    const string &getEmail() const;
 
-    void setEmail(const char *email);
+    void setEmail(const string &email);
 
     int getNumeroAdresse() const;
 
     void setNumeroAdresse(int numeroAdresse);
 
-    const char *getAdresse() const;
+    const string &getAdresse() const;
 
-    void setAdresse(const char *adresse);
+    void setAdresse(const string &adresse);
 
-    const char *getCp() const;
+    const string &getCp() const;
 
-    void setCp(const char *cp);
+    void setCp(const string &cp);
 
-    const char *getVille() const;
+    const string &getVille() const;
 
-    void setVille(const char *ville);
+    void setVille(const string &ville);
 
 
 private:
     int id;
-    const char * nom;
-    const char * prenom;
-    const char * email;
+    string nom;
+    string prenom;
+    string email;
     int numeroAdresse;
-    const char * adresse;
-    const char * cp;
-    const char * ville;
+    string adresse;
+    string cp;
+    string ville;
 public:
 };
 
