@@ -6,10 +6,10 @@
 #define MIAGE_PORT_MANAGEMENT_RESERVATION_H
 
 
-#include "../Client/Client.h"
-#include "../Bateau/Bateau.h"
-#include "../Place/Place.h"
-#include "../Date/Date.h"
+#include "include/Client.h"
+#include "include/Bateau.h"
+#include "include/Place.h"
+#include "include/Date.h"
 
 class Reservation {
 public:

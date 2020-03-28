@@ -1,9 +1,9 @@
 #include <iostream>
-#include <Data/Data.h>
+#include <include/Data.h>
 #include <vector>
-#include "Bateau/Bateau.h"
-#include "GestionPort/GestionPort.h"
-#include "Interface/Interface.h"
+#include "include/Bateau.h"
+#include "include/GestionPort.h"
+#include "include/Interface.h"
 
 using namespace std;
 

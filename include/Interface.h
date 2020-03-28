@@ -6,8 +6,8 @@
 #define MIAGE_PORT_MANAGEMENT_INTERFACE_H
 
 #include <string>
-#include <Bateau/Bateau.h>
-#include <Place/Place.h>
+#include <include/Bateau.h>
+#include <include/Place.h>
 
 using namespace std;
 

@@ -8,12 +8,12 @@ include_directories(./TinyXML)
 
 add_executable(MIAGE_Port_Management
         main.cpp
-        GestionPort/GestionPort.cpp GestionPort/GestionPort.h
-        Bateau/Bateau.cpp Bateau/Bateau.h
-        Interface/Interface.cpp Interface/Interface.h
-        Client/Client.cpp Client/Client.h
-        Place/Place.cpp Place/Place.h
-        Reservation/Reservation.cpp Reservation/Reservation.h
-        Date/Date.cpp Date/Date.h
-        Data/Data.cpp Data/Data.h
-        ./TinyXML/tinyxml2.cpp ./TinyXML/tinyxml2.h)
+        src/GestionPort.cpp include/GestionPort.h
+        src/Bateau.cpp include/Bateau.h
+        src/Interface.cpp include/Interface.h
+        src/Client.cpp include/Client.h
+        src/Place.cpp include/Place.h
+        src/Reservation.cpp include/Reservation.h
+        src/Date.cpp include/Date.h
+        src/Data.cpp include/Data.h
+        src/tinyxml2.cpp include/tinyxml2.h)

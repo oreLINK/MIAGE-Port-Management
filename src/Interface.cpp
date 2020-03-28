@@ -2,8 +2,8 @@
 // Created by Aurélien BERTRAND on 22/03/2020.
 //
 
-#include "Interface.h"
-#include "../GestionPort/GestionPort.h"
+#include "include/Interface.h"
+#include "include/GestionPort.h"
 #include <iostream>
 
 using namespace std;

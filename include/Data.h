@@ -5,10 +5,10 @@
 #ifndef MIAGE_PORT_MANAGEMENT_DATA_H
 #define MIAGE_PORT_MANAGEMENT_DATA_H
 
-#include "../Place/Place.h"
+#include "Place.h"
 
 #include <string>
-#include <TinyXML/tinyxml2.h>
+#include <include/tinyxml2.h>
 
 using namespace std;
 
@@ -28,8 +28,8 @@ public:
     void displayClient(Client c);
     void displayClients(vector<Client> c);
 private:
-    char const *linkPlacesXMLFile = "Places.xml";
-    char const* linkClientXMLFile = "Clients.xml";
+    char const * linkPlacesXMLFile = "../xml/Places.xml";
+    char const * linkClientXMLFile = "../xml/Clients.xml";
     //Attention
     //nbPlacesQuai <= nbPlaces et
     //nbPlacesQuaiPetites <= nbPlacesQuai et

@@ -5,10 +5,10 @@
 #include <iostream>
 #include <array>
 #include <vector>
-#include <Client/Client.h>
+#include <include/Client.h>
 #include <Tcl/tclTomMath.h>
-#include "Data.h"
-#include "../TinyXML/tinyxml2.h"
+#include "include/Data.h"
+#include "include/tinyxml2.h"
 
 using namespace tinyxml2;
 using namespace std;

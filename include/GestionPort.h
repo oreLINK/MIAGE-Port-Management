@@ -6,7 +6,7 @@
 #define MIAGE_PORT_MANAGEMENT_GESTIONPORT_H
 
 
-#include "../Reservation/Reservation.h"
+#include "Reservation.h"
 
 class GestionPort {
 private:
@@ -20,13 +20,15 @@ public:
 
     bool checkWantHome(string choice);
 
-    bool checkBoatLength(string choice);
+    bool checkIfIntegerPositif(string choice);
 
     Bateau createBoat();
 
     Place choosePlace();
 
     Client chooseClient();
+
+    bool checkWantNewClient(string choice);
 };
 
 

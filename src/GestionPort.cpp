@@ -2,12 +2,12 @@
 // Created by Aurélien BERTRAND on 22/03/2020.
 //
 
-#include "GestionPort.h"
+#include "include/GestionPort.h"
 #include <iostream>
-#include "../Bateau/Bateau.h"
-#include "../Reservation/Reservation.h"
-#include "../Interface/Interface.h"
-#include "../Data//Data.h"
+#include "include/Bateau.h"
+#include "include/Reservation.h"
+#include "include/Interface.h"
+#include "include/Data.h"
 
 #include <sstream>
 #include <cctype>
@@ -81,7 +81,7 @@ Bateau GestionPort::createBoat() {
             } //sinon
             else {
             //si le format rentré est incompatible (contient lettres ou inférieur ou égal à 0)
-            if (!checkBoatLength(choice)) {
+            if (!checkIfIntegerPositif(choice)) {
                 //on reste dans la boucle d'erreur
                 igp.erreur("Valeur négative ou format incompatible", false); //affichage d'une erreur
                 cin.clear();
@@ -109,12 +109,11 @@ Bateau GestionPort::createBoat() {
 }
 
 /**
- * Fonction qui va vérifier la taille du bateau entrée dans le programme (ne doit pas contenir de lettres et doit être
- * supérieur à 0.
+ * Fonction qui va vérifier si la donnée rentrée est un Integer > 0.
  * @param choice la chaine de caractères entrée dans le programme
- * @return vrai si la taille est correcte et faux sinon.
+ * @return vrai si le format est correct et faux sinon.
  */
-bool GestionPort::checkBoatLength(string choice) {
+bool GestionPort::checkIfIntegerPositif(string choice) {
     bool ifValid = false; //initialisation du booléen de validation comme format invalidé
     int compare; //declaration d'un integer
     istringstream(choice) >> compare; //conversion du string en integer
@@ -147,25 +146,31 @@ Place GestionPort::choosePlace() {
     while(error){
         if(!ifFirst) {
             choice = igp.getCin("Numéro de place ?",false);
-            //cout << choice << endl;
         }
         ifFirst = false;
-        if (!checkBoatLength(choice)) {
-            //on reste dans la boucle d'erreur
-            igp.erreur("Valeur négative ou format incompatible", false); //affichage d'une erreur
-            cin.clear();
-            choice.empty();
-        } //sinon le format est compatible
+        if(checkWantHome(choice)) {
+            error = false; //on sort de la boucle d'erreur
+            igp.info("Vous avez choisi de revenir à l'accueil",true); //affichage d'une information
+            igp.home(); //affichage de l'interface d'accueil
+        } //sinon
         else {
-            int numberPlace;
-            istringstream(choice) >> numberPlace;
-            if(datagp.checkNumberPlace(listPlacesFree, numberPlace)){
-                error = false; //on sort de la boucle d'erreur
-                place = datagp.extractPlaceFromNumber(listPlacesFree,numberPlace);
-            } else {
-                igp.erreur("Numéro de place non valide",false);
+            if (!checkIfIntegerPositif(choice)) {
+                //on reste dans la boucle d'erreur
+                igp.erreur("Valeur négative ou format incompatible", false); //affichage d'une erreur
                 cin.clear();
                 choice.empty();
+            } //sinon le format est compatible
+            else {
+                int numberPlace;
+                istringstream(choice) >> numberPlace;
+                if(datagp.checkNumberPlace(listPlacesFree, numberPlace)){
+                    error = false; //on sort de la boucle d'erreur
+                    place = datagp.extractPlaceFromNumber(listPlacesFree,numberPlace);
+                } else {
+                    igp.erreur("Numéro de place non valide",false);
+                    cin.clear();
+                    choice.empty();
+                }
             }
         }
     }
@@ -177,7 +182,48 @@ Client GestionPort::chooseClient() {
     vector<Client> listClients = datagp.importClientsFile();
     igp.interfaceListeClients();
     datagp.displayClients(listClients);
-    igp.getCin("[n pour nouveau] Numéro du client ?",false);
+    string choice = igp.getCin("[n pour nouveau] Numéro du client ?",false);
+    bool error = true; //initialisation de la boucle d'erreur
+    bool ifFirst = true; //initialisation du premier essai pour éviter de revenir ici
+
+    while(error){
+        if(!ifFirst) {
+            choice = igp.getCin("[n pour nouveau] Numéro du client ?",false);
+        }
+        ifFirst = false;
+        if(checkWantHome(choice)) {
+            error = false; //on sort de la boucle d'erreur
+            igp.info("Vous avez choisi de revenir à l'accueil",true); //affichage d'une information
+            igp.home(); //affichage de l'interface d'accueil
+        } //sinon
+        else {
+            if(checkWantNewClient(choice)) {
+                cout << "NOUVEAU CLIENT A FAIRE" << endl;
+            } else {
+                if (!checkIfIntegerPositif(choice)) {
+                    //on reste dans la boucle d'erreur
+                    igp.erreur("Valeur négative ou format incompatible", false); //affichage d'une erreur
+                    cin.clear();
+                    choice.empty();
+                } //sinon le format est compatible
+                else {
+                    //verfier numéro de client
+                }
+            }
+        }
+    }
+}
+
+/**
+ * Fonction booléen qui va vérifier si la valeur rentrée dans le terminal est celle pour créer un nouveau client
+ * @param choice valeur rentrée dans le terminal
+ * @return vrai si la valeur est celle pour créer un nouveau client sinon faux
+ */
+bool GestionPort::checkWantNewClient(string choice) {
+    if (choice == "n") {
+        return true;
+    }
+    return false;
 }
 
 
