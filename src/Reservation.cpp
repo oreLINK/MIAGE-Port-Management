@@ -7,9 +7,11 @@
 Reservation::Reservation() {}
 
 Reservation::Reservation(const Client &client, const Bateau &bateau, const Place &place, const Date &dateArrivee,
-                         const Date &dateDepart, bool siSupplementElec, bool siSupplementEau, bool siAbonnement)
-        : client(client), bateau(bateau), place(place), dateArrivee(dateArrivee), dateDepart(dateDepart),
-          supplementElec(siSupplementElec), supplementEau(siSupplementEau), abonnement(siAbonnement) {}
+                         const Date &dateDepart, bool supplementElec, bool supplementEau, bool abonnement,
+                         const Paiement &paiement) : client(client), bateau(bateau), place(place),
+                                                     dateArrivee(dateArrivee), dateDepart(dateDepart),
+                                                     supplementElec(supplementElec), supplementEau(supplementEau),
+                                                     abonnement(abonnement), paiement(paiement) {}
 
 const Client &Reservation::getClient() const {
     return client;
@@ -73,4 +75,12 @@ bool Reservation::isAbonnement() const {
 
 void Reservation::setAbonnement(bool abonnement) {
     Reservation::abonnement = abonnement;
+}
+
+const Paiement &Reservation::getPaiement() const {
+    return paiement;
+}
+
+void Reservation::setPaiement(const Paiement &paiement) {
+    Reservation::paiement = paiement;
 }

@@ -102,10 +102,16 @@
 		<Unit filename="/Users/orepro/Desktop/MIAGE-Port-Management/include/Interface.h">
 			<Option target="MIAGE_Port_Management"/>
 		</Unit>
+		<Unit filename="/Users/orepro/Desktop/MIAGE-Port-Management/include/Paiement.h">
+			<Option target="MIAGE_Port_Management"/>
+		</Unit>
 		<Unit filename="/Users/orepro/Desktop/MIAGE-Port-Management/include/Place.h">
 			<Option target="MIAGE_Port_Management"/>
 		</Unit>
 		<Unit filename="/Users/orepro/Desktop/MIAGE-Port-Management/include/Reservation.h">
+			<Option target="MIAGE_Port_Management"/>
+		</Unit>
+		<Unit filename="/Users/orepro/Desktop/MIAGE-Port-Management/include/Tarifs.h">
 			<Option target="MIAGE_Port_Management"/>
 		</Unit>
 		<Unit filename="/Users/orepro/Desktop/MIAGE-Port-Management/include/tinyxml2.h">
@@ -132,10 +138,16 @@
 		<Unit filename="/Users/orepro/Desktop/MIAGE-Port-Management/src/Interface.cpp">
 			<Option target="MIAGE_Port_Management"/>
 		</Unit>
+		<Unit filename="/Users/orepro/Desktop/MIAGE-Port-Management/src/Paiement.cpp">
+			<Option target="MIAGE_Port_Management"/>
+		</Unit>
 		<Unit filename="/Users/orepro/Desktop/MIAGE-Port-Management/src/Place.cpp">
 			<Option target="MIAGE_Port_Management"/>
 		</Unit>
 		<Unit filename="/Users/orepro/Desktop/MIAGE-Port-Management/src/Reservation.cpp">
+			<Option target="MIAGE_Port_Management"/>
+		</Unit>
+		<Unit filename="/Users/orepro/Desktop/MIAGE-Port-Management/src/Tarifs.cpp">
 			<Option target="MIAGE_Port_Management"/>
 		</Unit>
 		<Unit filename="/Users/orepro/Desktop/MIAGE-Port-Management/src/tinyxml2.cpp">

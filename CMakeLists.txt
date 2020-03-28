@@ -16,4 +16,4 @@ add_executable(MIAGE_Port_Management
         src/Reservation.cpp include/Reservation.h
         src/Date.cpp include/Date.h
         src/Data.cpp include/Data.h
-        src/tinyxml2.cpp include/tinyxml2.h)
+        src/tinyxml2.cpp include/tinyxml2.h src/Tarifs.cpp include/Tarifs.h src/Paiement.cpp include/Paiement.h)
