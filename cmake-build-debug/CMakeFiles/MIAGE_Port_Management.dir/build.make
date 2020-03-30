@@ -161,18 +161,18 @@ CMakeFiles/MIAGE_Port_Management.dir/src/Date.cpp.s: cmake_force
 	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green "Compiling CXX source to assembly CMakeFiles/MIAGE_Port_Management.dir/src/Date.cpp.s"
 	/Library/Developer/CommandLineTools/usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -S /Users/orepro/Desktop/MIAGE-Port-Management/src/Date.cpp -o CMakeFiles/MIAGE_Port_Management.dir/src/Date.cpp.s
 
-CMakeFiles/MIAGE_Port_Management.dir/src/Data.cpp.o: CMakeFiles/MIAGE_Port_Management.dir/flags.make
-CMakeFiles/MIAGE_Port_Management.dir/src/Data.cpp.o: ../src/Data.cpp
-	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green --progress-dir=/Users/orepro/Desktop/MIAGE-Port-Management/cmake-build-debug/CMakeFiles --progress-num=$(CMAKE_PROGRESS_9) "Building CXX object CMakeFiles/MIAGE_Port_Management.dir/src/Data.cpp.o"
-	/Library/Developer/CommandLineTools/usr/bin/c++  $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -o CMakeFiles/MIAGE_Port_Management.dir/src/Data.cpp.o -c /Users/orepro/Desktop/MIAGE-Port-Management/src/Data.cpp
+CMakeFiles/MIAGE_Port_Management.dir/src/data/Data.cpp.o: CMakeFiles/MIAGE_Port_Management.dir/flags.make
+CMakeFiles/MIAGE_Port_Management.dir/src/data/Data.cpp.o: ../src/data/Data.cpp
+	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green --progress-dir=/Users/orepro/Desktop/MIAGE-Port-Management/cmake-build-debug/CMakeFiles --progress-num=$(CMAKE_PROGRESS_9) "Building CXX object CMakeFiles/MIAGE_Port_Management.dir/src/data/Data.cpp.o"
+	/Library/Developer/CommandLineTools/usr/bin/c++  $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -o CMakeFiles/MIAGE_Port_Management.dir/src/data/Data.cpp.o -c /Users/orepro/Desktop/MIAGE-Port-Management/src/data/Data.cpp
 
-CMakeFiles/MIAGE_Port_Management.dir/src/Data.cpp.i: cmake_force
-	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green "Preprocessing CXX source to CMakeFiles/MIAGE_Port_Management.dir/src/Data.cpp.i"
-	/Library/Developer/CommandLineTools/usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -E /Users/orepro/Desktop/MIAGE-Port-Management/src/Data.cpp > CMakeFiles/MIAGE_Port_Management.dir/src/Data.cpp.i
+CMakeFiles/MIAGE_Port_Management.dir/src/data/Data.cpp.i: cmake_force
+	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green "Preprocessing CXX source to CMakeFiles/MIAGE_Port_Management.dir/src/data/Data.cpp.i"
+	/Library/Developer/CommandLineTools/usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -E /Users/orepro/Desktop/MIAGE-Port-Management/src/data/Data.cpp > CMakeFiles/MIAGE_Port_Management.dir/src/data/Data.cpp.i
 
-CMakeFiles/MIAGE_Port_Management.dir/src/Data.cpp.s: cmake_force
-	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green "Compiling CXX source to assembly CMakeFiles/MIAGE_Port_Management.dir/src/Data.cpp.s"
-	/Library/Developer/CommandLineTools/usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -S /Users/orepro/Desktop/MIAGE-Port-Management/src/Data.cpp -o CMakeFiles/MIAGE_Port_Management.dir/src/Data.cpp.s
+CMakeFiles/MIAGE_Port_Management.dir/src/data/Data.cpp.s: cmake_force
+	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green "Compiling CXX source to assembly CMakeFiles/MIAGE_Port_Management.dir/src/data/Data.cpp.s"
+	/Library/Developer/CommandLineTools/usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -S /Users/orepro/Desktop/MIAGE-Port-Management/src/data/Data.cpp -o CMakeFiles/MIAGE_Port_Management.dir/src/data/Data.cpp.s
 
 CMakeFiles/MIAGE_Port_Management.dir/src/tinyxml2.cpp.o: CMakeFiles/MIAGE_Port_Management.dir/flags.make
 CMakeFiles/MIAGE_Port_Management.dir/src/tinyxml2.cpp.o: ../src/tinyxml2.cpp
@@ -213,6 +213,58 @@ CMakeFiles/MIAGE_Port_Management.dir/src/Paiement.cpp.s: cmake_force
 	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green "Compiling CXX source to assembly CMakeFiles/MIAGE_Port_Management.dir/src/Paiement.cpp.s"
 	/Library/Developer/CommandLineTools/usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -S /Users/orepro/Desktop/MIAGE-Port-Management/src/Paiement.cpp -o CMakeFiles/MIAGE_Port_Management.dir/src/Paiement.cpp.s
 
+CMakeFiles/MIAGE_Port_Management.dir/src/data/DataPlace.cpp.o: CMakeFiles/MIAGE_Port_Management.dir/flags.make
+CMakeFiles/MIAGE_Port_Management.dir/src/data/DataPlace.cpp.o: ../src/data/DataPlace.cpp
+	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green --progress-dir=/Users/orepro/Desktop/MIAGE-Port-Management/cmake-build-debug/CMakeFiles --progress-num=$(CMAKE_PROGRESS_13) "Building CXX object CMakeFiles/MIAGE_Port_Management.dir/src/data/DataPlace.cpp.o"
+	/Library/Developer/CommandLineTools/usr/bin/c++  $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -o CMakeFiles/MIAGE_Port_Management.dir/src/data/DataPlace.cpp.o -c /Users/orepro/Desktop/MIAGE-Port-Management/src/data/DataPlace.cpp
+
+CMakeFiles/MIAGE_Port_Management.dir/src/data/DataPlace.cpp.i: cmake_force
+	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green "Preprocessing CXX source to CMakeFiles/MIAGE_Port_Management.dir/src/data/DataPlace.cpp.i"
+	/Library/Developer/CommandLineTools/usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -E /Users/orepro/Desktop/MIAGE-Port-Management/src/data/DataPlace.cpp > CMakeFiles/MIAGE_Port_Management.dir/src/data/DataPlace.cpp.i
+
+CMakeFiles/MIAGE_Port_Management.dir/src/data/DataPlace.cpp.s: cmake_force
+	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green "Compiling CXX source to assembly CMakeFiles/MIAGE_Port_Management.dir/src/data/DataPlace.cpp.s"
+	/Library/Developer/CommandLineTools/usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -S /Users/orepro/Desktop/MIAGE-Port-Management/src/data/DataPlace.cpp -o CMakeFiles/MIAGE_Port_Management.dir/src/data/DataPlace.cpp.s
+
+CMakeFiles/MIAGE_Port_Management.dir/src/data/DataClient.cpp.o: CMakeFiles/MIAGE_Port_Management.dir/flags.make
+CMakeFiles/MIAGE_Port_Management.dir/src/data/DataClient.cpp.o: ../src/data/DataClient.cpp
+	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green --progress-dir=/Users/orepro/Desktop/MIAGE-Port-Management/cmake-build-debug/CMakeFiles --progress-num=$(CMAKE_PROGRESS_14) "Building CXX object CMakeFiles/MIAGE_Port_Management.dir/src/data/DataClient.cpp.o"
+	/Library/Developer/CommandLineTools/usr/bin/c++  $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -o CMakeFiles/MIAGE_Port_Management.dir/src/data/DataClient.cpp.o -c /Users/orepro/Desktop/MIAGE-Port-Management/src/data/DataClient.cpp
+
+CMakeFiles/MIAGE_Port_Management.dir/src/data/DataClient.cpp.i: cmake_force
+	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green "Preprocessing CXX source to CMakeFiles/MIAGE_Port_Management.dir/src/data/DataClient.cpp.i"
+	/Library/Developer/CommandLineTools/usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -E /Users/orepro/Desktop/MIAGE-Port-Management/src/data/DataClient.cpp > CMakeFiles/MIAGE_Port_Management.dir/src/data/DataClient.cpp.i
+
+CMakeFiles/MIAGE_Port_Management.dir/src/data/DataClient.cpp.s: cmake_force
+	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green "Compiling CXX source to assembly CMakeFiles/MIAGE_Port_Management.dir/src/data/DataClient.cpp.s"
+	/Library/Developer/CommandLineTools/usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -S /Users/orepro/Desktop/MIAGE-Port-Management/src/data/DataClient.cpp -o CMakeFiles/MIAGE_Port_Management.dir/src/data/DataClient.cpp.s
+
+CMakeFiles/MIAGE_Port_Management.dir/src/data/DataDate.cpp.o: CMakeFiles/MIAGE_Port_Management.dir/flags.make
+CMakeFiles/MIAGE_Port_Management.dir/src/data/DataDate.cpp.o: ../src/data/DataDate.cpp
+	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green --progress-dir=/Users/orepro/Desktop/MIAGE-Port-Management/cmake-build-debug/CMakeFiles --progress-num=$(CMAKE_PROGRESS_15) "Building CXX object CMakeFiles/MIAGE_Port_Management.dir/src/data/DataDate.cpp.o"
+	/Library/Developer/CommandLineTools/usr/bin/c++  $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -o CMakeFiles/MIAGE_Port_Management.dir/src/data/DataDate.cpp.o -c /Users/orepro/Desktop/MIAGE-Port-Management/src/data/DataDate.cpp
+
+CMakeFiles/MIAGE_Port_Management.dir/src/data/DataDate.cpp.i: cmake_force
+	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green "Preprocessing CXX source to CMakeFiles/MIAGE_Port_Management.dir/src/data/DataDate.cpp.i"
+	/Library/Developer/CommandLineTools/usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -E /Users/orepro/Desktop/MIAGE-Port-Management/src/data/DataDate.cpp > CMakeFiles/MIAGE_Port_Management.dir/src/data/DataDate.cpp.i
+
+CMakeFiles/MIAGE_Port_Management.dir/src/data/DataDate.cpp.s: cmake_force
+	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green "Compiling CXX source to assembly CMakeFiles/MIAGE_Port_Management.dir/src/data/DataDate.cpp.s"
+	/Library/Developer/CommandLineTools/usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -S /Users/orepro/Desktop/MIAGE-Port-Management/src/data/DataDate.cpp -o CMakeFiles/MIAGE_Port_Management.dir/src/data/DataDate.cpp.s
+
+CMakeFiles/MIAGE_Port_Management.dir/src/data/DataReservation.cpp.o: CMakeFiles/MIAGE_Port_Management.dir/flags.make
+CMakeFiles/MIAGE_Port_Management.dir/src/data/DataReservation.cpp.o: ../src/data/DataReservation.cpp
+	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green --progress-dir=/Users/orepro/Desktop/MIAGE-Port-Management/cmake-build-debug/CMakeFiles --progress-num=$(CMAKE_PROGRESS_16) "Building CXX object CMakeFiles/MIAGE_Port_Management.dir/src/data/DataReservation.cpp.o"
+	/Library/Developer/CommandLineTools/usr/bin/c++  $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -o CMakeFiles/MIAGE_Port_Management.dir/src/data/DataReservation.cpp.o -c /Users/orepro/Desktop/MIAGE-Port-Management/src/data/DataReservation.cpp
+
+CMakeFiles/MIAGE_Port_Management.dir/src/data/DataReservation.cpp.i: cmake_force
+	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green "Preprocessing CXX source to CMakeFiles/MIAGE_Port_Management.dir/src/data/DataReservation.cpp.i"
+	/Library/Developer/CommandLineTools/usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -E /Users/orepro/Desktop/MIAGE-Port-Management/src/data/DataReservation.cpp > CMakeFiles/MIAGE_Port_Management.dir/src/data/DataReservation.cpp.i
+
+CMakeFiles/MIAGE_Port_Management.dir/src/data/DataReservation.cpp.s: cmake_force
+	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green "Compiling CXX source to assembly CMakeFiles/MIAGE_Port_Management.dir/src/data/DataReservation.cpp.s"
+	/Library/Developer/CommandLineTools/usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -S /Users/orepro/Desktop/MIAGE-Port-Management/src/data/DataReservation.cpp -o CMakeFiles/MIAGE_Port_Management.dir/src/data/DataReservation.cpp.s
+
 # Object files for target MIAGE_Port_Management
 MIAGE_Port_Management_OBJECTS = \
 "CMakeFiles/MIAGE_Port_Management.dir/main.cpp.o" \
@@ -223,10 +275,14 @@ MIAGE_Port_Management_OBJECTS = \
 "CMakeFiles/MIAGE_Port_Management.dir/src/Place.cpp.o" \
 "CMakeFiles/MIAGE_Port_Management.dir/src/Reservation.cpp.o" \
 "CMakeFiles/MIAGE_Port_Management.dir/src/Date.cpp.o" \
-"CMakeFiles/MIAGE_Port_Management.dir/src/Data.cpp.o" \
+"CMakeFiles/MIAGE_Port_Management.dir/src/data/Data.cpp.o" \
 "CMakeFiles/MIAGE_Port_Management.dir/src/tinyxml2.cpp.o" \
 "CMakeFiles/MIAGE_Port_Management.dir/src/Tarifs.cpp.o" \
-"CMakeFiles/MIAGE_Port_Management.dir/src/Paiement.cpp.o"
+"CMakeFiles/MIAGE_Port_Management.dir/src/Paiement.cpp.o" \
+"CMakeFiles/MIAGE_Port_Management.dir/src/data/DataPlace.cpp.o" \
+"CMakeFiles/MIAGE_Port_Management.dir/src/data/DataClient.cpp.o" \
+"CMakeFiles/MIAGE_Port_Management.dir/src/data/DataDate.cpp.o" \
+"CMakeFiles/MIAGE_Port_Management.dir/src/data/DataReservation.cpp.o"
 
 # External object files for target MIAGE_Port_Management
 MIAGE_Port_Management_EXTERNAL_OBJECTS =
@@ -239,13 +295,17 @@ MIAGE_Port_Management: CMakeFiles/MIAGE_Port_Management.dir/src/Client.cpp.o
 MIAGE_Port_Management: CMakeFiles/MIAGE_Port_Management.dir/src/Place.cpp.o
 MIAGE_Port_Management: CMakeFiles/MIAGE_Port_Management.dir/src/Reservation.cpp.o
 MIAGE_Port_Management: CMakeFiles/MIAGE_Port_Management.dir/src/Date.cpp.o
-MIAGE_Port_Management: CMakeFiles/MIAGE_Port_Management.dir/src/Data.cpp.o
+MIAGE_Port_Management: CMakeFiles/MIAGE_Port_Management.dir/src/data/Data.cpp.o
 MIAGE_Port_Management: CMakeFiles/MIAGE_Port_Management.dir/src/tinyxml2.cpp.o
 MIAGE_Port_Management: CMakeFiles/MIAGE_Port_Management.dir/src/Tarifs.cpp.o
 MIAGE_Port_Management: CMakeFiles/MIAGE_Port_Management.dir/src/Paiement.cpp.o
+MIAGE_Port_Management: CMakeFiles/MIAGE_Port_Management.dir/src/data/DataPlace.cpp.o
+MIAGE_Port_Management: CMakeFiles/MIAGE_Port_Management.dir/src/data/DataClient.cpp.o
+MIAGE_Port_Management: CMakeFiles/MIAGE_Port_Management.dir/src/data/DataDate.cpp.o
+MIAGE_Port_Management: CMakeFiles/MIAGE_Port_Management.dir/src/data/DataReservation.cpp.o
 MIAGE_Port_Management: CMakeFiles/MIAGE_Port_Management.dir/build.make
 MIAGE_Port_Management: CMakeFiles/MIAGE_Port_Management.dir/link.txt
-	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green --bold --progress-dir=/Users/orepro/Desktop/MIAGE-Port-Management/cmake-build-debug/CMakeFiles --progress-num=$(CMAKE_PROGRESS_13) "Linking CXX executable MIAGE_Port_Management"
+	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green --bold --progress-dir=/Users/orepro/Desktop/MIAGE-Port-Management/cmake-build-debug/CMakeFiles --progress-num=$(CMAKE_PROGRESS_17) "Linking CXX executable MIAGE_Port_Management"
 	$(CMAKE_COMMAND) -E cmake_link_script CMakeFiles/MIAGE_Port_Management.dir/link.txt --verbose=$(VERBOSE)
 
 # Rule to build all files generated by this target.

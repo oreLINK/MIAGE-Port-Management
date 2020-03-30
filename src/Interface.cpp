@@ -5,12 +5,23 @@
 #include "include/Interface.h"
 #include "include/GestionPort.h"
 #include <iostream>
+#include <vector>
+#include <include/data/DataPlace.h>
+#include <include/data/DataDate.h>
+#include "include/data/Data.h"
+#include "include/data/DataClient.h"
+#include "include/data/DataReservation.h"
 
 string version = "1.0";
 
 using namespace std;
 
-GestionPort gp;
+GestionPort gestionPortI;
+Data dataI;
+DataPlace dataplaceI;
+DataClient dataClientI;
+DataDate dataDateI;
+DataReservation dataReservationI;
 
 /**
  * HOME PAGE
@@ -30,9 +41,11 @@ void Interface::homeResponseCheck(string homeResponse) {
     if(homeResponse == "0") {
         exit(1);
     } else if(homeResponse == "1") {
-        cout << "lala" << endl;
+        gestionPortI.createNewClient();
     } else if(homeResponse == "2") {
-        gp.createReservation();
+        gestionPortI.createReservation();
+    } else if(homeResponse == "3") {
+        displayReservations(dataReservationI.importReservationsFile());
     } else {
         erreur("Choix incorrect",true);
         home();
@@ -42,8 +55,9 @@ void Interface::homeResponseCheck(string homeResponse) {
 void Interface::interfaceHome() {
     cout << "~~~ GESTION PORT DE LA ROCHELLE ~~~ " << version << endl;
     cout << " " << endl;
-    cout << "1 : Statistiques du port" << endl;
+    cout << "1 : Nouveau client" << endl;
     cout << "2 : Nouvelle réservation" << endl;
+    cout << "3 : Liste des réservations" << endl;
     cout << " " << endl;
     cout << "0 : Quitter (sauv. auto)" << endl;
     cout << " " << endl;
@@ -75,6 +89,7 @@ string Interface::getCinLine(string message, bool ifEspace) {
     }
     cin.getline(input, sizeof(input));
     choice = input;
+    cout << input << " : getcinline : " << choice << endl;
     return choice;
 }
 
@@ -117,6 +132,24 @@ void Interface::interfaceNewReservation(){
     cout << " " << endl;
 }
 
+void Interface::displayReservation(Reservation r){
+    cout << "Réservation n°" << r.getId() << endl;
+    displayClient(dataClientI.extractClientFromID(dataClientI.importClientsFile(), r.getIdClient()));
+    displayBateau(r.getBateau());
+    displayPlace(dataplaceI.extractPlaceFromNumber(dataplaceI.importPlacesFile(), r.getNumeroPlace()));
+    displayDates(r);
+    interfaceInfosSupplements(r);
+    interfaceInfosEngagement(r);
+    showPrices(r);
+}
+
+void Interface::displayReservations(vector<Reservation> r) {
+    for (int i = 0; i < r.size(); i++) {
+        displayReservation(r[i]);
+    }
+    cout << " " << endl;
+}
+
 /**
  * BOAT CREATION
  */
@@ -124,6 +157,14 @@ void Interface::interfaceNewReservation(){
 void Interface::interfaceNewBoat(){
     cout << "~ Choix du bateau ~" << endl;
     cout << " " << endl;
+}
+
+void Interface::displayBateau(Bateau b){
+    if(b.isSiCabine()){
+        cout << b.getTypeBateau() << " de " << b.getTaille() << "m avec cabine." << endl;
+    } else {
+        cout << b.getTypeBateau() << " de " << b.getTaille() << "m sans cabine." << endl;
+    }
 }
 
 /**
@@ -153,6 +194,22 @@ void Interface::interfacePlaceInfos(Place p){
     cout << " " << endl;
 }
 
+void Interface::displayPlace(Place p){
+    if(p.isDock()){
+        if(p.isTall()){
+            cout << "Place n°" << p.getNumber() << " a quai, de grande taille (suppléments éléctricité et eau disponibles)." << endl;
+        } else {
+            cout << "Place n°" << p.getNumber() << " a quai, de petite taille (suppléments éléctricité et eau disponibles)." << endl;
+        }
+    } else {
+        if(p.isTall()){
+            cout << "Place n°" << p.getNumber() << " hors quai, de grande taille (suppléments non disponibles)." << endl;
+        } else {
+            cout << "Place n°" << p.getNumber() << " hors quai, de petite taille (suppléments non disponibles)." << endl;
+        }
+    }
+}
+
 /**
  * CLIENTS
  */
@@ -169,6 +226,12 @@ void Interface::interfaceListeClients(){
 void Interface::interfaceClientInfo(Client c){
     cout << "Info. Le client choisi est le n°"<< c.getId() << " ("<< c.getNom() << " " << c.getPrenom() << ")"<< endl;
     cout << " " << endl;
+}
+
+void Interface::displayClient(Client c) {
+    cout << "Client n°" << c.getId() << " - " << c.getNom() << " " << c.getPrenom()
+         << " (" << c.getEmail() << ") " << c.getNumeroAdresse() << " " << c.getAdresse() << " " << c.getCp() << " "
+         << c.getVille() << endl;
 }
 
 /**
@@ -236,6 +299,23 @@ void Interface::interfaceInfosNbJours(Paiement p){
 void Interface::interfacePaiement(){
     cout << "~ Paiement ~" << endl;
     cout << " " << endl;
+}
+
+void Interface::showPrices(Reservation r) {
+    interfacePaiement();
+    //si c'est un abonnement
+    if (r.isAbonnement()) {
+        cout << "Prix de cette réservation pour 1 an : "
+             << r.getPaiement().getPaiementAnnuel() << "€/an ou "
+             << "Paiement mensuel non disponible." << endl;
+        cout << "Paiement immédiat de la somme totale." << endl;
+    } //sinon
+    else {
+        cout << "Prix de cette réservation pour " << r.getPaiement().getNbJours() << " jour(s) : "
+             << r.getPaiement().getPaiementJournalier() << "€/jour soit "
+             << r.getPaiement().getTotal() << "€ au total." << endl;
+        cout << "Paiement immédiat de la somme totale." << endl;
+    }
 }
 
 
