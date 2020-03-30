@@ -81,6 +81,10 @@ public:
     vector<int> createNbJoursMonth(bool ifBissextile);
 
     Date convertJoursInYearsMonthDays(Date d, int nbJours, vector<int> nbJoursParMois);
+
+    int getPaiementMensuelPremierMois(Reservation r);
+
+    Place choosePlace(vector<Place> listePlacesLibres);
 };
 
 

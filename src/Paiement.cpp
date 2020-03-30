@@ -6,9 +6,11 @@
 
 Paiement::Paiement() {}
 
-Paiement::Paiement(int nbJours, int paiementJournalier, int paiementMensuel, int paiementAnnuel, int total) : nbJours(
-        nbJours), paiementJournalier(paiementJournalier), paiementMensuel(paiementMensuel), paiementAnnuel(
-        paiementAnnuel), total(total) {}
+Paiement::Paiement(int nbJours, int paiementJournalier, int paiementMensuelPremierMois, int paiementMensuel11Mois,
+                   int paiementAnnuel, int total) : nbJours(nbJours), paiementJournalier(paiementJournalier),
+                                                    paiementMensuelPremierMois(paiementMensuelPremierMois),
+                                                    paiementMensuel11Mois(paiementMensuel11Mois),
+                                                    paiementAnnuel(paiementAnnuel), total(total) {}
 
 int Paiement::getNbJours() const {
     return nbJours;
@@ -26,12 +28,20 @@ void Paiement::setPaiementJournalier(int paiementJournalier) {
     Paiement::paiementJournalier = paiementJournalier;
 }
 
-int Paiement::getPaiementMensuel() const {
-    return paiementMensuel;
+int Paiement::getPaiementMensuelPremierMois() const {
+    return paiementMensuelPremierMois;
 }
 
-void Paiement::setPaiementMensuel(int paiementMensuel) {
-    Paiement::paiementMensuel = paiementMensuel;
+void Paiement::setPaiementMensuelPremierMois(int paiementMensuelPremierMois) {
+    Paiement::paiementMensuelPremierMois = paiementMensuelPremierMois;
+}
+
+int Paiement::getPaiementMensuel11Mois() const {
+    return paiementMensuel11Mois;
+}
+
+void Paiement::setPaiementMensuel11Mois(int paiementMensuel11Mois) {
+    Paiement::paiementMensuel11Mois = paiementMensuel11Mois;
 }
 
 int Paiement::getPaiementAnnuel() const {

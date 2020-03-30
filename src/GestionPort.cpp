@@ -7,8 +7,13 @@
 #include "include/Bateau.h"
 #include "include/Reservation.h"
 #include "include/Interface.h"
-#include "include/Data.h"
+#include "include/data/Data.h"
 #include "include/Tarifs.h"
+#include "include/data/DataPlace.h"
+#include "include/data/DataClient.h"
+#include "include/data/DataDate.h"
+#include "include/data/DataReservation.h"
+#include "include/BateauType.h"
 
 #include <sstream>
 #include <cctype>
@@ -16,8 +21,13 @@
 
 Interface igp;
 Data datagp;
+DataPlace dataplaceGP;
+DataClient dataClientGP;
+DataDate dataDateGP;
+DataReservation dataReservationGP;
+BateauType bateauType;
 
-vector<Place> listPlacesFree;
+
 string voilierNH = "Voilier non habitable";
 string voilierT1 = "Voilier de type 1";
 string voilierT2 = "Voilier de type 2";
@@ -29,29 +39,34 @@ GestionPort::GestionPort() {}
  */
 void GestionPort::createReservation() {
 
+    //introduction et creation de la nouvelle réservation
     igp.interfaceNewReservation();
     Reservation r;
 
+    //choix du bateau
     igp.interfaceNewBoat();
-    Bateau boat = createBoat(); //details Bateau
-    r.setBateau(boat);
+    r.setBateau(createBoat());
 
+    //choix de la place (liste des places libres)
     igp.interfaceNewPlace();
-    if (r.getBateau().getTypeBateau() == "Voilier de type 2") {
-        listPlacesFree = datagp.importPlacesFileCriteriaLength(true, true);
+    vector<Place> listPlacesFree;
+    if (r.getBateau().getTypeBateau() == bateauType.voilierType2String) {
+        listPlacesFree = dataplaceGP.importPlacesFileCriteriaLength(true, true);
     } else {
-        listPlacesFree = datagp.importPlacesFileCriteriaLength(false, true);
+        listPlacesFree = dataplaceGP.importPlacesFileCriteriaLength(false, true);
     }
-    datagp.displayPlaces(listPlacesFree);
-    Place place = choosePlace();
-    r.setPlace(place);
-    igp.interfacePlaceInfos(r.getPlace());
+    dataplaceGP.displayPlaces(listPlacesFree);
+    Place place = choosePlace(listPlacesFree);
+    r.setNumeroPlace(place.getNumber());
+    igp.interfacePlaceInfos(dataplaceGP.extractPlaceFromNumber(dataplaceGP.importPlacesFile(), r.getNumeroPlace()));
 
+    //choix du client (clients déjà enregistrés ou nouveau client)
     igp.interfaceChoixClient();
     Client client = chooseClient();
-    r.setClient(client);
-    igp.interfaceClientInfo(r.getClient());
+    r.setIdClient(client.getId());
+    igp.interfaceClientInfo(dataClientGP.extractClientFromID(dataClientGP.importClientsFile(), r.getId()));
 
+    //choix des suppléments (eau et/ou electricité)
     igp.interfaceChoixSupplements();
     if (checkIfClientCanHaveSupplements(r)) {
         igp.info("Vous avez accès à des suppléments", true);
@@ -64,27 +79,33 @@ void GestionPort::createReservation() {
         r.setSupplementEau(false);
     }
 
+    //choix du type d'engagement (forfait annuel ou journalier)
     igp.interfaceChoixEngagement();
     r.setAbonnement(chooseIfClientWantAbonnement());
     igp.interfaceInfosEngagement(r);
 
+    //ajout du paiement en fonction de la réservation (type de bateau, durée séjour, suppléments, quai ou non)
     r.setPaiement(getPaiement(r));
 
-    r.setDateArrivee(datagp.getDateToday());
+    //ajout de la date d'arrivée (aujourd'hui) et de la date de départ en fonction de la réservation
+    r.setDateArrivee(dataDateGP.getDateToday());
     if(r.isAbonnement()){
         r.setDateDepart(getDateDepartAbonnement(r.getDateArrivee()));
     } else {
         r.setDateDepart(getDateDepartNonAbonnement(r));
     }
 
+    //affichage des dates d'arrivée et de départ
     igp.displayDates(r);
 
-    showPrices(r);
+    //affichage des prix
+    igp.showPrices(r);
 
-    cout << "lala" << endl;
+    //enregistrement de la réservation
+    dataReservationGP.saveReservations(dataReservationGP.addReservation(r));
 
-    //enregistrer Reservation dans Reservations.xml
-    //voir pour pdf facture
+    //affichage de la réservation
+    igp.displayReservations(dataReservationGP.importReservationsFile());
 }
 
 /**
@@ -106,7 +127,6 @@ Bateau GestionPort::createBoat() {
         if (!ifFirst) {
             choice = igp.getCin("Taille du bateau ? (en mètres)",
                                 false); //récupération de la taille du bateau donnée par le client
-            //cout << choice << endl;
         }
         ifFirst = false;
         //si le mot rentré est celui pour retourner à l'accueil
@@ -129,13 +149,13 @@ Bateau GestionPort::createBoat() {
                 boat.setTaille(size); //on enregistre la valeur dans le bateau
                 if (size < 10) {
                     boat.setSiCabine(false);
-                    boat.setTypeBateau("Voilier non habitable");
+                    boat.setTypeBateau(bateauType.voilierNonHabitableString);
                 } else if (size >= 10 && size <= 25) {
                     boat.setSiCabine(true);
-                    boat.setTypeBateau("Voilier de type 1");
+                    boat.setTypeBateau(bateauType.voilierType1String);
                 } else {
                     boat.setSiCabine(true);
-                    boat.setTypeBateau("Voilier de type 2");
+                    boat.setTypeBateau(bateauType.voilierType2String);
                 }
                 igp.typeBateauInfos(boat);
             }
@@ -177,7 +197,7 @@ bool GestionPort::checkWantHome(string choice) {
  * Fonction qui va retourner la place correspondante au numéro donné
  * @return la place via son numéro
  */
-Place GestionPort::choosePlace() {
+Place GestionPort::choosePlace(vector<Place> listePlacesLibres) {
     Place place;
     string choice = igp.getCin("Numéro de place ?", false);
     bool error = true; //initialisation de la boucle d'erreur
@@ -203,9 +223,9 @@ Place GestionPort::choosePlace() {
             else {
                 int numberPlace;
                 istringstream(choice) >> numberPlace;
-                if (datagp.checkNumberPlace(listPlacesFree, numberPlace)) {
+                if (dataplaceGP.checkNumberPlace(listePlacesLibres, numberPlace)) {
                     error = false; //on sort de la boucle d'erreur
-                    place = datagp.extractPlaceFromNumber(listPlacesFree, numberPlace);
+                    place = dataplaceGP.extractPlaceFromNumber(listePlacesLibres, numberPlace);
                 } else {
                     igp.erreur("Numéro de place non valide", false);
                     cin.clear();
@@ -223,9 +243,9 @@ Place GestionPort::choosePlace() {
  */
 Client GestionPort::chooseClient() {
     Client c;
-    vector<Client> listClients = datagp.importClientsFile();
+    vector<Client> listClients = dataClientGP.importClientsFile();
     igp.interfaceListeClients();
-    datagp.displayClients(listClients);
+    dataClientGP.displayClients(listClients);
     string choice = igp.getCin("[n pour nouveau] Numéro du client ?", false);
     bool error = true; //initialisation de la boucle d'erreur
     bool ifFirst = true; //initialisation du premier essai pour éviter de revenir ici
@@ -249,6 +269,8 @@ Client GestionPort::chooseClient() {
             //si la valeur rentrée est celle pour créer un nouveau client
             if (checkWantNewClient(choice)) {
                 igp.info("Création de client non disponible", false);
+                createNewClient();
+                dataClientGP.displayClients(dataClientGP.importClientsFile());
             } //sinon
             else {
                 //si la valeur rentrée n'est pas compatible (doit être un Integer positif et non nul)
@@ -262,9 +284,9 @@ Client GestionPort::chooseClient() {
                     int IDchoose;
                     istringstream(choice) >> IDchoose; //on convertir le string en Integer
                     //si l'ID client rentré dans le programme existe bien
-                    if (datagp.checkIDClient(listClients, IDchoose)) {
+                    if (dataClientGP.checkIDClient(listClients, IDchoose)) {
                         error = false; //on sort de la boucle d'erreur
-                        c = datagp.extractClientFromID(listClients, IDchoose);
+                        c = dataClientGP.extractClientFromID(listClients, IDchoose);
                     } //sinon l'ID client n'existe pas
                     else {
                         igp.erreur("Cet ID client n'existe pas", false); //affichage d'une erreur
@@ -291,7 +313,6 @@ bool GestionPort::checkWantNewClient(string choice) {
 }
 
 void GestionPort::createNewClient() {
-    /**
     Client c;
     igp.interfaceNewClient();
     c.setNom(clientNouveauNom().c_str());
@@ -301,12 +322,7 @@ void GestionPort::createNewClient() {
     c.setAdresse(clientNouvelleAdresse().c_str());
     c.setCp(clientNouveauCP().c_str());
     c.setVille(clientNouvelleVille().c_str());
-    vector<Client> listClients = datagp.importClientsFile();
-    datagp.displayClients(listClients);
-    listClients = datagp.addNewClient(listClients,c);
-    datagp.displayClients(listClients);
-    datagp.createNewClientFile(listClients);
-     **/
+    dataClientGP.createNewClientFile(dataClientGP.addNewClient(c));
 }
 
 string GestionPort::clientNouveauNom() {
@@ -400,7 +416,7 @@ string GestionPort::clientNouvelleVille() {
  */
 bool GestionPort::checkIfClientCanHaveSupplements(Reservation r) {
     bool ifCan = false;
-    if (r.getPlace().isDock()) {
+    if(dataplaceGP.extractPlaceFromNumber(dataplaceGP.importPlacesFile(), r.getNumeroPlace()).isDock()) {
         if (r.getBateau().getTypeBateau() == "Voilier de type 1"
             || r.getBateau().getTypeBateau() == "Voilier de type 2") {
             ifCan = true;
@@ -618,7 +634,7 @@ int GestionPort::getPaiementJournalier(Reservation r) {
     int paiementJournalier = 0;
     Tarifs t;
     //si le client est à quai
-    if (r.getPlace().isDock()) {
+    if (dataplaceGP.extractPlaceFromNumber(dataplaceGP.importPlacesFile(), r.getNumeroPlace()).isDock()) {
         //si le bateau est un voilier non habitable
         if (r.getBateau().getTypeBateau() == voilierNH) {
             paiementJournalier = t.nonAbonne.quai.voilierNonHabitable.paiementJournalier;
@@ -643,6 +659,12 @@ int GestionPort::getPaiementJournalier(Reservation r) {
         }
     }
     return paiementJournalier;
+}
+
+int GestionPort::getPaiementMensuelPremierMois(Reservation r){
+    int paiementMensuelPremierMois = 0;
+    Tarifs t;
+    return paiementMensuelPremierMois;
 }
 
 /**
@@ -692,7 +714,7 @@ int* GestionPort::getPaiementMensuel(Reservation r){
     }
     return paiementAnnuel;
 }
-**/
+ **/
 
 /**
  * Fonction qui va retourner le paiement annuel du client abonné en fonction de sa réservation
@@ -703,7 +725,7 @@ int GestionPort::getPaiementAnnuel(Reservation r) {
     int paiementAnnuel = 0;
     Tarifs t;
     //si le client est à quai
-    if (r.getPlace().isDock()) {
+    if (dataplaceGP.extractPlaceFromNumber(dataplaceGP.importPlacesFile(), r.getNumeroPlace()).isDock()) {
         //si le bateau est un voilier non habitable
         if (r.getBateau().getTypeBateau() == voilierNH) {
             paiementAnnuel = t.abonne.quai.voilierNonHabitable.paiementAnnuel;
@@ -745,27 +767,6 @@ int GestionPort::getPaiementJournalierSupplements(Reservation r) {
         paiementSupplements = t.supplementJournalier * 2;
     }
     return paiementSupplements;
-}
-
-/**
- * Interface qui va afficher le prix en fonction de la réservation
- * @param r
- */
-void GestionPort::showPrices(Reservation r) {
-    igp.interfacePaiement();
-    //si c'est un abonnement
-    if (r.isAbonnement()) {
-        cout << "Prix de cette réservation pour 1 an : "
-             << r.getPaiement().getPaiementAnnuel() << "€/an ou "
-             << "Paiement mensuel non disponible." << endl;
-        cout << "Paiement immédiat de la somme totale." << endl;
-    } //sinon
-    else {
-        cout << "Prix de cette réservation pour " << r.getPaiement().getNbJours() << " jour(s) : "
-             << r.getPaiement().getPaiementJournalier() << "€/jour soit "
-             << r.getPaiement().getTotal() << "€ au total." << endl;
-        cout << "Paiement immédiat de la somme totale." << endl;
-    }
 }
 
 /**

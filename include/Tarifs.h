@@ -10,15 +10,18 @@ struct Tarifs {
         struct Quai {
             struct VoilierNonHabitable {
                 int paiementAnnuel = 500;
-                int paiementMensuel[12] = {42,42,42,42,42,42,42,42,42,42,42,38};
+                int paiementMensuelPremierMois = 38;
+                int paiementMensuel11Mois = 42;
             };
             struct VoilierType1 {
                 int paiementAnnuel = 650;
-                int paiementMensuel[12] = {55,55,55,55,55,55,55,55,55,55,55,45};
+                int paiementMensuelPremierMois = 45;
+                int paiementMensuel11Mois = 55;
             };
             struct VoilierType2 {
                 int paiementAnnuel = 800;
-                int paiementMensuel[12] = {67,67,67,67,67,67,67,67,67,67,67,63};
+                int paiementMensuelPremierMois = 63;
+                int paiementMensuel11Mois = 67;
             };
             VoilierNonHabitable voilierNonHabitable;
             VoilierType1 voilierType1;
@@ -27,15 +30,18 @@ struct Tarifs {
         struct NonQuai {
             struct VoilierNonHabitable {
                 int paiementAnnuel = 250;
-                int paiementMensuel[12] = {21,21,21,21,21,21,21,21,21,21,21,19};
+                int paiementMensuelPremierMois = 19;
+                int paiementMensuel11Mois = 21;
             };
             struct VoilierType1 {
                 int paiementAnnuel = 325;
-                int paiementMensuel[12] = {28,28,28,28,28,28,28,28,28,28,28,17};
+                int paiementMensuelPremierMois = 17;
+                int paiementMensuel11Mois = 28;
             };
             struct VoilierType2 {
                 int paiementAnnuel = 400;
-                int paiementMensuel[12] = {34,34,34,34,34,34,34,34,34,34,34,26};
+                int paiementMensuelPremierMois = 26;
+                int paiementMensuel11Mois = 34;
             };
             VoilierNonHabitable voilierNonHabitable;
             VoilierType1 voilierType1;
