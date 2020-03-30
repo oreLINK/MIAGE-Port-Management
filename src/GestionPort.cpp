@@ -64,14 +64,24 @@ void GestionPort::createReservation() {
         r.setSupplementEau(false);
     }
 
-
     igp.interfaceChoixEngagement();
     r.setAbonnement(chooseIfClientWantAbonnement());
     igp.interfaceInfosEngagement(r);
 
     r.setPaiement(getPaiement(r));
 
+    r.setDateArrivee(datagp.getDateToday());
+    if(r.isAbonnement()){
+        r.setDateDepart(getDateDepartAbonnement(r.getDateArrivee()));
+    } else {
+        r.setDateDepart(getDateDepartNonAbonnement(r));
+    }
+
+    igp.displayDates(r);
+
     showPrices(r);
+
+    cout << "lala" << endl;
 
     //enregistrer Reservation dans Reservations.xml
     //voir pour pdf facture
@@ -498,14 +508,14 @@ bool GestionPort::returnSupplementReponse(string choice) {
  * @return vrai s'il veut un abonnement, faux sinon
  */
 bool GestionPort::chooseIfClientWantAbonnement() {
-    string choice = igp.getCin("Abonnement ? [oui/non]", false);
+    string choice = igp.getCin("Abonnement d'1 an ? [oui/non]", false);
     bool error = true;
     bool ifFirst = true;
     bool ifWant = false;
 
     while (error) {
         if (!ifFirst) {
-            choice = igp.getCin("Abonnement ? [oui/non]", false);
+            choice = igp.getCin("Abonnement d'1 an ? [oui/non]", false);
         }
         ifFirst = false;
         if (checkWantHome(choice)) {
@@ -737,20 +747,115 @@ int GestionPort::getPaiementJournalierSupplements(Reservation r) {
     return paiementSupplements;
 }
 
+/**
+ * Interface qui va afficher le prix en fonction de la réservation
+ * @param r
+ */
 void GestionPort::showPrices(Reservation r) {
     igp.interfacePaiement();
     //si c'est un abonnement
     if (r.isAbonnement()) {
-        cout << "Prix de cette réservation pour 1an : "
+        cout << "Prix de cette réservation pour 1 an : "
              << r.getPaiement().getPaiementAnnuel() << "€/an ou "
              << "Paiement mensuel non disponible." << endl;
         cout << "Paiement immédiat de la somme totale." << endl;
     } //sinon
     else {
-        cout << "Prix de cette réservation pour " << r.getPaiement().getNbJours() << "jour(s) : "
+        cout << "Prix de cette réservation pour " << r.getPaiement().getNbJours() << " jour(s) : "
              << r.getPaiement().getPaiementJournalier() << "€/jour soit "
              << r.getPaiement().getTotal() << "€ au total." << endl;
         cout << "Paiement immédiat de la somme totale." << endl;
     }
 }
+
+/**
+ * Fonction qui va retourner la date de départ d'un abonné (1 an plus tard)
+ * @param d la date d'arrivée
+ * @return la date de départ
+ */
+Date GestionPort::getDateDepartAbonnement(Date d){
+    int newYear = d.getYear()+1;
+    d.setYear(newYear);
+    return d;
+}
+
+/**
+ * Fonction qui va retourner la date de départ d'un non-abonné
+ * @param r la réservation
+ * @return la date de départ
+ */
+Date GestionPort::getDateDepartNonAbonnement(Reservation r){
+    vector<int> nbJoursMois = createNbJoursMonth(ifYearBissextile(r.getDateArrivee()));
+    return convertJoursInYearsMonthDays(r.getDateArrivee(),r.getPaiement().getNbJours(),nbJoursMois);
+}
+
+/**
+ * Fonction qui va retourner la bissexetilité d'une année ou non
+ * @param d la Date contenant l'année
+ * @return vrai si l'année est bissextile, faux sinon
+ */
+bool GestionPort::ifYearBissextile(Date d){
+    int year = d.getYear();
+    bool ifBissextile = false;
+    if((year%4 == 0 && year%100 != 0) || year%400 == 0){
+        ifBissextile = true;
+    }
+    return ifBissextile;
+}
+
+vector<int> GestionPort::createNbJoursMonth(bool isBissextile){
+    vector<int> v;
+    if(isBissextile){
+        v = {31,29,31,30,31,30,31,31,30,31,30,31};
+    } else {
+        v = {31,28,31,30,31,30,31,31,30,31,30,31};
+    }
+    return v;
+}
+
+/**
+ * Fonction qui va retourner la date de départ en fonction de la date d'arrivée, du nombre de jours de réservation et
+ * du nombre de jours de chaque mois
+ * @param d Date d'arrivée
+ * @param nbJours nombre de jours de réservation
+ * @param nbJoursParMois nombre de jours par mois
+ * @return la date de départ
+ */
+Date GestionPort::convertJoursInYearsMonthDays(Date d, int nbJours, vector<int> nbJoursParMois){
+
+    Date dateDepart;
+    int nbJoursRestants = nbJours;
+    int anneeDepart = d.getYear();
+    int moisDepart = d.getMonth();
+    int jourDepart = d.getDay();
+
+    while(nbJoursRestants > 0){
+        //si le nombre de jours de réservation restants ne dépasse pas le mois actuel
+        if(jourDepart+nbJoursRestants <= nbJoursParMois[moisDepart-1]){
+            jourDepart = jourDepart+nbJoursRestants-1;
+            nbJoursRestants = 0;
+        } //sinon on doit avancer d'un mois
+        else {
+            //si c'est le mois de décembre
+            if(d.getMonth() == 12){
+                nbJoursRestants = nbJoursRestants-(nbJoursParMois[moisDepart-1]-jourDepart)-1; //on enleve aux jours restants la différence entre la date d'arrivée et la fin du mois
+                anneeDepart = anneeDepart+1;
+                moisDepart = 1;
+            } //sinon c'est un autre mois
+            else {
+                nbJoursRestants = nbJoursRestants-(nbJoursParMois[moisDepart-1]-jourDepart)-1; //on enleve aux jours restants la différence entre la date d'arrivée et la fin du mois
+                moisDepart = moisDepart+1;
+            }
+            jourDepart = 1;
+        }
+    }
+
+    dateDepart.setYear(anneeDepart);
+    dateDepart.setMonth(moisDepart);
+    dateDepart.setDay(jourDepart);
+
+    return dateDepart;
+}
+
+
 

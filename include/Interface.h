@@ -64,6 +64,8 @@ public:
     void interfaceInfosNbJours(Paiement p);
 
     void interfacePaiement();
+
+    void displayDates(Reservation r);
 };
 
 

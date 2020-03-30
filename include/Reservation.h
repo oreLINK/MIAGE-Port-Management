@@ -57,7 +57,12 @@ public:
 
     void setPaiement(const Paiement &paiement);
 
+    int getId() const;
+
+    void setId(int id);
+
 private:
+    int id;
     Client client;
     Bateau bateau;
     Place place;

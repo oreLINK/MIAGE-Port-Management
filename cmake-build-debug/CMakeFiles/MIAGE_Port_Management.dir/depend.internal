@@ -22,9 +22,14 @@ CMakeFiles/MIAGE_Port_Management.dir/src/Client.cpp.o
  ../include/Client.h
  /Users/orepro/Desktop/MIAGE-Port-Management/src/Client.cpp
 CMakeFiles/MIAGE_Port_Management.dir/src/Data.cpp.o
+ ../include/Bateau.h
  ../include/Client.h
  ../include/Data.h
+ ../include/Date.h
+ ../include/Paiement.h
  ../include/Place.h
+ ../include/Reservation.h
+ ../include/Tarifs.h
  ../include/tinyxml2.h
  /Users/orepro/Desktop/MIAGE-Port-Management/src/Data.cpp
 CMakeFiles/MIAGE_Port_Management.dir/src/Date.cpp.o

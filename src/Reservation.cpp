@@ -13,6 +13,14 @@ Reservation::Reservation(const Client &client, const Bateau &bateau, const Place
                                                      supplementElec(supplementElec), supplementEau(supplementEau),
                                                      abonnement(abonnement), paiement(paiement) {}
 
+int Reservation::getId() const {
+    return id;
+}
+
+void Reservation::setId(int id) {
+    Reservation::id = id;
+}
+
 const Client &Reservation::getClient() const {
     return client;
 }

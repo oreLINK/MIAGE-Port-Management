@@ -10,7 +10,7 @@ class Paiement {
 public:
     Paiement();
 
-    Paiement(int nbJours, int paiementJournalier, int *paiementMensuel, int paiementAnnuel, int total);
+    Paiement(int nbJours, int paiementJournalier, int paiementMensuel, int paiementAnnuel, int total);
 
     int getNbJours() const;
 
@@ -20,8 +20,6 @@ public:
 
     void setPaiementJournalier(int paiementJournalier);
 
-    const int *getPaiementMensuel() const;
-
     int getPaiementAnnuel() const;
 
     void setPaiementAnnuel(int paiementAnnuel);
@@ -30,10 +28,14 @@ public:
 
     void setTotal(int total);
 
+    int getPaiementMensuel() const;
+
+    void setPaiementMensuel(int paiementMensuel);
+
 private:
     int nbJours;
     int paiementJournalier = 0;
-    int paiementMensuel[12] = {0};
+    int paiementMensuel = 0;
     int paiementAnnuel = 0;
     int total;
 };

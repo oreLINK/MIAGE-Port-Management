@@ -194,9 +194,22 @@ void Interface::interfaceInfosSupplements(Reservation r){
         info("Le client a choisi le supplément éléctricité uniquement",true);
     } else if(!r.isSupplementElec() && r.isSupplementEau()){
         info("Le client a choisi le supplément eau uniquement",true);
-    } else {
+    } else if(r.isSupplementElec() && r.isSupplementEau()){
         info("Le client a choisi les suppléments éléctricité et eau",true);
+    } else {
+        info("Le client n'a choisi aucun supplément",true);
     }
+}
+
+/**
+ * DATES D'ARRIVEE ET DE DEPART
+ */
+
+void Interface::displayDates(Reservation r){
+    cout << "Info. Votre réservation s'etend du "
+    << r.getDateArrivee().getDay() << "/" << r.getDateArrivee().getMonth() << "/" << r.getDateArrivee().getYear() << " au "
+    << r.getDateDepart().getDay() << "/" << r.getDateDepart().getMonth() << "/" << r.getDateDepart().getYear() << endl;
+    cout << " " << endl;
 }
 
 /**
@@ -204,21 +217,20 @@ void Interface::interfaceInfosSupplements(Reservation r){
  */
 
 void Interface::interfaceChoixEngagement(){
-    cout << "~ Choix du type d'engagement ~" << endl;
+    cout << "~ Choix de la durée ~" << endl;
     cout << " " << endl;
 }
 
 void Interface::interfaceInfosEngagement(Reservation r){
     if(r.isAbonnement()){
-        info("Vous avez choisi un abonnement avec engagement d'1 an",true);
+        info("Vous avez choisi un abonnement avec engagement d'1 an",false);
     } else {
-        info("Vous avez choisi le forfait Journée",true);
+        info("Vous avez choisi le forfait Journée",false);
     }
 }
 
 void Interface::interfaceInfosNbJours(Paiement p){
     cout << "Info. Vous avez choisi le forfait " << p.getNbJours() << " Journée(s)" << endl;
-    cout << " " << endl;
 }
 
 void Interface::interfacePaiement(){

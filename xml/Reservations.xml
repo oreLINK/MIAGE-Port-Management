@@ -1,0 +1,48 @@
+<ListeDesReservations>
+    <Reservation>
+        <id>1</id>
+        <Client>
+            <id>1</id>
+            <nom>DUPONT</nom>
+            <prenom>Martin</prenom>
+            <email>dupont.martin@gmail.com</email>
+            <numadresse>7</numadresse>
+            <adresse>avenue des Eglantiers</adresse>
+            <cp>75000</cp>
+            <ville>Paris</ville>
+        </Client>
+        <Bateau>
+            <taille>56</taille>
+            <siCabine>true</siCabine>
+            <type>Voilier de type 2</type>
+        </Bateau>
+        <Place>
+            <number>11</number>
+            <ifDock>true</ifDock>
+            <ifTall>true</ifTall>
+            <ifElec>true</ifElec>
+            <ifWater>true</ifWater>
+            <ifBusy>true</ifBusy>
+        </Place>
+        <DateArrivee>
+            <annee>2020</annee>
+            <mois>3</mois>
+            <jour>20</jour>
+        </DateArrivee>
+        <DateDepart>
+            <annee>2020</annee>
+            <mois>4</mois>
+            <jour>3</jour>
+        </DateDepart>
+        <supplementElec>true</supplementElec>
+        <supplementEau>true</supplementEau>
+        <abonnement>false</abonnement>
+        <Paiement>
+            <nombreJours>15</nombreJours>
+            <paiementJournalier>42</paiementJournalier>
+            <paiementMensuel>0</paiementMensuel>
+            <paiementAnnuel>0</paiementAnnuel>
+            <total>630</total>
+        </Paiement>
+    </Reservation>
+</ListeDesReservations>

@@ -9,6 +9,7 @@
 
 #include <string>
 #include <include/tinyxml2.h>
+#include <include/Date.h>
 
 using namespace std;
 
@@ -31,9 +32,13 @@ public:
     bool checkIDClient(vector<Client> listClient, int choice);
     vector<Client> addNewClient(vector<Client> listClient, Client c);
     void createNewClientFile(vector<Client> listClients);
+    Date getDateToday();
+    void createReservationsFile();
+    bool checkIfReservationsFileExist();
 private:
     char const * linkPlacesXMLFile = "../xml/Places.xml";
-    char const * linkClientXMLFile = "../xml/Clients.xml";
+    char const * linkClientsXMLFile = "../xml/Clients.xml";
+    char const * linkReservationsXMLFile = "../xml/Reservations.xml";
     //Attention
     //nbPlacesQuai <= nbPlaces et
     //nbPlacesQuaiPetites <= nbPlacesQuai et
@@ -55,6 +60,12 @@ private:
     const char *extractCharFromXML(tinyxml2::XMLError eResult, tinyxml2::XMLElement *elementFather, const char *id);
 
     int numberOfClients(vector<Client> c);
+
+    string convertString(const char *cara);
+
+    int convertInt(const char *cara);
+
+    int convertMonth(string month);
 };
 
 

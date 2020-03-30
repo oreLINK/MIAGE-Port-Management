@@ -71,6 +71,16 @@ public:
     int *getPaiementMensuel(Reservation r);
 
     void showPrices(Reservation r);
+
+    Date getDateDepartAbonnement(Date d);
+
+    Date getDateDepartNonAbonnement(Reservation r);
+
+    bool ifYearBissextile(Date d);
+
+    vector<int> createNbJoursMonth(bool ifBissextile);
+
+    Date convertJoursInYearsMonthDays(Date d, int nbJours, vector<int> nbJoursParMois);
 };
 
 

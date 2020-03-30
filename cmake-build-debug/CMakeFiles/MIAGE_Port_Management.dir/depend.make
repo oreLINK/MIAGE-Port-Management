@@ -21,9 +21,14 @@ CMakeFiles/MIAGE_Port_Management.dir/src/Bateau.cpp.o: ../src/Bateau.cpp
 CMakeFiles/MIAGE_Port_Management.dir/src/Client.cpp.o: ../include/Client.h
 CMakeFiles/MIAGE_Port_Management.dir/src/Client.cpp.o: ../src/Client.cpp
 
+CMakeFiles/MIAGE_Port_Management.dir/src/Data.cpp.o: ../include/Bateau.h
 CMakeFiles/MIAGE_Port_Management.dir/src/Data.cpp.o: ../include/Client.h
 CMakeFiles/MIAGE_Port_Management.dir/src/Data.cpp.o: ../include/Data.h
+CMakeFiles/MIAGE_Port_Management.dir/src/Data.cpp.o: ../include/Date.h
+CMakeFiles/MIAGE_Port_Management.dir/src/Data.cpp.o: ../include/Paiement.h
 CMakeFiles/MIAGE_Port_Management.dir/src/Data.cpp.o: ../include/Place.h
+CMakeFiles/MIAGE_Port_Management.dir/src/Data.cpp.o: ../include/Reservation.h
+CMakeFiles/MIAGE_Port_Management.dir/src/Data.cpp.o: ../include/Tarifs.h
 CMakeFiles/MIAGE_Port_Management.dir/src/Data.cpp.o: ../include/tinyxml2.h
 CMakeFiles/MIAGE_Port_Management.dir/src/Data.cpp.o: ../src/Data.cpp
 

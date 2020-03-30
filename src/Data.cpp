@@ -7,6 +7,9 @@
 #include <vector>
 #include <include/Client.h>
 #include <Tcl/tclTomMath.h>
+#include <include/Date.h>
+#include <sstream>
+#include <include/Reservation.h>
 #include "include/Data.h"
 #include "include/tinyxml2.h"
 
@@ -195,8 +198,8 @@ bool Data::extractBoolFromXML(XMLError eResult, XMLElement *elementFather, const
  * @param id le nom de l'attribut à retrouver
  * @return 0 si le booléen est faux, 1 sinon.
  */
-const char * Data::extractCharFromXML(XMLError eResult, XMLElement *elementFather, const char *id) {
-    const char * iChar = nullptr;
+const char *Data::extractCharFromXML(XMLError eResult, XMLElement *elementFather, const char *id) {
+    const char *iChar = nullptr;
     XMLElement *pElement = elementFather->FirstChildElement(id);
     if (pElement == nullptr) {
         cout << "extractBoolFromXML(...) " << XML_ERROR_PARSING_ELEMENT << endl;
@@ -238,7 +241,7 @@ void Data::displayPlaces(vector<Place> p) {
 bool Data::checkIfPlacesFileExist() {
     XMLDocument xmlDoc;
     XMLError eResult = xmlDoc.LoadFile(linkPlacesXMLFile);
-    if(eResult == XML_ERROR_FILE_NOT_FOUND){
+    if (eResult == XML_ERROR_FILE_NOT_FOUND) {
         return false;
     } else {
         return true;
@@ -267,27 +270,27 @@ vector<Place> Data::importPlacesFileCriteriaLength(bool isTall, bool isFree) {
             p.setWater(extractBoolFromXML(eResult, pElement, "ifWater"));
             p.setBusy(extractBoolFromXML(eResult, pElement, "ifBusy"));
             //si on veut les grandes places libres
-            if(isTall && isFree) {
+            if (isTall && isFree) {
                 //si la place actuelle n'est pas grande ou qu'elle est occupée
-                if(!p.isTall() || p.isBusy()){
+                if (!p.isTall() || p.isBusy()) {
                     ifError = true;
                 }
             } //si on veut les grandes places (libres et occupées)
             else if (isTall && !isFree) {
                 //si la place actuelle n'est pas grande
-                if(!p.isTall()){
+                if (!p.isTall()) {
                     ifError = true;
                 }
             } //si on veut les petites places libres
             else if (!isTall && isFree) {
                 //si la place actuelle n'est pas petite ou qu'elle est occupée
-                if(p.isTall() || p.isBusy()){
+                if (p.isTall() || p.isBusy()) {
                     ifError = true;
                 }
             } //sinon on veut les petites places (libres et occupées)
             else {
                 //si la place actuelle n'est pas petite
-                if(p.isTall()){
+                if (p.isTall()) {
                     ifError = true;
                 }
             }
@@ -306,10 +309,10 @@ vector<Place> Data::importPlacesFileCriteriaLength(bool isTall, bool isFree) {
  * @param choice numéro de place choisi
  * @return vrai si le numéro est présent dans la liste, sinon faux.
  */
-bool Data::checkNumberPlace(vector<Place> listPlaces, int choice){
+bool Data::checkNumberPlace(vector<Place> listPlaces, int choice) {
     bool ifOK = false;
     for (int i = 0; i < listPlaces.size(); i++) {
-        if(listPlaces[i].getNumber() == choice){
+        if (listPlaces[i].getNumber() == choice) {
             ifOK = true;
         }
     }
@@ -322,10 +325,10 @@ bool Data::checkNumberPlace(vector<Place> listPlaces, int choice){
  * @param choice numéro de place choisi
  * @return la place à partir du numéro choisi
  */
-Place Data::extractPlaceFromNumber(vector<Place> listPlaces, int choice){
+Place Data::extractPlaceFromNumber(vector<Place> listPlaces, int choice) {
     Place p;
     for (int i = 0; i < listPlaces.size(); i++) {
-        if(listPlaces[i].getNumber() == choice){
+        if (listPlaces[i].getNumber() == choice) {
             p.setNumber(listPlaces[i].getNumber());
             p.setDock(listPlaces[i].isDock());
             p.setTall(listPlaces[i].isTall());
@@ -340,13 +343,13 @@ Place Data::extractPlaceFromNumber(vector<Place> listPlaces, int choice){
 /**
  * Action qui va créer le fichier XML initial des clients de la marina lors du premier lancement du programme.
  */
-void Data::createFirstClientFile(){
+void Data::createFirstClientFile() {
     XMLDocument xmlDoc;
     XMLNode *pRoot = xmlDoc.NewElement("ListeDesClients");
 
-    Client c1(1,"DUPONT","Martin","dupont.martin@gmail.com",7,"avenue des Eglantiers","75000","Paris");
-    Client c2(2,"BERNIER","Sophia","berniersophia33@hotmail.com",9,"rue des Cordeliers","33000","Bordeaux");
-    Client c3(3,"LAFONT","Richard","lafont-richard@gmail.com",8,"impasse des Deux","64100","Bayonne");
+    Client c1(1, "DUPONT", "Martin", "dupont.martin@gmail.com", 7, "avenue des Eglantiers", "75000", "Paris");
+    Client c2(2, "BERNIER", "Sophia", "berniersophia33@hotmail.com", 9, "rue des Cordeliers", "33000", "Bordeaux");
+    Client c3(3, "LAFONT", "Richard", "lafont-richard@gmail.com", 8, "impasse des Deux", "64100", "Bayonne");
 
     vector<Client> listeClientInitial;
     listeClientInitial.push_back(c3);
@@ -384,7 +387,7 @@ void Data::createFirstClientFile(){
         pRoot->InsertFirstChild(nRoot);
     }
     xmlDoc.InsertFirstChild(pRoot);
-    XMLError eResult = xmlDoc.SaveFile(linkClientXMLFile);
+    XMLError eResult = xmlDoc.SaveFile(linkClientsXMLFile);
 }
 
 /**
@@ -393,8 +396,8 @@ void Data::createFirstClientFile(){
  */
 bool Data::checkIfClientsFileExist() {
     XMLDocument xmlDoc;
-    XMLError eResult = xmlDoc.LoadFile(linkClientXMLFile);
-    if(eResult == XML_ERROR_FILE_NOT_FOUND){
+    XMLError eResult = xmlDoc.LoadFile(linkClientsXMLFile);
+    if (eResult == XML_ERROR_FILE_NOT_FOUND) {
         return false;
     } else {
         return true;
@@ -407,22 +410,22 @@ bool Data::checkIfClientsFileExist() {
 vector<Client> Data::importClientsFile() {
     vector<Client> clientsList;
     XMLDocument xmlDoc;
-    XMLError eResult = xmlDoc.LoadFile(linkClientXMLFile);
+    XMLError eResult = xmlDoc.LoadFile(linkClientsXMLFile);
     XMLNode *pRoot = xmlDoc.FirstChild();
     XMLElement *pElement = pRoot->FirstChildElement("Client");
     if (pElement == nullptr) {
         cout << "1. " << XML_ERROR_PARSING_ELEMENT << endl;
     } else {
         while (pElement != nullptr) {
-            Client * c = new Client();
-            c->setId(extractIntFromXML(eResult,pElement,"id"));
-            c->setNom(extractCharFromXML(eResult,pElement,"nom"));
-            c->setPrenom(extractCharFromXML(eResult,pElement,"prenom"));
-            c->setEmail(extractCharFromXML(eResult,pElement,"email"));
-            c->setNumeroAdresse(extractIntFromXML(eResult,pElement,"numadresse"));
-            c->setAdresse(extractCharFromXML(eResult,pElement,"adresse"));
-            c->setCp(extractCharFromXML(eResult,pElement,"cp"));
-            c->setVille(extractCharFromXML(eResult,pElement,"ville"));
+            Client *c = new Client();
+            c->setId(extractIntFromXML(eResult, pElement, "id"));
+            c->setNom(extractCharFromXML(eResult, pElement, "nom"));
+            c->setPrenom(extractCharFromXML(eResult, pElement, "prenom"));
+            c->setEmail(extractCharFromXML(eResult, pElement, "email"));
+            c->setNumeroAdresse(extractIntFromXML(eResult, pElement, "numadresse"));
+            c->setAdresse(extractCharFromXML(eResult, pElement, "adresse"));
+            c->setCp(extractCharFromXML(eResult, pElement, "cp"));
+            c->setVille(extractCharFromXML(eResult, pElement, "ville"));
             clientsList.push_back(*c);
             pElement = pElement->NextSiblingElement("Client");
         }
@@ -436,7 +439,8 @@ vector<Client> Data::importClientsFile() {
  */
 void Data::displayClient(Client c) {
     cout << "Client n°" << c.getId() << " - " << c.getNom() << " " << c.getPrenom()
-    << " (" << c.getEmail() << ") " << c.getNumeroAdresse() << " " << c.getAdresse() << " " << c.getCp() << " " << c.getVille() << endl;
+         << " (" << c.getEmail() << ") " << c.getNumeroAdresse() << " " << c.getAdresse() << " " << c.getCp() << " "
+         << c.getVille() << endl;
 }
 
 /**
@@ -450,32 +454,32 @@ void Data::displayClients(vector<Client> c) {
     cout << " " << endl;
 }
 
- /**
-  * Fonction qui va vérifier si l'ID entré dans le programme existe bien
-  * @param listClient liste des clients
-  * @param choice ID choisi
-  * @return vrai si l'ID est présent dans la liste, faux sinon.
-  */
-bool Data::checkIDClient(vector<Client> listClient, int choice){
+/**
+ * Fonction qui va vérifier si l'ID entré dans le programme existe bien
+ * @param listClient liste des clients
+ * @param choice ID choisi
+ * @return vrai si l'ID est présent dans la liste, faux sinon.
+ */
+bool Data::checkIDClient(vector<Client> listClient, int choice) {
     bool ifOK = false;
     for (int i = 0; i < listClient.size(); i++) {
-        if(listClient[i].getId() == choice){
+        if (listClient[i].getId() == choice) {
             ifOK = true;
         }
     }
     return ifOK;
 }
 
- /**
-  * Fonction qui va retourner les informations du client choisi à partir de son ID
-  * @param listClient liste des clients
-  * @param choice ID de client choisi
-  * @return le client à partir de l'ID choisi
-  */
-Client Data::extractClientFromID(vector<Client> listClient, int choice){
+/**
+ * Fonction qui va retourner les informations du client choisi à partir de son ID
+ * @param listClient liste des clients
+ * @param choice ID de client choisi
+ * @return le client à partir de l'ID choisi
+ */
+Client Data::extractClientFromID(vector<Client> listClient, int choice) {
     Client c;
     for (int i = 0; i < listClient.size(); i++) {
-        if(listClient[i].getId() == choice){
+        if (listClient[i].getId() == choice) {
             c.setId(listClient[i].getId());
             c.setNom(listClient[i].getNom());
             c.setPrenom(listClient[i].getPrenom());
@@ -489,25 +493,25 @@ Client Data::extractClientFromID(vector<Client> listClient, int choice){
     return c;
 }
 
-int Data::numberOfClients(vector<Client> c){
+int Data::numberOfClients(vector<Client> c) {
     int number = 0;
-    for (int i = 0; i < c.size(); i++){
+    for (int i = 0; i < c.size(); i++) {
         number++;
     }
     return number;
 }
 
-vector<Client> Data::addNewClient(vector<Client> listClient, Client c){
+vector<Client> Data::addNewClient(vector<Client> listClient, Client c) {
     vector<Client> newList;
-    c.setId(numberOfClients(listClient)+1);
+    c.setId(numberOfClients(listClient) + 1);
     newList.push_back(c);
-    for(int i = listClient.size(); i>0; i--){
+    for (int i = listClient.size(); i > 0; i--) {
         newList.push_back(listClient[i]);
     }
     return newList;
 }
 
-void Data::createNewClientFile(vector<Client> listClients){
+void Data::createNewClientFile(vector<Client> listClients) {
     XMLDocument xmlDoc;
     XMLNode *pRoot = xmlDoc.NewElement("ListeDesClients");
 
@@ -540,7 +544,259 @@ void Data::createNewClientFile(vector<Client> listClients){
         pRoot->InsertFirstChild(nRoot);
     }
     xmlDoc.InsertFirstChild(pRoot);
-    XMLError eResult = xmlDoc.SaveFile(linkClientXMLFile);
+    XMLError eResult = xmlDoc.SaveFile(linkClientsXMLFile);
+}
+
+Date Data::getDateToday() {
+    Date d;
+
+    time_t curr_time;
+    tm *curr_tm;
+    char year_string[100];
+    char month_string[100];
+    char day_string[100];
+
+    time(&curr_time);
+    curr_tm = localtime(&curr_time);
+
+    strftime(year_string, 50, "%Y", curr_tm);
+    strftime(month_string, 50, "%B", curr_tm);
+    strftime(day_string, 50, "%d", curr_tm);
+
+    int y = convertInt(year_string);
+    int m = convertMonth(convertString(month_string));
+    int j = convertInt(day_string);
+
+    d.setYear(y);
+    d.setMonth(m);
+    d.setDay(j);
+
+    return d;
+}
+
+/**
+ * Fonction qui va convertir le const char * en string
+ * @param cara le char à convertir
+ * @return le string correspondant
+ */
+string Data::convertString(const char *cara) {
+    stringstream s;
+    s << cara;
+    string m;
+    s >> m;
+    return m;
+}
+
+/**
+ * Fonction qui va convertir le const char * en Integer
+ * @param cara le int à convertir
+ * @return le string correspondant
+ */
+int Data::convertInt(const char *cara) {
+    stringstream s;
+    s << cara;
+    int y;
+    s >> y;
+    return y;
+}
+
+int Data::convertMonth(string month) {
+    int mois;
+    if (month == "January") {
+        mois = 1;
+    } else if (month == "February") {
+        mois = 2;
+    } else if (month == "March") {
+        mois = 3;
+    } else if (month == "April") {
+        mois = 4;
+    } else if (month == "May") {
+        mois = 5;
+    } else if (month == "June") {
+        mois = 6;
+    } else if (month == "July") {
+        mois = 7;
+    } else if (month == "August") {
+        mois = 8;
+    } else if (month == "September") {
+        mois = 9;
+    } else if (month == "October") {
+        mois = 10;
+    } else if (month == "November") {
+        mois = 11;
+    } else {
+        mois = 12;
+    }
+    return mois;
+}
+
+/**
+ * Action qui va créer le premier fichier des réservations
+ */
+void Data::createReservationsFile() {
+    XMLDocument xmlDoc;
+    XMLNode *pRoot = xmlDoc.NewElement("ListeDesReservations");
+
+    Reservation r;
+
+    int id = 1;
+    r.setId(id);
+    Client c(1, "DUPONT", "Martin", "dupont.martin@gmail.com", 7, "avenue des Eglantiers", "75000", "Paris");
+    r.setClient(c);
+    Bateau b(56, true, "Voilier de type 2");
+    r.setBateau(b);
+    Place p(11, true, true, true, true, true);
+    r.setPlace(p);
+    Date dA(2020, 3, 20);
+    r.setDateArrivee(dA);
+    Date dD(2020, 4, 3);
+    r.setDateDepart(dD);
+    bool supplementElec = true;
+    r.setSupplementElec(supplementElec);
+    bool supplementEau = true;
+    r.setSupplementEau(supplementEau);
+    bool abonnement = false;
+    r.setAbonnement(abonnement);
+    Paiement paie(15, 42, 0, 0, 630);
+    r.setPaiement(paie);
+
+    XMLNode *nRoot = xmlDoc.NewElement("Reservation");
+
+    XMLElement *rID = xmlDoc.NewElement("id");
+    rID->SetText(r.getId());
+    nRoot->InsertFirstChild(rID);
+
+    XMLNode *clientRoot = xmlDoc.NewElement("Client");
+    XMLElement *eID = xmlDoc.NewElement("id");
+    eID->SetText(r.getId());
+    XMLElement *eNom = xmlDoc.NewElement("nom");
+    eNom->SetText(r.getClient().getNom().c_str());
+    XMLElement *ePrenom = xmlDoc.NewElement("prenom");
+    ePrenom->SetText(r.getClient().getPrenom().c_str());
+    XMLElement *eEmail = xmlDoc.NewElement("email");
+    eEmail->SetText(r.getClient().getEmail().c_str());
+    XMLElement *eNumAdresse = xmlDoc.NewElement("numadresse");
+    eNumAdresse->SetText(r.getClient().getNumeroAdresse());
+    XMLElement *eAdresse = xmlDoc.NewElement("adresse");
+    eAdresse->SetText(r.getClient().getAdresse().c_str());
+    XMLElement *eCP = xmlDoc.NewElement("cp");
+    eCP->SetText(r.getClient().getCp().c_str());
+    XMLElement *eVille = xmlDoc.NewElement("ville");
+    eVille->SetText(r.getClient().getVille().c_str());
+    clientRoot->InsertFirstChild(eID);
+    clientRoot->InsertAfterChild(eID, eNom);
+    clientRoot->InsertAfterChild(eNom, ePrenom);
+    clientRoot->InsertAfterChild(ePrenom, eEmail);
+    clientRoot->InsertAfterChild(eEmail, eNumAdresse);
+    clientRoot->InsertAfterChild(eNumAdresse, eAdresse);
+    clientRoot->InsertAfterChild(eAdresse, eCP);
+    clientRoot->InsertEndChild(eVille);
+    nRoot->InsertAfterChild(rID,clientRoot);
+
+    XMLNode *bateauRoot = xmlDoc.NewElement("Bateau");
+    XMLElement *bateauTaille = xmlDoc.NewElement("taille");
+    bateauTaille->SetText(r.getBateau().getTaille());
+    XMLElement *bateauSiCabine = xmlDoc.NewElement("siCabine");
+    bateauSiCabine->SetText(r.getBateau().isSiCabine());
+    XMLElement *bateauType = xmlDoc.NewElement("type");
+    bateauType->SetText(r.getBateau().getTypeBateau().c_str());
+    bateauRoot->InsertFirstChild(bateauTaille);
+    bateauRoot->InsertAfterChild(bateauTaille, bateauSiCabine);
+    bateauRoot->InsertEndChild(bateauType);
+    nRoot->InsertAfterChild(clientRoot,bateauRoot);
+
+    XMLNode *placeRoot = xmlDoc.NewElement("Place");
+    XMLElement *numberPlace = xmlDoc.NewElement("number");
+    numberPlace->SetText(r.getPlace().getNumber());
+    XMLElement *ifDockPlace = xmlDoc.NewElement("ifDock");
+    ifDockPlace->SetText(r.getPlace().isDock());
+    XMLElement *ifTallPlace = xmlDoc.NewElement("ifTall");
+    ifTallPlace->SetText(r.getPlace().isTall());
+    XMLElement *ifElecPlace = xmlDoc.NewElement("ifElec");
+    ifElecPlace->SetText(r.getPlace().isElec());
+    XMLElement *ifWaterPlace = xmlDoc.NewElement("ifWater");
+    ifWaterPlace->SetText(r.getPlace().isWater());
+    XMLElement *ifBusyPlace = xmlDoc.NewElement("ifBusy");
+    ifBusyPlace->SetText(r.getPlace().isBusy());
+    placeRoot->InsertFirstChild(numberPlace);
+    placeRoot->InsertAfterChild(numberPlace, ifDockPlace);
+    placeRoot->InsertAfterChild(ifDockPlace, ifTallPlace);
+    placeRoot->InsertAfterChild(ifTallPlace, ifElecPlace);
+    placeRoot->InsertAfterChild(ifElecPlace, ifWaterPlace);
+    placeRoot->InsertEndChild(ifBusyPlace);
+    nRoot->InsertAfterChild(bateauRoot,placeRoot);
+
+    XMLNode *dateArriveeRoot = xmlDoc.NewElement("DateArrivee");
+    XMLElement *anneeArrivee = xmlDoc.NewElement("annee");
+    anneeArrivee->SetText(r.getDateArrivee().getYear());
+    XMLElement *moisArrivee = xmlDoc.NewElement("mois");
+    moisArrivee->SetText(r.getDateArrivee().getMonth());
+    XMLElement *jourArrivee = xmlDoc.NewElement("jour");
+    jourArrivee->SetText(r.getDateArrivee().getDay());
+    dateArriveeRoot->InsertFirstChild(anneeArrivee);
+    dateArriveeRoot->InsertAfterChild(anneeArrivee, moisArrivee);
+    dateArriveeRoot->InsertEndChild(jourArrivee);
+    nRoot->InsertAfterChild(placeRoot,dateArriveeRoot);
+
+    XMLNode *dateDepartRoot = xmlDoc.NewElement("DateDepart");
+    XMLElement *anneeDepart = xmlDoc.NewElement("annee");
+    anneeDepart->SetText(r.getDateDepart().getYear());
+    XMLElement *moisDepart = xmlDoc.NewElement("mois");
+    moisDepart->SetText(r.getDateDepart().getMonth());
+    XMLElement *jourDepart = xmlDoc.NewElement("jour");
+    jourDepart->SetText(r.getDateDepart().getDay());
+    dateDepartRoot->InsertFirstChild(anneeDepart);
+    dateDepartRoot->InsertAfterChild(anneeDepart, moisDepart);
+    dateDepartRoot->InsertEndChild(jourDepart);
+    nRoot->InsertAfterChild(dateArriveeRoot,dateDepartRoot);
+
+    XMLElement *rSuppElec = xmlDoc.NewElement("supplementElec");
+    rSuppElec->SetText(r.isSupplementElec());
+    nRoot->InsertAfterChild(dateDepartRoot,rSuppElec);
+
+    XMLElement *rSuppWater = xmlDoc.NewElement("supplementEau");
+    rSuppWater->SetText(r.isSupplementEau());
+    nRoot->InsertAfterChild(rSuppElec,rSuppWater);
+
+    XMLElement *rSuppAbonne = xmlDoc.NewElement("abonnement");
+    rSuppAbonne->SetText(r.isAbonnement());
+    nRoot->InsertAfterChild(rSuppWater,rSuppAbonne);
+
+    XMLNode *paiementRoot = xmlDoc.NewElement("Paiement");
+    XMLElement *nombreJours = xmlDoc.NewElement("nombreJours");
+    nombreJours->SetText(r.getPaiement().getNbJours());
+    XMLElement *paiementJ = xmlDoc.NewElement("paiementJournalier");
+    paiementJ->SetText(r.getPaiement().getPaiementJournalier());
+    XMLElement *paiementM = xmlDoc.NewElement("paiementMensuel");
+    paiementM->SetText(r.getPaiement().getPaiementMensuel());
+    XMLElement *paiementA = xmlDoc.NewElement("paiementAnnuel");
+    paiementA->SetText(r.getPaiement().getPaiementAnnuel());
+    XMLElement *paiementT = xmlDoc.NewElement("total");
+    paiementT->SetText(r.getPaiement().getTotal());
+    paiementRoot->InsertFirstChild(nombreJours);
+    paiementRoot->InsertAfterChild(nombreJours, paiementJ);
+    paiementRoot->InsertAfterChild(paiementJ, paiementM);
+    paiementRoot->InsertAfterChild(paiementM, paiementA);
+    paiementRoot->InsertEndChild(paiementT);
+    nRoot->InsertAfterChild(rSuppAbonne,paiementRoot);
+
+    pRoot->InsertFirstChild(nRoot);
+    xmlDoc.InsertFirstChild(pRoot);
+    XMLError eResult = xmlDoc.SaveFile(linkReservationsXMLFile);
+}
+
+/**
+ * Fonction qui va vérifier si la fichier de la liste des réservations existe
+ * @return vrai si le fichier existe déjà, faux sinon.
+ */
+bool Data::checkIfReservationsFileExist() {
+    XMLDocument xmlDoc;
+    XMLError eResult = xmlDoc.LoadFile(linkReservationsXMLFile);
+    if (eResult == XML_ERROR_FILE_NOT_FOUND) {
+        return false;
+    } else {
+        return true;
+    }
 }
 
 
