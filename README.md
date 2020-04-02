@@ -1,7 +1,7 @@
 # MIAGE-Port-Management
 
-![version](https://img.shields.io/badge/version-beta-blue.svg)
-![contribution](https://img.shields.io/badge/contribution-no-red.svg)
+![version](https://img.shields.io/badge/version-beta-blue.svg?style=for-the-badge)
+![contribution](https://img.shields.io/badge/contribution-no-red.svg?style=for-the-badge)
 
 <!---*:bangbang: This project contains errors that will be fixed in a future update.*--->
 
