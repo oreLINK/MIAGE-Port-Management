@@ -1,6 +1,7 @@
 # MIAGE-Port-Management
 
 ![version](https://img.shields.io/badge/version-beta-blue.svg)
+[![CodeFactor](https://www.codefactor.io/repository/github/orelink/miage-port-management/badge?s=b8acf7096d67bac96af4c57ba32b734b3658349c)](https://www.codefactor.io/repository/github/orelink/miage-port-management)
 ![contribution](https://img.shields.io/badge/contribution-no-red.svg)
 
 <!---*:bangbang: This project contains errors that will be fixed in a future update.*--->
