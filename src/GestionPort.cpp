@@ -100,6 +100,7 @@ void GestionPort::createReservation() {
 
     //affichage des prix
     igp.showPrices(r);
+    igp.paiementRequis();
 
     //verifie si le client a payé
     Paiement ancienPaiement = r.getPaiement();

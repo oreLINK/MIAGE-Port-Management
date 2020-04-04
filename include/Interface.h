@@ -84,6 +84,10 @@ public:
     void interfaceListeReservations();
 
     string displayDate(Date d);
+
+    void paiementRequis();
+
+    void interfaceInfosSupplementsListeReservations(Reservation r);
 };
 
 
