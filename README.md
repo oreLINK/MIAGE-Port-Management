@@ -1,7 +1,8 @@
 # MIAGE-Port-Management
 
-![version](https://img.shields.io/badge/version-beta-blue.svg?style=flat-square)
-![contribution](https://img.shields.io/badge/contribution-no-red.svg?style=flat-square)
+![version](https://img.shields.io/badge/version-beta-blue.svg)
+[![CodeFactor](https://www.codefactor.io/repository/github/orelink/miage-port-management/badge?s=b8acf7096d67bac96af4c57ba32b734b3658349c)](https://www.codefactor.io/repository/github/orelink/miage-port-management)
+![contribution](https://img.shields.io/badge/contribution-no-red.svg)
 
 <!---*:bangbang: This project contains errors that will be fixed in a future update.*--->
 
@@ -92,7 +93,7 @@ To use the program, go to the [wiki](https://github.com/oreLINK/MIAGE-Port-Manag
     
 ## License
 
-`Description coming soon...`
+The license is available [here](https://github.com/oreLINK/MIAGE-Port-Management/blob/master/LICENSE.md).
 
 ## Contributors
 
@@ -102,4 +103,3 @@ To use the program, go to the [wiki](https://github.com/oreLINK/MIAGE-Port-Manag
 
 *This project doesn't accept external contributions.*
 <!---*This project accepts external contributions.*--->
-
