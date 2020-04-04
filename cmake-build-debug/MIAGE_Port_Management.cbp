@@ -90,6 +90,9 @@
 		<Unit filename="/Users/orepro/Desktop/MIAGE-Port-Management/include/BateauType.h">
 			<Option target="MIAGE_Port_Management"/>
 		</Unit>
+		<Unit filename="/Users/orepro/Desktop/MIAGE-Port-Management/include/Calendrier.h">
+			<Option target="MIAGE_Port_Management"/>
+		</Unit>
 		<Unit filename="/Users/orepro/Desktop/MIAGE-Port-Management/include/Client.h">
 			<Option target="MIAGE_Port_Management"/>
 		</Unit>

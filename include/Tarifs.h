@@ -5,6 +5,10 @@
 #ifndef MIAGE_PORT_MANAGEMENT_TARIFS_H
 #define MIAGE_PORT_MANAGEMENT_TARIFS_H
 
+#include <string>
+
+using namespace std;
+
 struct Tarifs {
     struct Abonne {
         struct Quai {
@@ -82,8 +86,30 @@ struct Tarifs {
         Quai quai;
         NonQuai nonQuai;
     };
+    struct TypePaiement {
+        string paiementJournalier = "paiementJournalier";
+        string paiementMensuelPremierMois = "paiementMensuelPremierMois";
+        string paiementMensuel11Mois = "paiementMensuel11Mois";
+        string paiementAnnuel = "paiementAnnuel";
+    };
+    struct Supplement {
+        struct UnSupplement {
+            int totalSupplements = 1825;
+            int supplementPremierMois = 142;
+            int supplement11Mois = 153;
+        };
+        struct DeuxSupplements {
+            int totalSupplements = 3650;
+            int supplementsPremierMois = 295;
+            int supplements11Mois = 305;
+        };
+        UnSupplement unSupplement;
+        DeuxSupplements deuxSupplements;
+    };
+    TypePaiement typePaiement;
     Abonne abonne;
     NonAbonne nonAbonne;
+    Supplement supplement;
     int supplementJournalier = 5;
 };
 

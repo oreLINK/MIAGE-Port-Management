@@ -5,13 +5,17 @@
 #ifndef MIAGE_PORT_MANAGEMENT_PAIEMENT_H
 #define MIAGE_PORT_MANAGEMENT_PAIEMENT_H
 
+#include <vector>
+#include <string>
+
+using namespace std;
 
 class Paiement {
 public:
     Paiement();
 
     Paiement(int nbJours, int paiementJournalier, int paiementMensuelPremierMois, int paiementMensuel11Mois,
-             int paiementAnnuel, int total);
+             int paiementAnnuel, int total, bool aPaye);
 
     int getNbJours() const;
 
@@ -37,6 +41,10 @@ public:
 
     void setPaiementMensuel11Mois(int paiementMensuel11Mois);
 
+    bool isAPaye() const;
+
+    void setAPaye(bool aPaye);
+
 private:
     int nbJours;
     int paiementJournalier = 0;
@@ -44,6 +52,7 @@ private:
     int paiementMensuel11Mois = 0;
     int paiementAnnuel = 0;
     int total;
+    bool aPaye;
 };
 
 

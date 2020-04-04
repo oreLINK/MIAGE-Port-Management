@@ -78,6 +78,12 @@ public:
     void showPrices(Reservation r);
 
     void displayReservations(vector<Reservation> r);
+
+    void interfaceNewClientAdded();
+
+    void interfaceListeReservations();
+
+    string displayDate(Date d);
 };
 
 

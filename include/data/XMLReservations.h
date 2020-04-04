@@ -33,6 +33,7 @@ struct XMLReservations {
             const char * paiementMensuel11Mois = "paiementMensuel11Mois";
             const char * paiementAnnuel = "paiementAnnuel";
             const char * total = "total";
+            const char * isPaid = "estPaye";
         };
         Bateau bateau;
         DateArrivee dateArrivee;

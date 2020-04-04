@@ -8,6 +8,8 @@
 #include <vector>
 #include <include/data/DataPlace.h>
 #include <include/data/DataDate.h>
+#include <sstream>
+#include <string>
 #include "include/data/Data.h"
 #include "include/data/DataClient.h"
 #include "include/data/DataReservation.h"
@@ -42,6 +44,8 @@ void Interface::homeResponseCheck(string homeResponse) {
         exit(1);
     } else if(homeResponse == "1") {
         gestionPortI.createNewClient();
+        info("Vous allez être redirigé à l'accueil",false);
+        home();
     } else if(homeResponse == "2") {
         gestionPortI.createReservation();
     } else if(homeResponse == "3") {
@@ -81,15 +85,13 @@ string Interface::getCin(string message, bool ifEspace) {
 }
 
 string Interface::getCinLine(string message, bool ifEspace) {
+    cout << "[q pour accueil] "+message+" ";
+    cin.ignore();
     string choice;
-    char input[150];
-    cout << "[q pour accueil] " << message << " ", cin >> choice;
+    getline(cin,choice);
     if(ifEspace) {
         cout << " " << endl;
     }
-    cin.getline(input, sizeof(input));
-    choice = input;
-    cout << input << " : getcinline : " << choice << endl;
     return choice;
 }
 
@@ -133,17 +135,29 @@ void Interface::interfaceNewReservation(){
 }
 
 void Interface::displayReservation(Reservation r){
-    cout << "Réservation n°" << r.getId() << endl;
+    cout << "Réservation n°" << r.getId() << " du " << displayDate(r.getDateArrivee()) << " au "
+    << displayDate(r.getDateDepart()) << " à la place n°" << r.getNumeroPlace() << endl;
+    /**
     displayClient(dataClientI.extractClientFromID(dataClientI.importClientsFile(), r.getIdClient()));
     displayBateau(r.getBateau());
-    displayPlace(dataplaceI.extractPlaceFromNumber(dataplaceI.importPlacesFile(), r.getNumeroPlace()));
-    displayDates(r);
     interfaceInfosSupplements(r);
     interfaceInfosEngagement(r);
     showPrices(r);
+     **/
+}
+
+string Interface::displayDate(Date d){
+    string date = to_string(d.getDay())+"/"+to_string(d.getMonth())+"/"+to_string(d.getYear());
+    return date;
+}
+
+void Interface::interfaceListeReservations(){
+    cout << "~~~ LISTE DES RESERVATIONS ~~~" << endl;
+    cout << " " << endl;
 }
 
 void Interface::displayReservations(vector<Reservation> r) {
+    interfaceListeReservations();
     for (int i = 0; i < r.size(); i++) {
         displayReservation(r[i]);
     }
@@ -243,6 +257,11 @@ void Interface::interfaceNewClient(){
     cout << " " << endl;
 }
 
+void Interface::interfaceNewClientAdded(){
+    cout << " " << endl;
+    info("Client ajouté à la BDD",true);
+}
+
 /**
  * SUPPLEMENTS
  */
@@ -307,7 +326,8 @@ void Interface::showPrices(Reservation r) {
     if (r.isAbonnement()) {
         cout << "Prix de cette réservation pour 1 an : "
              << r.getPaiement().getPaiementAnnuel() << "€/an ou "
-             << "Paiement mensuel non disponible." << endl;
+             << r.getPaiement().getPaiementMensuelPremierMois() << "€ le 1er mois puis "
+             << r.getPaiement().getPaiementMensuel11Mois() << "€/mois pendant 11 mois." << endl;
         cout << "Paiement immédiat de la somme totale." << endl;
     } //sinon
     else {
