@@ -48,7 +48,7 @@ public:
 
     bool checkIfClientCanHaveSupplements(Reservation r);
 
-    bool checkSupplementsReponse(string choice);
+    bool checkAskClientResponseYesNo(string choice);
 
     bool returnSupplementReponse(string choice);
 
@@ -87,6 +87,10 @@ public:
     int getPaiementSupplementParMois(Reservation r, int paiementJournalierSupplements);
 
     int getPaiementMensuelSupplement(Reservation r, bool isPremierMois);
+
+    bool askClientSiPaye();
+
+    Paiement askClientSiPaye(Paiement p);
 };
 
 
