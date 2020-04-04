@@ -48,8 +48,12 @@ void Interface::homeResponseCheck(string homeResponse) {
         home();
     } else if(homeResponse == "2") {
         gestionPortI.createReservation();
+        info("Vous allez être redirigé à l'accueil",false);
+        home();
     } else if(homeResponse == "3") {
         displayReservations(dataReservationI.importReservationsFile());
+        info("Vous allez être redirigé à l'accueil",false);
+        home();
     } else {
         erreur("Choix incorrect",true);
         home();
@@ -137,13 +141,28 @@ void Interface::interfaceNewReservation(){
 void Interface::displayReservation(Reservation r){
     cout << "Réservation n°" << r.getId() << " du " << displayDate(r.getDateArrivee()) << " au "
     << displayDate(r.getDateDepart()) << " à la place n°" << r.getNumeroPlace() << endl;
-    /**
-    displayClient(dataClientI.extractClientFromID(dataClientI.importClientsFile(), r.getIdClient()));
-    displayBateau(r.getBateau());
-    interfaceInfosSupplements(r);
-    interfaceInfosEngagement(r);
-    showPrices(r);
-     **/
+    Client c = dataClientI.extractClientFromID(dataClientI.importClientsFile(),r.getIdClient());
+    cout << "Client [" << c.getId() << "] " << c.getNom() << " " << c.getPrenom() << " (" << c.getEmail()
+    << ") habitant au " << c.getNumeroAdresse() << " " << c.getAdresse() << ", " << c.getCp() << " " << c.getVille() << endl;
+    cout << "Bateau de catégorie \"" << r.getBateau().getTypeBateau() << "\" (" << r.getBateau().getTaille() << " mètres)" << endl;
+    interfaceInfosSupplementsListeReservations(r);
+    if (r.isAbonnement()) {
+        cout << "Prix de cette réservation pour 1 an : "
+             << r.getPaiement().getPaiementAnnuel() << "€/an ou "
+             << r.getPaiement().getPaiementMensuelPremierMois() << "€ le 1er mois puis "
+             << r.getPaiement().getPaiementMensuel11Mois() << "€/mois pendant 11 mois." << endl;
+    } //sinon
+    else {
+        cout << "Prix de cette réservation pour " << r.getPaiement().getNbJours() << " jour(s) : "
+             << r.getPaiement().getPaiementJournalier() << "€/jour soit "
+             << r.getPaiement().getTotal() << "€ au total." << endl;
+    }
+    if(r.getPaiement().isAPaye()){
+        cout << "Le client a payé." << endl;
+    } else {
+        cout << "Le client n'a pas payé." << endl;
+    }
+    cout << " " << endl;
 }
 
 string Interface::displayDate(Date d){
@@ -283,6 +302,18 @@ void Interface::interfaceInfosSupplements(Reservation r){
     }
 }
 
+void Interface::interfaceInfosSupplementsListeReservations(Reservation r){
+    if(r.isSupplementElec() && !r.isSupplementEau()){
+        info("Le client a choisi le supplément éléctricité uniquement",false);
+    } else if(!r.isSupplementElec() && r.isSupplementEau()){
+        info("Le client a choisi le supplément eau uniquement",false);
+    } else if(r.isSupplementElec() && r.isSupplementEau()){
+        info("Le client a choisi les suppléments éléctricité et eau",false);
+    } else {
+        info("Le client n'a choisi aucun supplément",false);
+    }
+}
+
 /**
  * DATES D'ARRIVEE ET DE DEPART
  */
@@ -328,14 +359,16 @@ void Interface::showPrices(Reservation r) {
              << r.getPaiement().getPaiementAnnuel() << "€/an ou "
              << r.getPaiement().getPaiementMensuelPremierMois() << "€ le 1er mois puis "
              << r.getPaiement().getPaiementMensuel11Mois() << "€/mois pendant 11 mois." << endl;
-        cout << "Paiement immédiat de la somme totale." << endl;
     } //sinon
     else {
         cout << "Prix de cette réservation pour " << r.getPaiement().getNbJours() << " jour(s) : "
              << r.getPaiement().getPaiementJournalier() << "€/jour soit "
              << r.getPaiement().getTotal() << "€ au total." << endl;
-        cout << "Paiement immédiat de la somme totale." << endl;
     }
+}
+
+void Interface::paiementRequis() {
+    cout << "Paiement immédiat de la somme totale." << endl;
 }
 
 
