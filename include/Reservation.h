@@ -17,21 +17,14 @@ class Reservation {
 public:
     Reservation();
 
-    Reservation(const Client &client, const Bateau &bateau, const Place &place, const Date &dateArrivee,
+    Reservation(int id, int idClient, const Bateau &bateau, int numeroPlace, const Date &dateArrivee,
                 const Date &dateDepart, bool supplementElec, bool supplementEau, bool abonnement,
                 const Paiement &paiement);
 
-    const Client &getClient() const;
-
-    void setClient(const Client &client);
 
     const Bateau &getBateau() const;
 
     void setBateau(const Bateau &bateau);
-
-    const Place &getPlace() const;
-
-    void setPlace(const Place &place);
 
     const Date &getDateArrivee() const;
 
@@ -57,10 +50,23 @@ public:
 
     void setPaiement(const Paiement &paiement);
 
+    int getId() const;
+
+    void setId(int id);
+
+    int getIdClient() const;
+
+    void setIdClient(int idClient);
+
+    int getNumeroPlace() const;
+
+    void setNumeroPlace(int numeroPlace);
+
 private:
-    Client client;
+    int id;
+    int idClient;
     Bateau bateau;
-    Place place;
+    int numeroPlace;
     Date dateArrivee;
     Date dateDepart;
     bool supplementElec;

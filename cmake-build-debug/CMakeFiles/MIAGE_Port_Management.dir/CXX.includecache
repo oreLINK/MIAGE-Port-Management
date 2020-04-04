@@ -10,37 +10,23 @@
 string
 -
 
-../include/Client.h
+../include/BateauType.h
 string
 -
 
-../include/Data.h
-Place.h
-../include/Place.h
+../include/Client.h
 string
--
-include/tinyxml2.h
 -
 
 ../include/Date.h
-
-../include/GestionPort.h
-Reservation.h
-../include/Reservation.h
-
-../include/Interface.h
 string
 -
-include/Bateau.h
--
-include/Place.h
--
-Client.h
-../include/Client.h
-Reservation.h
-../include/Reservation.h
 
 ../include/Paiement.h
+vector
+-
+string
+-
 
 ../include/Place.h
 
@@ -59,6 +45,34 @@ Paiement.h
 ../include/Paiement.h
 
 ../include/Tarifs.h
+string
+-
+
+../include/data/Data.h
+include/Place.h
+../include/data/include/Place.h
+string
+-
+include/tinyxml2.h
+-
+include/Date.h
+-
+include/Reservation.h
+-
+
+../include/data/DataReservation.h
+Data.h
+../include/data/Data.h
+XMLFilesName.h
+../include/data/XMLFilesName.h
+XMLReservations.h
+../include/data/XMLReservations.h
+../BateauType.h
+../include/BateauType.h
+
+../include/data/XMLFilesName.h
+
+../include/data/XMLReservations.h
 
 ../include/tinyxml2.h
 ctype.h
@@ -90,25 +104,17 @@ android/log.h
 assert.h
 -
 
-/Users/orepro/Desktop/MIAGE-Port-Management/src/GestionPort.cpp
-include/GestionPort.h
-/Users/orepro/Desktop/MIAGE-Port-Management/src/include/GestionPort.h
-iostream
--
-include/Bateau.h
-/Users/orepro/Desktop/MIAGE-Port-Management/src/include/Bateau.h
+/Users/orepro/Desktop/MIAGE-Port-Management/src/data/DataReservation.cpp
 include/Reservation.h
-/Users/orepro/Desktop/MIAGE-Port-Management/src/include/Reservation.h
-include/Interface.h
-/Users/orepro/Desktop/MIAGE-Port-Management/src/include/Interface.h
-include/Data.h
-/Users/orepro/Desktop/MIAGE-Port-Management/src/include/Data.h
-include/Tarifs.h
-/Users/orepro/Desktop/MIAGE-Port-Management/src/include/Tarifs.h
-sstream
 -
-cctype
+include/tinyxml2.h
+-
+include/data/Data.h
+-
+iostream
 -
 vector
 -
+include/data/DataReservation.h
+/Users/orepro/Desktop/MIAGE-Port-Management/src/data/include/data/DataReservation.h
 

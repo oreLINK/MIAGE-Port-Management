@@ -6,19 +6,28 @@
 
 Reservation::Reservation() {}
 
-Reservation::Reservation(const Client &client, const Bateau &bateau, const Place &place, const Date &dateArrivee,
+Reservation::Reservation(int id, int idClient, const Bateau &bateau, int numeroPlace, const Date &dateArrivee,
                          const Date &dateDepart, bool supplementElec, bool supplementEau, bool abonnement,
-                         const Paiement &paiement) : client(client), bateau(bateau), place(place),
-                                                     dateArrivee(dateArrivee), dateDepart(dateDepart),
-                                                     supplementElec(supplementElec), supplementEau(supplementEau),
-                                                     abonnement(abonnement), paiement(paiement) {}
+                         const Paiement &paiement) : id(id), idClient(idClient), bateau(bateau),
+                                                     numeroPlace(numeroPlace), dateArrivee(dateArrivee),
+                                                     dateDepart(dateDepart), supplementElec(supplementElec),
+                                                     supplementEau(supplementEau), abonnement(abonnement),
+                                                     paiement(paiement) {}
 
-const Client &Reservation::getClient() const {
-    return client;
+int Reservation::getId() const {
+    return id;
 }
 
-void Reservation::setClient(const Client &client) {
-    Reservation::client = client;
+void Reservation::setId(int id) {
+    Reservation::id = id;
+}
+
+int Reservation::getIdClient() const {
+    return idClient;
+}
+
+void Reservation::setIdClient(int idClient) {
+    Reservation::idClient = idClient;
 }
 
 const Bateau &Reservation::getBateau() const {
@@ -29,12 +38,12 @@ void Reservation::setBateau(const Bateau &bateau) {
     Reservation::bateau = bateau;
 }
 
-const Place &Reservation::getPlace() const {
-    return place;
+int Reservation::getNumeroPlace() const {
+    return numeroPlace;
 }
 
-void Reservation::setPlace(const Place &place) {
-    Reservation::place = place;
+void Reservation::setNumeroPlace(int numeroPlace) {
+    Reservation::numeroPlace = numeroPlace;
 }
 
 const Date &Reservation::getDateArrivee() const {

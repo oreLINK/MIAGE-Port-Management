@@ -3,17 +3,25 @@
 
 CMakeFiles/MIAGE_Port_Management.dir/main.cpp.o
  ../include/Client.h
- ../include/Data.h
  ../include/Date.h
+ ../include/Paiement.h
  ../include/Place.h
+ ../include/Reservation.h
+ ../include/Tarifs.h
+ ../include/data/Data.h
  ../include/tinyxml2.h
  /Users/orepro/Desktop/MIAGE-Port-Management/include/Bateau.h
+ /Users/orepro/Desktop/MIAGE-Port-Management/include/BateauType.h
  /Users/orepro/Desktop/MIAGE-Port-Management/include/Client.h
  /Users/orepro/Desktop/MIAGE-Port-Management/include/GestionPort.h
  /Users/orepro/Desktop/MIAGE-Port-Management/include/Interface.h
- /Users/orepro/Desktop/MIAGE-Port-Management/include/Paiement.h
  /Users/orepro/Desktop/MIAGE-Port-Management/include/Reservation.h
- /Users/orepro/Desktop/MIAGE-Port-Management/include/Tarifs.h
+ /Users/orepro/Desktop/MIAGE-Port-Management/include/data/Data.h
+ /Users/orepro/Desktop/MIAGE-Port-Management/include/data/DataClient.h
+ /Users/orepro/Desktop/MIAGE-Port-Management/include/data/DataPlace.h
+ /Users/orepro/Desktop/MIAGE-Port-Management/include/data/DataReservation.h
+ /Users/orepro/Desktop/MIAGE-Port-Management/include/data/XMLFilesName.h
+ /Users/orepro/Desktop/MIAGE-Port-Management/include/data/XMLReservations.h
  /Users/orepro/Desktop/MIAGE-Port-Management/main.cpp
 CMakeFiles/MIAGE_Port_Management.dir/src/Bateau.cpp.o
  ../include/Bateau.h
@@ -21,19 +29,14 @@ CMakeFiles/MIAGE_Port_Management.dir/src/Bateau.cpp.o
 CMakeFiles/MIAGE_Port_Management.dir/src/Client.cpp.o
  ../include/Client.h
  /Users/orepro/Desktop/MIAGE-Port-Management/src/Client.cpp
-CMakeFiles/MIAGE_Port_Management.dir/src/Data.cpp.o
- ../include/Client.h
- ../include/Data.h
- ../include/Place.h
- ../include/tinyxml2.h
- /Users/orepro/Desktop/MIAGE-Port-Management/src/Data.cpp
 CMakeFiles/MIAGE_Port_Management.dir/src/Date.cpp.o
  ../include/Date.h
  /Users/orepro/Desktop/MIAGE-Port-Management/src/Date.cpp
 CMakeFiles/MIAGE_Port_Management.dir/src/GestionPort.cpp.o
  ../include/Bateau.h
+ ../include/BateauType.h
+ ../include/Calendrier.h
  ../include/Client.h
- ../include/Data.h
  ../include/Date.h
  ../include/GestionPort.h
  ../include/Interface.h
@@ -41,10 +44,18 @@ CMakeFiles/MIAGE_Port_Management.dir/src/GestionPort.cpp.o
  ../include/Place.h
  ../include/Reservation.h
  ../include/Tarifs.h
+ ../include/data/Data.h
+ ../include/data/DataClient.h
+ ../include/data/DataDate.h
+ ../include/data/DataPlace.h
+ ../include/data/DataReservation.h
+ ../include/data/XMLFilesName.h
+ ../include/data/XMLReservations.h
  ../include/tinyxml2.h
  /Users/orepro/Desktop/MIAGE-Port-Management/src/GestionPort.cpp
 CMakeFiles/MIAGE_Port_Management.dir/src/Interface.cpp.o
  ../include/Bateau.h
+ ../include/BateauType.h
  ../include/Client.h
  ../include/Date.h
  ../include/GestionPort.h
@@ -53,6 +64,14 @@ CMakeFiles/MIAGE_Port_Management.dir/src/Interface.cpp.o
  ../include/Place.h
  ../include/Reservation.h
  ../include/Tarifs.h
+ ../include/data/Data.h
+ ../include/data/DataClient.h
+ ../include/data/DataDate.h
+ ../include/data/DataPlace.h
+ ../include/data/DataReservation.h
+ ../include/data/XMLFilesName.h
+ ../include/data/XMLReservations.h
+ ../include/tinyxml2.h
  /Users/orepro/Desktop/MIAGE-Port-Management/src/Interface.cpp
 CMakeFiles/MIAGE_Port_Management.dir/src/Paiement.cpp.o
  ../include/Paiement.h
@@ -72,6 +91,87 @@ CMakeFiles/MIAGE_Port_Management.dir/src/Reservation.cpp.o
 CMakeFiles/MIAGE_Port_Management.dir/src/Tarifs.cpp.o
  ../include/Tarifs.h
  /Users/orepro/Desktop/MIAGE-Port-Management/src/Tarifs.cpp
+CMakeFiles/MIAGE_Port_Management.dir/src/data/Data.cpp.o
+ ../include/Bateau.h
+ ../include/BateauType.h
+ ../include/Client.h
+ ../include/Date.h
+ ../include/Interface.h
+ ../include/NombrePlaces.h
+ ../include/Paiement.h
+ ../include/Place.h
+ ../include/Reservation.h
+ ../include/Tarifs.h
+ ../include/XMLPlaces.h
+ ../include/data/Data.h
+ ../include/data/DataClient.h
+ ../include/data/DataDate.h
+ ../include/data/DataReservation.h
+ ../include/data/XMLFilesName.h
+ ../include/data/XMLReservations.h
+ ../include/tinyxml2.h
+ /Users/orepro/Desktop/MIAGE-Port-Management/src/data/Data.cpp
+CMakeFiles/MIAGE_Port_Management.dir/src/data/DataClient.cpp.o
+ ../include/Bateau.h
+ ../include/Client.h
+ ../include/Date.h
+ ../include/Interface.h
+ ../include/Paiement.h
+ ../include/Place.h
+ ../include/Reservation.h
+ ../include/Tarifs.h
+ ../include/data/Data.h
+ ../include/data/DataClient.h
+ ../include/data/XMLFilesName.h
+ ../include/tinyxml2.h
+ /Users/orepro/Desktop/MIAGE-Port-Management/src/data/DataClient.cpp
+CMakeFiles/MIAGE_Port_Management.dir/src/data/DataDate.cpp.o
+ ../include/Bateau.h
+ ../include/Client.h
+ ../include/Date.h
+ ../include/Interface.h
+ ../include/NombrePlaces.h
+ ../include/Paiement.h
+ ../include/Place.h
+ ../include/Reservation.h
+ ../include/Tarifs.h
+ ../include/XMLPlaces.h
+ ../include/data/Data.h
+ ../include/data/DataClient.h
+ ../include/data/DataDate.h
+ ../include/data/XMLFilesName.h
+ ../include/tinyxml2.h
+ /Users/orepro/Desktop/MIAGE-Port-Management/src/data/DataDate.cpp
+CMakeFiles/MIAGE_Port_Management.dir/src/data/DataPlace.cpp.o
+ ../include/Bateau.h
+ ../include/Client.h
+ ../include/Date.h
+ ../include/NombrePlaces.h
+ ../include/Paiement.h
+ ../include/Place.h
+ ../include/Reservation.h
+ ../include/Tarifs.h
+ ../include/XMLPlaces.h
+ ../include/data/Data.h
+ ../include/data/DataPlace.h
+ ../include/data/XMLFilesName.h
+ ../include/tinyxml2.h
+ /Users/orepro/Desktop/MIAGE-Port-Management/src/data/DataPlace.cpp
+CMakeFiles/MIAGE_Port_Management.dir/src/data/DataReservation.cpp.o
+ ../include/Bateau.h
+ ../include/BateauType.h
+ ../include/Client.h
+ ../include/Date.h
+ ../include/Paiement.h
+ ../include/Place.h
+ ../include/Reservation.h
+ ../include/Tarifs.h
+ ../include/data/Data.h
+ ../include/data/DataReservation.h
+ ../include/data/XMLFilesName.h
+ ../include/data/XMLReservations.h
+ ../include/tinyxml2.h
+ /Users/orepro/Desktop/MIAGE-Port-Management/src/data/DataReservation.cpp
 CMakeFiles/MIAGE_Port_Management.dir/src/tinyxml2.cpp.o
  ../include/tinyxml2.h
  /Users/orepro/Desktop/MIAGE-Port-Management/src/tinyxml2.cpp

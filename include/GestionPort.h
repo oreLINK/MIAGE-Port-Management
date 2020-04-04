@@ -48,7 +48,7 @@ public:
 
     bool checkIfClientCanHaveSupplements(Reservation r);
 
-    bool checkSupplementsReponse(string choice);
+    bool checkAskClientResponseYesNo(string choice);
 
     bool returnSupplementReponse(string choice);
 
@@ -68,9 +68,29 @@ public:
 
     int getPaiementAnnuel(Reservation r);
 
-    int *getPaiementMensuel(Reservation r);
+    Date getDateDepartAbonnement(Date d);
 
-    void showPrices(Reservation r);
+    Date getDateDepartNonAbonnement(Reservation r);
+
+    bool ifYearBissextile(Date d);
+
+    vector<int> createNbJoursMonth(bool ifBissextile);
+
+    Date convertJoursInYearsMonthDays(Date d, int nbJours, vector<int> nbJoursParMois);
+
+    Place choosePlace(vector<Place> listePlacesLibres);
+
+    char * convertStringToChar(string cara);
+
+    int getPaiementMensuel(Reservation r, string typePaiement);
+
+    int getPaiementSupplementParMois(Reservation r, int paiementJournalierSupplements);
+
+    int getPaiementMensuelSupplement(Reservation r, bool isPremierMois);
+
+    bool askClientSiPaye();
+
+    Paiement askClientSiPaye(Paiement p);
 };
 
 

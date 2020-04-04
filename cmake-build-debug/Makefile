@@ -204,33 +204,6 @@ src/Client.cpp.s:
 	$(MAKE) -f CMakeFiles/MIAGE_Port_Management.dir/build.make CMakeFiles/MIAGE_Port_Management.dir/src/Client.cpp.s
 .PHONY : src/Client.cpp.s
 
-src/Data.o: src/Data.cpp.o
-
-.PHONY : src/Data.o
-
-# target to build an object file
-src/Data.cpp.o:
-	$(MAKE) -f CMakeFiles/MIAGE_Port_Management.dir/build.make CMakeFiles/MIAGE_Port_Management.dir/src/Data.cpp.o
-.PHONY : src/Data.cpp.o
-
-src/Data.i: src/Data.cpp.i
-
-.PHONY : src/Data.i
-
-# target to preprocess a source file
-src/Data.cpp.i:
-	$(MAKE) -f CMakeFiles/MIAGE_Port_Management.dir/build.make CMakeFiles/MIAGE_Port_Management.dir/src/Data.cpp.i
-.PHONY : src/Data.cpp.i
-
-src/Data.s: src/Data.cpp.s
-
-.PHONY : src/Data.s
-
-# target to generate assembly for a file
-src/Data.cpp.s:
-	$(MAKE) -f CMakeFiles/MIAGE_Port_Management.dir/build.make CMakeFiles/MIAGE_Port_Management.dir/src/Data.cpp.s
-.PHONY : src/Data.cpp.s
-
 src/Date.o: src/Date.cpp.o
 
 .PHONY : src/Date.o
@@ -420,6 +393,141 @@ src/Tarifs.cpp.s:
 	$(MAKE) -f CMakeFiles/MIAGE_Port_Management.dir/build.make CMakeFiles/MIAGE_Port_Management.dir/src/Tarifs.cpp.s
 .PHONY : src/Tarifs.cpp.s
 
+src/data/Data.o: src/data/Data.cpp.o
+
+.PHONY : src/data/Data.o
+
+# target to build an object file
+src/data/Data.cpp.o:
+	$(MAKE) -f CMakeFiles/MIAGE_Port_Management.dir/build.make CMakeFiles/MIAGE_Port_Management.dir/src/data/Data.cpp.o
+.PHONY : src/data/Data.cpp.o
+
+src/data/Data.i: src/data/Data.cpp.i
+
+.PHONY : src/data/Data.i
+
+# target to preprocess a source file
+src/data/Data.cpp.i:
+	$(MAKE) -f CMakeFiles/MIAGE_Port_Management.dir/build.make CMakeFiles/MIAGE_Port_Management.dir/src/data/Data.cpp.i
+.PHONY : src/data/Data.cpp.i
+
+src/data/Data.s: src/data/Data.cpp.s
+
+.PHONY : src/data/Data.s
+
+# target to generate assembly for a file
+src/data/Data.cpp.s:
+	$(MAKE) -f CMakeFiles/MIAGE_Port_Management.dir/build.make CMakeFiles/MIAGE_Port_Management.dir/src/data/Data.cpp.s
+.PHONY : src/data/Data.cpp.s
+
+src/data/DataClient.o: src/data/DataClient.cpp.o
+
+.PHONY : src/data/DataClient.o
+
+# target to build an object file
+src/data/DataClient.cpp.o:
+	$(MAKE) -f CMakeFiles/MIAGE_Port_Management.dir/build.make CMakeFiles/MIAGE_Port_Management.dir/src/data/DataClient.cpp.o
+.PHONY : src/data/DataClient.cpp.o
+
+src/data/DataClient.i: src/data/DataClient.cpp.i
+
+.PHONY : src/data/DataClient.i
+
+# target to preprocess a source file
+src/data/DataClient.cpp.i:
+	$(MAKE) -f CMakeFiles/MIAGE_Port_Management.dir/build.make CMakeFiles/MIAGE_Port_Management.dir/src/data/DataClient.cpp.i
+.PHONY : src/data/DataClient.cpp.i
+
+src/data/DataClient.s: src/data/DataClient.cpp.s
+
+.PHONY : src/data/DataClient.s
+
+# target to generate assembly for a file
+src/data/DataClient.cpp.s:
+	$(MAKE) -f CMakeFiles/MIAGE_Port_Management.dir/build.make CMakeFiles/MIAGE_Port_Management.dir/src/data/DataClient.cpp.s
+.PHONY : src/data/DataClient.cpp.s
+
+src/data/DataDate.o: src/data/DataDate.cpp.o
+
+.PHONY : src/data/DataDate.o
+
+# target to build an object file
+src/data/DataDate.cpp.o:
+	$(MAKE) -f CMakeFiles/MIAGE_Port_Management.dir/build.make CMakeFiles/MIAGE_Port_Management.dir/src/data/DataDate.cpp.o
+.PHONY : src/data/DataDate.cpp.o
+
+src/data/DataDate.i: src/data/DataDate.cpp.i
+
+.PHONY : src/data/DataDate.i
+
+# target to preprocess a source file
+src/data/DataDate.cpp.i:
+	$(MAKE) -f CMakeFiles/MIAGE_Port_Management.dir/build.make CMakeFiles/MIAGE_Port_Management.dir/src/data/DataDate.cpp.i
+.PHONY : src/data/DataDate.cpp.i
+
+src/data/DataDate.s: src/data/DataDate.cpp.s
+
+.PHONY : src/data/DataDate.s
+
+# target to generate assembly for a file
+src/data/DataDate.cpp.s:
+	$(MAKE) -f CMakeFiles/MIAGE_Port_Management.dir/build.make CMakeFiles/MIAGE_Port_Management.dir/src/data/DataDate.cpp.s
+.PHONY : src/data/DataDate.cpp.s
+
+src/data/DataPlace.o: src/data/DataPlace.cpp.o
+
+.PHONY : src/data/DataPlace.o
+
+# target to build an object file
+src/data/DataPlace.cpp.o:
+	$(MAKE) -f CMakeFiles/MIAGE_Port_Management.dir/build.make CMakeFiles/MIAGE_Port_Management.dir/src/data/DataPlace.cpp.o
+.PHONY : src/data/DataPlace.cpp.o
+
+src/data/DataPlace.i: src/data/DataPlace.cpp.i
+
+.PHONY : src/data/DataPlace.i
+
+# target to preprocess a source file
+src/data/DataPlace.cpp.i:
+	$(MAKE) -f CMakeFiles/MIAGE_Port_Management.dir/build.make CMakeFiles/MIAGE_Port_Management.dir/src/data/DataPlace.cpp.i
+.PHONY : src/data/DataPlace.cpp.i
+
+src/data/DataPlace.s: src/data/DataPlace.cpp.s
+
+.PHONY : src/data/DataPlace.s
+
+# target to generate assembly for a file
+src/data/DataPlace.cpp.s:
+	$(MAKE) -f CMakeFiles/MIAGE_Port_Management.dir/build.make CMakeFiles/MIAGE_Port_Management.dir/src/data/DataPlace.cpp.s
+.PHONY : src/data/DataPlace.cpp.s
+
+src/data/DataReservation.o: src/data/DataReservation.cpp.o
+
+.PHONY : src/data/DataReservation.o
+
+# target to build an object file
+src/data/DataReservation.cpp.o:
+	$(MAKE) -f CMakeFiles/MIAGE_Port_Management.dir/build.make CMakeFiles/MIAGE_Port_Management.dir/src/data/DataReservation.cpp.o
+.PHONY : src/data/DataReservation.cpp.o
+
+src/data/DataReservation.i: src/data/DataReservation.cpp.i
+
+.PHONY : src/data/DataReservation.i
+
+# target to preprocess a source file
+src/data/DataReservation.cpp.i:
+	$(MAKE) -f CMakeFiles/MIAGE_Port_Management.dir/build.make CMakeFiles/MIAGE_Port_Management.dir/src/data/DataReservation.cpp.i
+.PHONY : src/data/DataReservation.cpp.i
+
+src/data/DataReservation.s: src/data/DataReservation.cpp.s
+
+.PHONY : src/data/DataReservation.s
+
+# target to generate assembly for a file
+src/data/DataReservation.cpp.s:
+	$(MAKE) -f CMakeFiles/MIAGE_Port_Management.dir/build.make CMakeFiles/MIAGE_Port_Management.dir/src/data/DataReservation.cpp.s
+.PHONY : src/data/DataReservation.cpp.s
+
 src/tinyxml2.o: src/tinyxml2.cpp.o
 
 .PHONY : src/tinyxml2.o
@@ -465,9 +573,6 @@ help:
 	@echo "... src/Client.o"
 	@echo "... src/Client.i"
 	@echo "... src/Client.s"
-	@echo "... src/Data.o"
-	@echo "... src/Data.i"
-	@echo "... src/Data.s"
 	@echo "... src/Date.o"
 	@echo "... src/Date.i"
 	@echo "... src/Date.s"
@@ -489,6 +594,21 @@ help:
 	@echo "... src/Tarifs.o"
 	@echo "... src/Tarifs.i"
 	@echo "... src/Tarifs.s"
+	@echo "... src/data/Data.o"
+	@echo "... src/data/Data.i"
+	@echo "... src/data/Data.s"
+	@echo "... src/data/DataClient.o"
+	@echo "... src/data/DataClient.i"
+	@echo "... src/data/DataClient.s"
+	@echo "... src/data/DataDate.o"
+	@echo "... src/data/DataDate.i"
+	@echo "... src/data/DataDate.s"
+	@echo "... src/data/DataPlace.o"
+	@echo "... src/data/DataPlace.i"
+	@echo "... src/data/DataPlace.s"
+	@echo "... src/data/DataReservation.o"
+	@echo "... src/data/DataReservation.i"
+	@echo "... src/data/DataReservation.s"
 	@echo "... src/tinyxml2.o"
 	@echo "... src/tinyxml2.i"
 	@echo "... src/tinyxml2.s"

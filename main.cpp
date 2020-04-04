@@ -1,25 +1,35 @@
 #include <iostream>
-#include <include/Data.h>
+#include <include/data/Data.h>
 #include <vector>
+#include <string>
+#include <sstream>
 #include "include/Bateau.h"
 #include "include/GestionPort.h"
 #include "include/Interface.h"
+#include "include/data/DataPlace.h"
+#include "include/data/DataClient.h"
+#include "include/data/DataReservation.h"
 
 using namespace std;
 
 Interface it;
-Data dmain;
+DataPlace dataPlace;
+DataClient dataClient;
+DataReservation dataReservation;
 
 /**
  * Classe principale de l'application. Lance l'application.
  * @return
  */
 int main() {
-    if(!dmain.checkIfPlacesFileExist()){
-        dmain.createFirstPlacesFile();
+    if(!dataPlace.checkIfPlacesFileExist()){
+        dataPlace.createFirstPlacesFile();
     }
-    if(!dmain.checkIfClientsFileExist()){
-        dmain.createFirstClientFile();
+    if(!dataClient.checkIfClientsFileExist()){
+        dataClient.createFirstClientFile();
+    }
+    if(!dataReservation.checkIfReservationsFileExist()){
+        dataReservation.createReservationsFile();
     }
     it.home();
     return 0;

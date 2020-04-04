@@ -5,6 +5,9 @@
 #ifndef MIAGE_PORT_MANAGEMENT_DATE_H
 #define MIAGE_PORT_MANAGEMENT_DATE_H
 
+#include <string>
+
+using namespace std;
 
 class Date {
 public:

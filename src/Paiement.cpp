@@ -6,6 +6,14 @@
 
 Paiement::Paiement() {}
 
+Paiement::Paiement(int nbJours, int paiementJournalier, int paiementMensuelPremierMois, int paiementMensuel11Mois,
+                   int paiementAnnuel, int total, bool aPaye) : nbJours(nbJours),
+                                                                paiementJournalier(paiementJournalier),
+                                                                paiementMensuelPremierMois(paiementMensuelPremierMois),
+                                                                paiementMensuel11Mois(paiementMensuel11Mois),
+                                                                paiementAnnuel(paiementAnnuel), total(total),
+                                                                aPaye(aPaye) {}
+
 int Paiement::getNbJours() const {
     return nbJours;
 }
@@ -22,11 +30,21 @@ void Paiement::setPaiementJournalier(int paiementJournalier) {
     Paiement::paiementJournalier = paiementJournalier;
 }
 
-const int *Paiement::getPaiementMensuel() const {
-    return paiementMensuel;
+int Paiement::getPaiementMensuelPremierMois() const {
+    return paiementMensuelPremierMois;
 }
 
+void Paiement::setPaiementMensuelPremierMois(int paiementMensuelPremierMois) {
+    Paiement::paiementMensuelPremierMois = paiementMensuelPremierMois;
+}
 
+int Paiement::getPaiementMensuel11Mois() const {
+    return paiementMensuel11Mois;
+}
+
+void Paiement::setPaiementMensuel11Mois(int paiementMensuel11Mois) {
+    Paiement::paiementMensuel11Mois = paiementMensuel11Mois;
+}
 
 int Paiement::getPaiementAnnuel() const {
     return paiementAnnuel;
@@ -42,4 +60,12 @@ int Paiement::getTotal() const {
 
 void Paiement::setTotal(int total) {
     Paiement::total = total;
+}
+
+bool Paiement::isAPaye() const {
+    return aPaye;
+}
+
+void Paiement::setAPaye(bool aPaye) {
+    Paiement::aPaye = aPaye;
 }

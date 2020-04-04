@@ -64,6 +64,26 @@ public:
     void interfaceInfosNbJours(Paiement p);
 
     void interfacePaiement();
+
+    void displayDates(Reservation r);
+
+    void displayReservation(Reservation r);
+
+    void displayClient(Client c);
+
+    void displayBateau(Bateau b);
+
+    void displayPlace(Place p);
+
+    void showPrices(Reservation r);
+
+    void displayReservations(vector<Reservation> r);
+
+    void interfaceNewClientAdded();
+
+    void interfaceListeReservations();
+
+    string displayDate(Date d);
 };
 
 

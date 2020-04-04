@@ -1,13 +1,13 @@
 <ListeDesClients>
     <Client>
-        <id>1</id>
-        <nom>DUPONT</nom>
-        <prenom>Martin</prenom>
-        <email>dupont.martin@gmail.com</email>
-        <numadresse>7</numadresse>
-        <adresse>avenue des Eglantiers</adresse>
-        <cp>75000</cp>
-        <ville>Paris</ville>
+        <id>3</id>
+        <nom>LAFONT</nom>
+        <prenom>Richard</prenom>
+        <email>lafont-richard@gmail.com</email>
+        <numadresse>8</numadresse>
+        <adresse>impasse des Deux</adresse>
+        <cp>64100</cp>
+        <ville>Bayonne</ville>
     </Client>
     <Client>
         <id>2</id>
@@ -20,13 +20,13 @@
         <ville>Bordeaux</ville>
     </Client>
     <Client>
-        <id>3</id>
-        <nom>LAFONT</nom>
-        <prenom>Richard</prenom>
-        <email>lafont-richard@gmail.com</email>
-        <numadresse>8</numadresse>
-        <adresse>impasse des Deux</adresse>
-        <cp>64100</cp>
-        <ville>Bayonne</ville>
+        <id>1</id>
+        <nom>DUPONT</nom>
+        <prenom>Martin</prenom>
+        <email>dupont.martin@gmail.com</email>
+        <numadresse>7</numadresse>
+        <adresse>avenue des Eglantiers</adresse>
+        <cp>75000</cp>
+        <ville>Paris</ville>
     </Client>
 </ListeDesClients>
