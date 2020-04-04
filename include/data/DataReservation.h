@@ -24,6 +24,8 @@ public:
     vector<Reservation> addReservation(Reservation r);
 
     void saveReservations(vector<Reservation> r);
+
+    string convertVectorIntToString(vector<int> v);
 };
 
 

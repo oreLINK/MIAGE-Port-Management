@@ -14,6 +14,7 @@
 #include "include/data/DataDate.h"
 #include "include/data/DataReservation.h"
 #include "include/BateauType.h"
+#include "include/Calendrier.h"
 
 #include <sstream>
 #include <cctype>
@@ -64,7 +65,7 @@ void GestionPort::createReservation() {
     igp.interfaceChoixClient();
     Client client = chooseClient();
     r.setIdClient(client.getId());
-    igp.interfaceClientInfo(dataClientGP.extractClientFromID(dataClientGP.importClientsFile(), r.getId()));
+    igp.interfaceClientInfo(dataClientGP.extractClientFromID(dataClientGP.importClientsFile(), r.getIdClient()));
 
     //choix des suppléments (eau et/ou electricité)
     igp.interfaceChoixSupplements();
@@ -322,11 +323,14 @@ void GestionPort::createNewClient() {
     c.setAdresse(clientNouvelleAdresse().c_str());
     c.setCp(clientNouveauCP().c_str());
     c.setVille(clientNouvelleVille().c_str());
-    dataClientGP.createNewClientFile(dataClientGP.addNewClient(c));
+    vector<Client> vC = dataClientGP.addNewClient(c);
+    dataClientGP.createNewClientFile(vC);
+    igp.interfaceNewClientAdded();
+
 }
 
 string GestionPort::clientNouveauNom() {
-    string choice = igp.getCin("Nom ?", false);
+    string choice = igp.getCinLine("Nom ?", false);
     if (checkWantHome(choice)) {
         igp.info("Vous avez choisi de revenir à l'accueil", true); //affichage d'une information
         igp.home(); //affichage de l'interface d'accueil
@@ -390,6 +394,16 @@ string GestionPort::clientNouvelleAdresse() {
     }
     return choice;
 }
+
+/**
+char* GestionPort::convertStringToChar(string cara){
+    char choice[cara.length()];
+    for (int i = 0; i< sizeof(choice);i++){
+        choice[i] = cara[i];
+    }
+    return choice;
+}
+ **/
 
 string GestionPort::clientNouveauCP() {
     string choice = igp.getCin("Code postal ?", false);
@@ -556,27 +570,26 @@ bool GestionPort::chooseIfClientWantAbonnement() {
 
 Paiement GestionPort::getPaiement(Reservation r) {
     Paiement p;
+    Tarifs t;
 
     //si c'est un abonnement
     if (r.isAbonnement()) {
         int nbJours = 365;
+        p.setNbJours(nbJours);
+
         int paiementAnnuelSansSupplements = getPaiementAnnuel(r);
         int paiementAnnuel = paiementAnnuelSansSupplements + (getPaiementJournalierSupplements(r) * 365);
         p.setPaiementAnnuel(paiementAnnuel);
+        p.setTotal(paiementAnnuel);
 
-        /**
-        int* paiementMensuelSansSupplements = getPaiementMensuel(r);
-        int paiementJournalierSupplements = getPaiementJournalierSupplements(r);
-        int paiementMensuelSupplements = paiementJournalierSupplements*30;
-        int* paiementMensuel = nullptr;
-
-        for(int i = 0; i< sizeof(paiementMensuelSansSupplements);i++){
-            paiementMensuel[i] = paiementMensuelSansSupplements[i]+paiementMensuelSupplements;
-        }
-        for(int j = 0; j < sizeof(paiementMensuel); j++){
-            r.getPaiement().set
-        }
-        **/
+        int paiementMensuelPremierMoisSansSupplements = getPaiementMensuel(r,t.typePaiement.paiementMensuelPremierMois);
+        int paiementMensuel11MoisSansSupplements = getPaiementMensuel(r,t.typePaiement.paiementMensuel11Mois);
+        int paiementMensuelPremierMoisDesSupplements = getPaiementMensuelSupplement(r,true);
+        int paiementMensuel11MoisDesSupplements = getPaiementMensuelSupplement(r, false);
+        int paiementMensuelPremierMois = paiementMensuelPremierMoisSansSupplements+paiementMensuelPremierMoisDesSupplements;
+        int paiementMensuel11Mois = paiementMensuel11MoisSansSupplements+paiementMensuel11MoisDesSupplements;
+        p.setPaiementMensuelPremierMois(paiementMensuelPremierMois);
+        p.setPaiementMensuel11Mois(paiementMensuel11Mois);
 
     } else {
         int nbJours = askClientNombreJours();
@@ -590,6 +603,47 @@ Paiement GestionPort::getPaiement(Reservation r) {
     }
     return p;
 }
+
+int GestionPort::getPaiementMensuelSupplement(Reservation r, bool isPremierMois){
+    Tarifs t;
+    int paiement = 0;
+    if(r.isSupplementElec() && r.isSupplementEau()){
+        if(isPremierMois){
+            paiement = t.supplement.deuxSupplements.supplementsPremierMois;
+        } else {
+            paiement = t.supplement.deuxSupplements.supplements11Mois;
+        }
+    } else if((!r.isSupplementEau() && r.isSupplementElec()) || (r.isSupplementEau() && !r.isSupplementElec())){
+        if(isPremierMois){
+            paiement = t.supplement.unSupplement.supplementPremierMois;
+        } else {
+            paiement = t.supplement.unSupplement.supplement11Mois;
+        }
+    }
+    return paiement;
+}
+
+/**
+int GestionPort::getPaiementSupplementParMois(Reservation r, int paiementJournalierSupplements){
+    int nombreJours;
+    switch (r.getDateArrivee().getMonth()){
+        case 1,3,5,7,8,10,12:
+            nombreJours = 31;
+            break:
+        case 4,6,9,11:
+            nombreJours = 30;
+            break:
+        case 2:
+            if(ifYearBissextile(r.getDateArrivee())){
+                nombreJours = 29;
+            } else {
+                nombreJours = 28;
+            }
+            break;
+    }
+    return nombreJours;
+}
+ **/
 
 /**
  * Fonction qui va demander au client non abonné combien de jours il veut rester
@@ -661,10 +715,64 @@ int GestionPort::getPaiementJournalier(Reservation r) {
     return paiementJournalier;
 }
 
-int GestionPort::getPaiementMensuelPremierMois(Reservation r){
-    int paiementMensuelPremierMois = 0;
+/**
+* Fonction qui va retourner le paiement journalier du client non-abonné en fonction de sa réservation
+* @param r la réservation du client non-abonné
+* @return son paiement journalier
+*/
+int GestionPort::getPaiementMensuel(Reservation r, string typePaiement) {
+    int paiement = 0;
     Tarifs t;
-    return paiementMensuelPremierMois;
+    //si le client est à quai
+    if (dataplaceGP.extractPlaceFromNumber(dataplaceGP.importPlacesFile(), r.getNumeroPlace()).isDock()) {
+        //si le bateau est un voilier non habitable
+        if (r.getBateau().getTypeBateau() == voilierNH) {
+            if(typePaiement == t.typePaiement.paiementMensuelPremierMois){
+                paiement = t.abonne.quai.voilierNonHabitable.paiementMensuelPremierMois;
+            } else {
+                paiement = t.abonne.quai.voilierNonHabitable.paiementMensuel11Mois;
+            }
+        } //si le bateau est un voilier de type 1
+        else if (r.getBateau().getTypeBateau() == voilierT1) {
+            if(typePaiement == t.typePaiement.paiementMensuelPremierMois){
+                paiement = t.abonne.quai.voilierType1.paiementMensuelPremierMois;
+            } else {
+                paiement = t.abonne.quai.voilierType1.paiementMensuel11Mois;
+            }
+        } //sinon le bateau est un voilier de type 2
+        else {
+            if(typePaiement == t.typePaiement.paiementMensuelPremierMois){
+                paiement = t.abonne.quai.voilierType2.paiementMensuelPremierMois;
+            } else {
+                paiement = t.abonne.quai.voilierType2.paiementMensuel11Mois;
+            }
+        }
+    } //sinon il est hors-quai
+    else {
+        //si le bateau est un voilier non habitable
+        if (r.getBateau().getTypeBateau() == voilierNH) {
+            if(typePaiement == t.typePaiement.paiementMensuelPremierMois){
+                paiement = t.abonne.nonQuai.voilierNonHabitable.paiementMensuelPremierMois;
+            } else {
+                paiement = t.abonne.nonQuai.voilierNonHabitable.paiementMensuel11Mois;
+            }
+        } //si le bateau est un voilier de type 1
+        else if (r.getBateau().getTypeBateau() == voilierT1) {
+            if(typePaiement == t.typePaiement.paiementMensuelPremierMois){
+                paiement = t.abonne.nonQuai.voilierType1.paiementMensuelPremierMois;
+            } else {
+                paiement = t.abonne.nonQuai.voilierType1.paiementMensuel11Mois;
+            }
+        } //sinon le bateau est un voilier de type 2
+        else {
+            if(typePaiement == t.typePaiement.paiementMensuelPremierMois){
+                paiement = t.abonne.nonQuai.voilierType2.paiementMensuelPremierMois;
+            } else {
+                paiement = t.abonne.nonQuai.voilierType2.paiementMensuel11Mois;
+            }
+        }
+    }
+    return paiement;
 }
 
 /**

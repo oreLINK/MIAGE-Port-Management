@@ -30,6 +30,8 @@ public:
     vector<Client> addNewClient(Client c);
 
     void createNewClientFile(vector<Client> listClients);
+
+    vector<Client> switchClientList(vector<Client> vC);
 };
 
 

@@ -40,7 +40,7 @@ void DataReservation::createReservationsFile() {
     r.setSupplementEau(supplementEau);
     bool abonnement = false;
     r.setAbonnement(abonnement);
-    Paiement paie(15, 42, 0, 0, 0,630);
+    Paiement paie(15, 42, 0, 0, 0,630,false);
     r.setPaiement(paie);
 
     XMLNode *nRoot = xmlDoc.NewElement(xmlReservationsDR.reservation.Reservation);
@@ -118,12 +118,15 @@ void DataReservation::createReservationsFile() {
     paiementA->SetText(r.getPaiement().getPaiementAnnuel());
     XMLElement *paiementT = xmlDoc.NewElement(xmlReservationsDR.reservation.paiement.total);
     paiementT->SetText(r.getPaiement().getTotal());
+    XMLElement *isPaid = xmlDoc.NewElement(xmlReservationsDR.reservation.paiement.isPaid);
+    isPaid->SetText(r.getPaiement().isAPaye());
     paiementRoot->InsertFirstChild(nombreJours);
     paiementRoot->InsertAfterChild(nombreJours, paiementJ);
     paiementRoot->InsertAfterChild(paiementJ, paiementM1);
     paiementRoot->InsertAfterChild(paiementM1, paiementM11);
     paiementRoot->InsertAfterChild(paiementM11, paiementA);
-    paiementRoot->InsertEndChild(paiementT);
+    paiementRoot->InsertAfterChild(paiementA, paiementT);
+    paiementRoot->InsertEndChild(isPaid);
     nRoot->InsertAfterChild(rSuppAbonne, paiementRoot);
 
     pRoot->InsertFirstChild(nRoot);
@@ -194,7 +197,8 @@ vector<Reservation> DataReservation::importReservationsFile() {
                           datadr.extractIntFromXML(eResult,paiementElement,xmlReservationsDR.reservation.paiement.paiementMensuelPremierMois),
                           datadr.extractIntFromXML(eResult,paiementElement,xmlReservationsDR.reservation.paiement.paiementMensuel11Mois),
                           datadr.extractIntFromXML(eResult,paiementElement,xmlReservationsDR.reservation.paiement.paiementAnnuel),
-                          datadr.extractIntFromXML(eResult,paiementElement,xmlReservationsDR.reservation.paiement.total));
+                          datadr.extractIntFromXML(eResult,paiementElement,xmlReservationsDR.reservation.paiement.total),
+                          datadr.extractBoolFromXML(eResult,paiementElement,xmlReservationsDR.reservation.paiement.isPaid));
 
             Reservation r(id,idClient,b,numPlace,dA,dD,siSuppElec,siSuppWater,siAbonnement,paie);
 
@@ -212,6 +216,7 @@ vector<Reservation> DataReservation::addReservation(Reservation r){
     vR.push_back(r);
     return vR;
 }
+
 
 void DataReservation::saveReservations(vector<Reservation> r){
     XMLDocument xmlDoc;
@@ -293,12 +298,15 @@ void DataReservation::saveReservations(vector<Reservation> r){
         paiementA->SetText(r[i].getPaiement().getPaiementAnnuel());
         XMLElement *paiementT = xmlDoc.NewElement(xmlReservationsDR.reservation.paiement.total);
         paiementT->SetText(r[i].getPaiement().getTotal());
+        XMLElement *isPaid = xmlDoc.NewElement(xmlReservationsDR.reservation.paiement.isPaid);
+        isPaid->SetText(r[i].getPaiement().isAPaye());
         paiementRoot->InsertFirstChild(nombreJours);
         paiementRoot->InsertAfterChild(nombreJours, paiementJ);
         paiementRoot->InsertAfterChild(paiementJ, paiementM1);
         paiementRoot->InsertAfterChild(paiementM1, paiementM11);
         paiementRoot->InsertAfterChild(paiementM11, paiementA);
-        paiementRoot->InsertEndChild(paiementT);
+        paiementRoot->InsertAfterChild(paiementA, paiementT);
+        paiementRoot->InsertEndChild(isPaid);
         nRoot->InsertAfterChild(rSuppAbonne, paiementRoot);
 
         pRoot->InsertFirstChild(nRoot);

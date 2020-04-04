@@ -68,10 +68,6 @@ public:
 
     int getPaiementAnnuel(Reservation r);
 
-    int *getPaiementMensuel(Reservation r);
-
-    void showPrices(Reservation r);
-
     Date getDateDepartAbonnement(Date d);
 
     Date getDateDepartNonAbonnement(Reservation r);
@@ -82,9 +78,15 @@ public:
 
     Date convertJoursInYearsMonthDays(Date d, int nbJours, vector<int> nbJoursParMois);
 
-    int getPaiementMensuelPremierMois(Reservation r);
-
     Place choosePlace(vector<Place> listePlacesLibres);
+
+    char * convertStringToChar(string cara);
+
+    int getPaiementMensuel(Reservation r, string typePaiement);
+
+    int getPaiementSupplementParMois(Reservation r, int paiementJournalierSupplements);
+
+    int getPaiementMensuelSupplement(Reservation r, bool isPremierMois);
 };
 
 

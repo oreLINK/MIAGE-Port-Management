@@ -25,11 +25,9 @@ void DataClient::createFirstClientFile() {
     Client c3(3, "LAFONT", "Richard", "lafont-richard@gmail.com", 8, "impasse des Deux", "64100", "Bayonne");
 
     vector<Client> listeClientInitial;
-    listeClientInitial.push_back(c3);
-    listeClientInitial.push_back(c2);
     listeClientInitial.push_back(c1);
-
-    displayClients(listeClientInitial);
+    listeClientInitial.push_back(c2);
+    listeClientInitial.push_back(c3);
 
     for (int i = 0; i < listeClientInitial.size(); i++) {
         XMLNode *nRoot = xmlDoc.NewElement("Client");
@@ -164,17 +162,34 @@ int DataClient::numberOfClients(vector<Client> c) {
     return number;
 }
 
+/**
+ * Fonction qui va ajouter un nouveau client à la liste des clients déjà présent
+ * @param c Client à ajouter
+ * @return le vecteur avec le client ajouté
+ */
 vector<Client> DataClient::addNewClient(Client c) {
-    vector<Client> newList = importClientsFile();
-    c.setId(numberOfClients(newList) + 1);
-    newList.push_back(c);
-    for (int i = newList.size(); i > 0; i--) {
-        newList.push_back(newList[i]);
+    vector<Client> liste = importClientsFile();
+    liste = switchClientList(liste);
+    int newSize = numberOfClients(liste)+1;
+    c.setId(newSize);
+    liste.push_back(c);
+    return liste;
+}
+
+vector<Client> DataClient::switchClientList(vector<Client> vC){
+    vector<Client> vCN;
+    for(int i = vC.size()-1; i>=0; i--){
+        vCN.push_back(vC[i]);
     }
-    return newList;
+    return vCN;
 }
 
 void DataClient::createNewClientFile(vector<Client> listClients) {
+
+    if(remove(xmlFilesNamedc.linkClientsXMLFile) != 0){
+    } else {
+    }
+
     XMLDocument xmlDoc;
     XMLNode *pRoot = xmlDoc.NewElement("ListeDesClients");
 
