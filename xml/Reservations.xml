@@ -1,13 +1,13 @@
 <ListeDesReservations>
     <Reservation>
         <id>2</id>
-        <idClient>13</idClient>
+        <idClient>1</idClient>
         <Bateau>
             <taille>78</taille>
             <siCabine>true</siCabine>
             <type>Voilier de type 2</type>
         </Bateau>
-        <numeroPlace/>
+        <numeroPlace>16</numeroPlace>
         <DateArrivee>
             <annee>2020</annee>
             <mois>4</mois>
@@ -18,28 +18,28 @@
             <mois>4</mois>
             <jour>4</jour>
         </DateDepart>
-        <supplementElec>false</supplementElec>
-        <supplementEau>false</supplementEau>
+        <supplementElec>true</supplementElec>
+        <supplementEau>true</supplementEau>
         <abonnement>true</abonnement>
         <Paiement>
             <nombreJours>365</nombreJours>
             <paiementJournalier>0</paiementJournalier>
-            <paiementMensuelPremierMois>63</paiementMensuelPremierMois>
-            <paiementMensuel11Mois>67</paiementMensuel11Mois>
-            <paiementAnnuel>800</paiementAnnuel>
-            <total>800</total>
+            <paiementMensuelPremierMois>358</paiementMensuelPremierMois>
+            <paiementMensuel11Mois>372</paiementMensuel11Mois>
+            <paiementAnnuel>4450</paiementAnnuel>
+            <total>4450</total>
             <estPaye>true</estPaye>
         </Paiement>
     </Reservation>
     <Reservation>
         <id>1</id>
-        <idClient>11</idClient>
+        <idClient>1</idClient>
         <Bateau>
             <taille>56</taille>
             <siCabine>true</siCabine>
             <type>Voilier de type 2</type>
         </Bateau>
-        <numeroPlace/>
+        <numeroPlace>11</numeroPlace>
         <DateArrivee>
             <annee>2020</annee>
             <mois>3</mois>

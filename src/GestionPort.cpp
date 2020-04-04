@@ -779,55 +779,6 @@ int GestionPort::getPaiementMensuel(Reservation r, string typePaiement) {
 }
 
 /**
- * Fonction qui va retourner le paiement mensuel du client abonné en fonction de sa réservation
- * @param r la réservation du client abonné
- * @return son paiement mensuel
-
-int* GestionPort::getPaiementMensuel(Reservation r){
-    int paiementAnnuel[12] = {0};
-    Tarifs t;
-    //si le client est à quai
-    if(r.getPlace().isDock()){
-        //si le bateau est un voilier non habitable
-        if(r.getBateau().getTypeBateau() == voilierNH){
-            for(int i = 0; i< sizeof(paiementAnnuel);i++){
-                paiementAnnuel[i] = t.abonne.quai.voilierNonHabitable.paiementMensuel[i];
-            }
-        } //si le bateau est un voilier de type 1
-        else if (r.getBateau().getTypeBateau() == voilierT1) {
-            for(int i = 0; i< sizeof(paiementAnnuel);i++){
-                paiementAnnuel[i] = t.abonne.quai.voilierType1.paiementMensuel[i];
-            }
-        } //sinon le bateau est un voilier de type 2
-        else {
-            for(int i = 0; i< sizeof(paiementAnnuel);i++){
-                paiementAnnuel[i] = t.abonne.quai.voilierType2.paiementMensuel[i];
-            }
-        }
-    } //sinon il est hors-quai
-    else {
-        //si le bateau est un voilier non habitable
-        if(r.getBateau().getTypeBateau() == voilierNH){
-            for(int i = 0; i< sizeof(paiementAnnuel);i++){
-                paiementAnnuel[i] = t.abonne.nonQuai.voilierNonHabitable.paiementMensuel[i];
-            }
-        } //si le bateau est un voilier de type 1
-        else if (r.getBateau().getTypeBateau() == voilierT1) {
-            for(int i = 0; i< sizeof(paiementAnnuel);i++){
-                paiementAnnuel[i] = t.abonne.nonQuai.voilierType1.paiementMensuel[i];
-            }
-        } //sinon le bateau est un voilier de type 2
-        else {
-            for(int i = 0; i< sizeof(paiementAnnuel);i++){
-                paiementAnnuel[i] = t.abonne.nonQuai.voilierType2.paiementMensuel[i];
-            }
-        }
-    }
-    return paiementAnnuel;
-}
- **/
-
-/**
  * Fonction qui va retourner le paiement annuel du client abonné en fonction de sa réservation
  * @param r la réservation du client abonné
  * @return son paiement annuel

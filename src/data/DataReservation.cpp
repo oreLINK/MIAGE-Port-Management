@@ -246,7 +246,7 @@ void DataReservation::saveReservations(vector<Reservation> r){
         nRoot->InsertAfterChild(rIDClient, bateauRoot);
 
         XMLElement *rIDPlace = xmlDoc.NewElement(xmlReservationsDR.reservation.numeroPlace);
-        rIDClient->SetText(r[i].getNumeroPlace());
+        rIDPlace->SetText(r[i].getNumeroPlace());
         nRoot->InsertAfterChild(bateauRoot, rIDPlace);
 
         XMLNode *dateArriveeRoot = xmlDoc.NewElement(xmlReservationsDR.reservation.DateArrivee);
