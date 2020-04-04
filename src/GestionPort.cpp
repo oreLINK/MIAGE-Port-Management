@@ -28,7 +28,6 @@ DataDate dataDateGP;
 DataReservation dataReservationGP;
 BateauType bateauType;
 
-
 string voilierNH = "Voilier non habitable";
 string voilierT1 = "Voilier de type 1";
 string voilierT2 = "Voilier de type 2";
@@ -101,6 +100,10 @@ void GestionPort::createReservation() {
 
     //affichage des prix
     igp.showPrices(r);
+
+    //verifie si le client a payé
+    Paiement ancienPaiement = r.getPaiement();
+    r.setPaiement(askClientSiPaye(ancienPaiement));
 
     //enregistrement de la réservation
     dataReservationGP.saveReservations(dataReservationGP.addReservation(r));
@@ -459,7 +462,7 @@ bool GestionPort::checkIfClientWantElecSupplement() {
             igp.info("Vous avez choisi de revenir à l'accueil", true); //affichage d'une information
             igp.home(); //affichage de l'interface d'accueil
         }
-        if (!checkSupplementsReponse(choice)) {
+        if (!checkAskClientResponseYesNo(choice)) {
             //on reste dans la boucle d'erreur
             igp.erreur("Format incompatible", false); //affichage d'une erreur
             cin.clear();
@@ -493,7 +496,7 @@ bool GestionPort::checkIfClientWantWaterSupplement() {
             igp.info("Vous avez choisi de revenir à l'accueil", true); //affichage d'une information
             igp.home(); //affichage de l'interface d'accueil
         }
-        if (!checkSupplementsReponse(choice)) {
+        if (!checkAskClientResponseYesNo(choice)) {
             //on reste dans la boucle d'erreur
             igp.erreur("Format incompatible", false); //affichage d'une erreur
             cin.clear();
@@ -512,7 +515,7 @@ bool GestionPort::checkIfClientWantWaterSupplement() {
  * @param choice réponse du client
  * @return vrai si la réponse est soit "oui" ou "non", faux sinon
  */
-bool GestionPort::checkSupplementsReponse(string choice) {
+bool GestionPort::checkAskClientResponseYesNo(string choice) {
     bool ifOK = false;
     if (choice == "oui" || choice == "non") {
         ifOK = true;
@@ -553,7 +556,7 @@ bool GestionPort::chooseIfClientWantAbonnement() {
             igp.info("Vous avez choisi de revenir à l'accueil", true); //affichage d'une information
             igp.home(); //affichage de l'interface d'accueil
         }
-        if (!checkSupplementsReponse(choice)) {
+        if (!checkAskClientResponseYesNo(choice)) {
             //on reste dans la boucle d'erreur
             igp.erreur("Format incompatible", false); //affichage d'une erreur
             cin.clear();
@@ -964,6 +967,38 @@ Date GestionPort::convertJoursInYearsMonthDays(Date d, int nbJours, vector<int> 
     dateDepart.setDay(jourDepart);
 
     return dateDepart;
+}
+
+Paiement GestionPort::askClientSiPaye(Paiement p){
+    string choice = igp.getCin("Le client a-t-il payé ? [oui/non]", false);
+    bool error = true;
+    bool ifFirst = true;
+    bool aPaye = false;
+
+    while (error) {
+        if (!ifFirst) {
+            choice = igp.getCin("Le client a-t-il payé ? [oui/non]", false);
+        }
+        ifFirst = false;
+        if (checkWantHome(choice)) {
+            error = false;
+            igp.info("Vous avez choisi de revenir à l'accueil", true); //affichage d'une information
+            igp.home(); //affichage de l'interface d'accueil
+        }
+        if (!checkAskClientResponseYesNo(choice)) {
+            //on reste dans la boucle d'erreur
+            igp.erreur("Format incompatible", false); //affichage d'une erreur
+            cin.clear();
+            choice.empty();
+        } //sinon le format est compatible
+        else {
+            error = false;
+            aPaye = returnSupplementReponse(choice);
+        }
+    }
+
+    p.setAPaye(aPaye);
+    return p;
 }
 
 
