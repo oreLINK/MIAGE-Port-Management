@@ -1,5 +1,5 @@
 //
-// Created by Aurélien BERTRAND on 22/03/2020.
+// Created by Yessoh BONNY on 22/03/2020.
 //
 
 #ifndef MIAGE_PORT_MANAGEMENT_BATEAU_H

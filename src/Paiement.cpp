@@ -1,5 +1,5 @@
 //
-// Created by Aurélien BERTRAND on 28/03/2020.
+// Created by Yessoh BONNY on 28/03/2020.
 //
 
 #include "include/Paiement.h"
