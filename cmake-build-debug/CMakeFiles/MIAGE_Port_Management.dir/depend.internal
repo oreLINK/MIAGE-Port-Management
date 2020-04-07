@@ -144,6 +144,7 @@ CMakeFiles/MIAGE_Port_Management.dir/src/data/DataDate.cpp.o
  /Users/orepro/Desktop/MIAGE-Port-Management/src/data/DataDate.cpp
 CMakeFiles/MIAGE_Port_Management.dir/src/data/DataPlace.cpp.o
  ../include/Bateau.h
+ ../include/BateauType.h
  ../include/Client.h
  ../include/Date.h
  ../include/NombrePlaces.h
@@ -154,7 +155,9 @@ CMakeFiles/MIAGE_Port_Management.dir/src/data/DataPlace.cpp.o
  ../include/XMLPlaces.h
  ../include/data/Data.h
  ../include/data/DataPlace.h
+ ../include/data/DataReservation.h
  ../include/data/XMLFilesName.h
+ ../include/data/XMLReservations.h
  ../include/tinyxml2.h
  /Users/orepro/Desktop/MIAGE-Port-Management/src/data/DataPlace.cpp
 CMakeFiles/MIAGE_Port_Management.dir/src/data/DataReservation.cpp.o
@@ -167,6 +170,7 @@ CMakeFiles/MIAGE_Port_Management.dir/src/data/DataReservation.cpp.o
  ../include/Reservation.h
  ../include/Tarifs.h
  ../include/data/Data.h
+ ../include/data/DataPlace.h
  ../include/data/DataReservation.h
  ../include/data/XMLFilesName.h
  ../include/data/XMLReservations.h

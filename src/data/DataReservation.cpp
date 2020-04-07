@@ -8,12 +8,14 @@
 #include <iostream>
 #include <vector>
 #include "include/data/DataReservation.h"
+#include "include/data/DataPlace.h"
 
 XMLFilesName xmlFilesName;
 XMLReservations xmlReservationsDR;
 
 Data datadr;
 BateauType bateauTypeDR;
+DataPlace dataPlaceDR;
 
 
 /**
@@ -132,6 +134,8 @@ void DataReservation::createReservationsFile() {
     pRoot->InsertFirstChild(nRoot);
     xmlDoc.InsertFirstChild(pRoot);
     XMLError eResult = xmlDoc.SaveFile(xmlFilesName.linkReservationsXMLFile);
+
+    dataPlaceDR.changePlaceBusy(r.getNumeroPlace());
 }
 
 /**
@@ -310,7 +314,10 @@ void DataReservation::saveReservations(vector<Reservation> r){
         nRoot->InsertAfterChild(rSuppAbonne, paiementRoot);
 
         pRoot->InsertFirstChild(nRoot);
+
+
     }
+    dataPlaceDR.changePlaceBusy(r[r.size()-1].getNumeroPlace());
     xmlDoc.InsertFirstChild(pRoot);
     XMLError eResult = xmlDoc.SaveFile(xmlFilesName.linkReservationsXMLFile);
 }

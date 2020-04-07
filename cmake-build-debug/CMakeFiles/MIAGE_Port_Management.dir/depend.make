@@ -143,6 +143,7 @@ CMakeFiles/MIAGE_Port_Management.dir/src/data/DataDate.cpp.o: ../include/tinyxml
 CMakeFiles/MIAGE_Port_Management.dir/src/data/DataDate.cpp.o: ../src/data/DataDate.cpp
 
 CMakeFiles/MIAGE_Port_Management.dir/src/data/DataPlace.cpp.o: ../include/Bateau.h
+CMakeFiles/MIAGE_Port_Management.dir/src/data/DataPlace.cpp.o: ../include/BateauType.h
 CMakeFiles/MIAGE_Port_Management.dir/src/data/DataPlace.cpp.o: ../include/Client.h
 CMakeFiles/MIAGE_Port_Management.dir/src/data/DataPlace.cpp.o: ../include/Date.h
 CMakeFiles/MIAGE_Port_Management.dir/src/data/DataPlace.cpp.o: ../include/NombrePlaces.h
@@ -153,7 +154,9 @@ CMakeFiles/MIAGE_Port_Management.dir/src/data/DataPlace.cpp.o: ../include/Tarifs
 CMakeFiles/MIAGE_Port_Management.dir/src/data/DataPlace.cpp.o: ../include/XMLPlaces.h
 CMakeFiles/MIAGE_Port_Management.dir/src/data/DataPlace.cpp.o: ../include/data/Data.h
 CMakeFiles/MIAGE_Port_Management.dir/src/data/DataPlace.cpp.o: ../include/data/DataPlace.h
+CMakeFiles/MIAGE_Port_Management.dir/src/data/DataPlace.cpp.o: ../include/data/DataReservation.h
 CMakeFiles/MIAGE_Port_Management.dir/src/data/DataPlace.cpp.o: ../include/data/XMLFilesName.h
+CMakeFiles/MIAGE_Port_Management.dir/src/data/DataPlace.cpp.o: ../include/data/XMLReservations.h
 CMakeFiles/MIAGE_Port_Management.dir/src/data/DataPlace.cpp.o: ../include/tinyxml2.h
 CMakeFiles/MIAGE_Port_Management.dir/src/data/DataPlace.cpp.o: ../src/data/DataPlace.cpp
 
@@ -166,6 +169,7 @@ CMakeFiles/MIAGE_Port_Management.dir/src/data/DataReservation.cpp.o: ../include/
 CMakeFiles/MIAGE_Port_Management.dir/src/data/DataReservation.cpp.o: ../include/Reservation.h
 CMakeFiles/MIAGE_Port_Management.dir/src/data/DataReservation.cpp.o: ../include/Tarifs.h
 CMakeFiles/MIAGE_Port_Management.dir/src/data/DataReservation.cpp.o: ../include/data/Data.h
+CMakeFiles/MIAGE_Port_Management.dir/src/data/DataReservation.cpp.o: ../include/data/DataPlace.h
 CMakeFiles/MIAGE_Port_Management.dir/src/data/DataReservation.cpp.o: ../include/data/DataReservation.h
 CMakeFiles/MIAGE_Port_Management.dir/src/data/DataReservation.cpp.o: ../include/data/XMLFilesName.h
 CMakeFiles/MIAGE_Port_Management.dir/src/data/DataReservation.cpp.o: ../include/data/XMLReservations.h

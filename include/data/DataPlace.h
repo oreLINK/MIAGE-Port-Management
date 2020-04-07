@@ -27,6 +27,14 @@ public:
     bool checkNumberPlace(vector<Place> listPlaces, int choice);
 
     Place extractPlaceFromNumber(vector<Place> listPlaces, int choice);
+
+    vector<int> extractListPlaceOccupied(vector<Reservation> r);
+
+    vector<int> extractListPlaceOccupied();
+
+    vector<int> compareAndReturnPlacesFree(vector<int> listePlaces, vector<int> listeOccupee);
+
+    void changePlaceBusy(int numberPlace);
 };
 
 

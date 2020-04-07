@@ -85,7 +85,7 @@
         <ifTall>true</ifTall>
         <ifElec>true</ifElec>
         <ifWater>true</ifWater>
-        <ifBusy>false</ifBusy>
+        <ifBusy>true</ifBusy>
     </Place>
     <Place>
         <number>12</number>
@@ -93,7 +93,7 @@
         <ifTall>true</ifTall>
         <ifElec>true</ifElec>
         <ifWater>true</ifWater>
-        <ifBusy>false</ifBusy>
+        <ifBusy>true</ifBusy>
     </Place>
     <Place>
         <number>13</number>

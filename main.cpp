@@ -16,12 +16,24 @@ Interface it;
 DataPlace dataPlace;
 DataClient dataClient;
 DataReservation dataReservation;
+Data dataM;
+
+/**
+
+* @startuml
+
+* car --|> wheel
+
+* @enduml
+
+**/
 
 /**
  * Classe principale de l'application. Lance l'application.
  * @return
  */
 int main() {
+    dataM.createXMLFolder();
     if(!dataPlace.checkIfPlacesFileExist()){
         dataPlace.createFirstPlacesFile();
     }

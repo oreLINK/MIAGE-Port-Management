@@ -1,0 +1,12 @@
+@startuml
+skinparam classAttributeIconSize 0
+class Bateau {
+  -int taille
+  -bool siCabine
+  -string typeBateau
+}
+
+class Feu {
+
+}
+@enduml

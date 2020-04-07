@@ -6,10 +6,10 @@
 #define MIAGE_PORT_MANAGEMENT_XMLFILESNAME_H
 
 struct XMLFilesName {
-    char const * linkPlacesXMLFile = "../xml/Places.xml";
-    char const * linkClientsXMLFile = "../xml/Clients.xml";
-    string linkClientsXMLFileString = "../xml/Clients.xml";
-    char const * linkReservationsXMLFile = "../xml/Reservations.xml";
+    char const * linkPlacesXMLFile = "xml/Places.xml";
+    char const * linkClientsXMLFile = "xml/Clients.xml";
+    string linkClientsXMLFileString = "xml/Clients.xml";
+    char const * linkReservationsXMLFile = "xml/Reservations.xml";
 };
 
 #endif //MIAGE_PORT_MANAGEMENT_XMLFILESNAME_H

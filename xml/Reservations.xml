@@ -7,16 +7,16 @@
             <siCabine>true</siCabine>
             <type>Voilier de type 2</type>
         </Bateau>
-        <numeroPlace>16</numeroPlace>
+        <numeroPlace>12</numeroPlace>
         <DateArrivee>
             <annee>2020</annee>
             <mois>4</mois>
-            <jour>4</jour>
+            <jour>7</jour>
         </DateArrivee>
         <DateDepart>
             <annee>2021</annee>
             <mois>4</mois>
-            <jour>4</jour>
+            <jour>7</jour>
         </DateDepart>
         <supplementElec>true</supplementElec>
         <supplementEau>true</supplementEau>

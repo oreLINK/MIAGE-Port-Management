@@ -246,18 +246,6 @@ include/data/DataClient.h
 include/data/DataReservation.h
 /Users/orepro/Desktop/MIAGE-Port-Management/include/data/DataReservation.h
 
-/Users/orepro/Desktop/MIAGE-Port-Management/src/Bateau.cpp
-include/Bateau.h
-/Users/orepro/Desktop/MIAGE-Port-Management/src/include/Bateau.h
-
-/Users/orepro/Desktop/MIAGE-Port-Management/src/Client.cpp
-include/Client.h
-/Users/orepro/Desktop/MIAGE-Port-Management/src/include/Client.h
-
-/Users/orepro/Desktop/MIAGE-Port-Management/src/Date.cpp
-include/Date.h
-/Users/orepro/Desktop/MIAGE-Port-Management/src/include/Date.h
-
 /Users/orepro/Desktop/MIAGE-Port-Management/src/GestionPort.cpp
 include/GestionPort.h
 /Users/orepro/Desktop/MIAGE-Port-Management/src/include/GestionPort.h
@@ -316,22 +304,6 @@ include/data/DataClient.h
 include/data/DataReservation.h
 /Users/orepro/Desktop/MIAGE-Port-Management/src/include/data/DataReservation.h
 
-/Users/orepro/Desktop/MIAGE-Port-Management/src/Paiement.cpp
-include/Paiement.h
-/Users/orepro/Desktop/MIAGE-Port-Management/src/include/Paiement.h
-
-/Users/orepro/Desktop/MIAGE-Port-Management/src/Place.cpp
-include/Place.h
-/Users/orepro/Desktop/MIAGE-Port-Management/src/include/Place.h
-
-/Users/orepro/Desktop/MIAGE-Port-Management/src/Reservation.cpp
-include/Reservation.h
-/Users/orepro/Desktop/MIAGE-Port-Management/src/include/Reservation.h
-
-/Users/orepro/Desktop/MIAGE-Port-Management/src/Tarifs.cpp
-include/Tarifs.h
-/Users/orepro/Desktop/MIAGE-Port-Management/src/include/Tarifs.h
-
 /Users/orepro/Desktop/MIAGE-Port-Management/src/data/Data.cpp
 iostream
 -
@@ -350,6 +322,8 @@ sstream
 include/Reservation.h
 -
 include/Interface.h
+-
+sys/stat.h
 -
 include/data/Data.h
 /Users/orepro/Desktop/MIAGE-Port-Management/src/data/include/data/Data.h
@@ -427,6 +401,10 @@ vector
 -
 include/data/DataPlace.h
 /Users/orepro/Desktop/MIAGE-Port-Management/src/data/include/data/DataPlace.h
+include/data/DataReservation.h
+/Users/orepro/Desktop/MIAGE-Port-Management/src/data/include/data/DataReservation.h
+include/data/XMLFilesName.h
+/Users/orepro/Desktop/MIAGE-Port-Management/src/data/include/data/XMLFilesName.h
 
 /Users/orepro/Desktop/MIAGE-Port-Management/src/data/DataReservation.cpp
 include/Reservation.h
@@ -441,20 +419,6 @@ vector
 -
 include/data/DataReservation.h
 /Users/orepro/Desktop/MIAGE-Port-Management/src/data/include/data/DataReservation.h
-
-/Users/orepro/Desktop/MIAGE-Port-Management/src/tinyxml2.cpp
-string
--
-include/tinyxml2.h
-/Users/orepro/Desktop/MIAGE-Port-Management/src/include/tinyxml2.h
-new
--
-stddef.h
--
-stdarg.h
--
-cstddef
--
-cstdarg
--
+include/data/DataPlace.h
+/Users/orepro/Desktop/MIAGE-Port-Management/src/data/include/data/DataPlace.h
 

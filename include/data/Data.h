@@ -26,6 +26,8 @@ public:
     int extractIntFromXML(tinyxml2::XMLError eResult, tinyxml2::XMLElement *elementFather, const char *id);
 
     const char *extractCharFromXML(tinyxml2::XMLError eResult, tinyxml2::XMLElement *elementFather, const char *id);
+
+    void createXMLFolder();
 };
 
 

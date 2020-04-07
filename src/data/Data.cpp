@@ -11,6 +11,7 @@
 #include <sstream>
 #include <include/Reservation.h>
 #include <include/Interface.h>
+#include <sys/stat.h>
 #include "include/data/Data.h"
 #include "include/tinyxml2.h"
 #include "include/XMLPlaces.h"
@@ -25,6 +26,16 @@ using namespace std;
 Interface idata;
 
 Data::Data() {}
+
+/**
+ * Action qui va créer le dossier xml si celui-ci n'existe pas
+ */
+void Data::createXMLFolder(){
+    struct stat st = {0};
+    if (stat("xml/", &st) == -1) {
+        mkdir("xml/", 0700);
+    }
+}
 
 /**
  * Fonction qui va retourner l'integer d'un élément XML

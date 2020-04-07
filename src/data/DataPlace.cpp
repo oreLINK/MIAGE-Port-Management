@@ -8,9 +8,12 @@
 #include <iostream>
 #include <vector>
 #include "include/data/DataPlace.h"
+#include "include/data/DataReservation.h"
+#include "include/data/XMLFilesName.h"
 
 XMLFilesName xmlFilesNameDP;
 Data datadp;
+DataReservation dataRDP;
 
 /**
  * Action qui va créer le fichier XML initial des places de bateau lors du premier lancement du programme.
@@ -283,4 +286,161 @@ Place DataPlace::extractPlaceFromNumber(vector<Place> listPlaces, int choice) {
         }
     }
     return p;
+}
+
+vector<int> DataPlace::extractListPlaceOccupied(){
+    vector<int> listePlacesOccupied;
+    vector<Reservation> r = dataRDP.importReservationsFile();
+    for(int i = 0;i < r.size(); i++){
+        listePlacesOccupied.push_back(r[i].getNumeroPlace());
+        cout << "extractListPlaceOccupied : " << r[i].getNumeroPlace() << endl;
+    }
+    return listePlacesOccupied;
+}
+
+bool isOccupied(vector<int> listePlacesOccupees, int j){
+    bool isOccupied = false;
+    for(int i = 0; i < listePlacesOccupees.size(); i++){
+        if(listePlacesOccupees[i]==j){
+            isOccupied = true;
+            cout << "i" << i << "occupe" << endl;
+        }
+    }
+    return isOccupied;
+}
+
+/**
+ * Action qui va créer le fichier XML initial des places de bateau lors du premier lancement du programme.
+ * OPTI
+ */
+void DataPlace::changePlaceBusy(int numberPlace) {
+
+    vector<int> listePlaceOccupied = extractListPlaceOccupied();
+
+    if(remove(xmlFilesNameDP.linkPlacesXMLFile) != 0){
+    } else {
+    }
+
+    NombrePlaces nombrePlaces;
+    int comptNbPlacesQuaiPetites = nombrePlaces.quai.petites;
+    int comptNbPlacesQuaiGrandes = nombrePlaces.quai.grandes;
+    int comptNbPlacesHorsQuaiPetites = nombrePlaces.horsQuai.petites;
+    int comptNbPlacesHorsQuaiGrandes = nombrePlaces.horsQuai.grandes;
+
+    XMLDocument xmlDoc;
+    XMLPlaces xmlPlaces;
+    XMLNode *pRoot = xmlDoc.NewElement(xmlPlaces.listeDesPlaces);
+
+    int i = nombrePlaces.total;
+
+    for (int j = comptNbPlacesQuaiPetites; j > 0; j--) {
+        XMLNode *nRoot = xmlDoc.NewElement(xmlPlaces.place.place);
+        XMLElement *eNum = xmlDoc.NewElement(xmlPlaces.place.data.number);
+        eNum->SetText(i);
+        XMLElement *eDock = xmlDoc.NewElement(xmlPlaces.place.data.ifDock);
+        eDock->SetText(true);
+        XMLElement *eLenght = xmlDoc.NewElement(xmlPlaces.place.data.ifTall);
+        eLenght->SetText(false);
+        XMLElement *eElec = xmlDoc.NewElement(xmlPlaces.place.data.ifElec);
+        eElec->SetText(true);
+        XMLElement *eWater = xmlDoc.NewElement(xmlPlaces.place.data.ifWater);
+        eWater->SetText(true);
+        XMLElement *eBusy = xmlDoc.NewElement(xmlPlaces.place.data.ifBusy);
+        if(i==numberPlace || isOccupied(listePlaceOccupied,i)){
+            eBusy->SetText(true);
+        } else {
+            eBusy->SetText(false);
+        }
+        nRoot->InsertFirstChild(eNum);
+        nRoot->InsertAfterChild(eNum, eDock);
+        nRoot->InsertAfterChild(eDock, eLenght);
+        nRoot->InsertAfterChild(eLenght, eElec);
+        nRoot->InsertAfterChild(eElec, eWater);
+        nRoot->InsertEndChild(eBusy);
+        pRoot->InsertFirstChild(nRoot);
+        i--;
+    }
+    for (int k = comptNbPlacesQuaiGrandes; k > 0; k--) {
+        XMLNode *nRoot = xmlDoc.NewElement(xmlPlaces.place.place);
+        XMLElement *eNum = xmlDoc.NewElement(xmlPlaces.place.data.number);
+        eNum->SetText(i);
+        XMLElement *eDock = xmlDoc.NewElement(xmlPlaces.place.data.ifDock);
+        eDock->SetText(true);
+        XMLElement *eLenght = xmlDoc.NewElement(xmlPlaces.place.data.ifTall);
+        eLenght->SetText(true);
+        XMLElement *eElec = xmlDoc.NewElement(xmlPlaces.place.data.ifElec);
+        eElec->SetText(true);
+        XMLElement *eWater = xmlDoc.NewElement(xmlPlaces.place.data.ifWater);
+        eWater->SetText(true);
+        XMLElement *eBusy = xmlDoc.NewElement(xmlPlaces.place.data.ifBusy);
+        if(i==numberPlace || isOccupied(listePlaceOccupied,i)){
+            eBusy->SetText(true);
+        } else {
+            eBusy->SetText(false);
+        }
+        nRoot->InsertFirstChild(eNum);
+        nRoot->InsertAfterChild(eNum, eDock);
+        nRoot->InsertAfterChild(eDock, eLenght);
+        nRoot->InsertAfterChild(eLenght, eElec);
+        nRoot->InsertAfterChild(eElec, eWater);
+        nRoot->InsertEndChild(eBusy);
+        pRoot->InsertFirstChild(nRoot);
+        i--;
+    }
+    for (int l = comptNbPlacesHorsQuaiPetites; l > 0; l--) {
+        XMLNode *nRoot = xmlDoc.NewElement(xmlPlaces.place.place);
+        XMLElement *eNum = xmlDoc.NewElement(xmlPlaces.place.data.number);
+        eNum->SetText(i);
+        XMLElement *eDock = xmlDoc.NewElement(xmlPlaces.place.data.ifDock);
+        eDock->SetText(false);
+        XMLElement *eLenght = xmlDoc.NewElement(xmlPlaces.place.data.ifTall);
+        eLenght->SetText(false);
+        XMLElement *eElec = xmlDoc.NewElement(xmlPlaces.place.data.ifElec);
+        eElec->SetText(false);
+        XMLElement *eWater = xmlDoc.NewElement(xmlPlaces.place.data.ifWater);
+        eWater->SetText(false);
+        XMLElement *eBusy = xmlDoc.NewElement(xmlPlaces.place.data.ifBusy);
+        if(i==numberPlace || isOccupied(listePlaceOccupied,i)){
+            eBusy->SetText(true);
+        } else {
+            eBusy->SetText(false);
+        }
+        nRoot->InsertFirstChild(eNum);
+        nRoot->InsertAfterChild(eNum, eDock);
+        nRoot->InsertAfterChild(eDock, eLenght);
+        nRoot->InsertAfterChild(eLenght, eElec);
+        nRoot->InsertAfterChild(eElec, eWater);
+        nRoot->InsertEndChild(eBusy);
+        pRoot->InsertFirstChild(nRoot);
+        i--;
+    }
+    for (int l = comptNbPlacesHorsQuaiGrandes; l > 0; l--) {
+        XMLNode *nRoot = xmlDoc.NewElement(xmlPlaces.place.place);
+        XMLElement *eNum = xmlDoc.NewElement(xmlPlaces.place.data.number);
+        eNum->SetText(i);
+        XMLElement *eDock = xmlDoc.NewElement(xmlPlaces.place.data.ifDock);
+        eDock->SetText(false);
+        XMLElement *eLenght = xmlDoc.NewElement(xmlPlaces.place.data.ifTall);
+        eLenght->SetText(true);
+        XMLElement *eElec = xmlDoc.NewElement(xmlPlaces.place.data.ifElec);
+        eElec->SetText(false);
+        XMLElement *eWater = xmlDoc.NewElement(xmlPlaces.place.data.ifWater);
+        eWater->SetText(false);
+        XMLElement *eBusy = xmlDoc.NewElement(xmlPlaces.place.data.ifBusy);
+        if(i==numberPlace || isOccupied(listePlaceOccupied,i)){
+            eBusy->SetText(true);
+        } else {
+            eBusy->SetText(false);
+        }
+        nRoot->InsertFirstChild(eNum);
+        nRoot->InsertAfterChild(eNum, eDock);
+        nRoot->InsertAfterChild(eDock, eLenght);
+        nRoot->InsertAfterChild(eLenght, eElec);
+        nRoot->InsertAfterChild(eElec, eWater);
+        nRoot->InsertEndChild(eBusy);
+        pRoot->InsertFirstChild(nRoot);
+        i--;
+    }
+    xmlDoc.InsertFirstChild(pRoot);
+    XMLError eResult = xmlDoc.SaveFile(xmlFilesNameDP.linkPlacesXMLFile);
 }
