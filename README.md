@@ -12,13 +12,13 @@
 --- | --- | --- | --- | --- | --- |
 Latest ✔ | Latest ✔ | Latest ✔ | Latest ✔ | Latest ✔ | 11 ✔ |
 
-
+--->
 
 ![macOS](https://user-images.githubusercontent.com/35436186/74678618-cc819500-51bb-11ea-9384-17913ef69023.png) | ![Windows](https://user-images.githubusercontent.com/35436186/74678726-1a969880-51bc-11ea-86df-84733c6c1836.png) | ![Linux](https://user-images.githubusercontent.com/35436186/74678779-4ca7fa80-51bc-11ea-9792-9c9ae0ebf1f5.png) |
 --- | --- | --- |
 Latest ✔ | Untested ✕ | Untested ✕ |
 
---->
+
 
 In the context of L3 MIAGE's semester 6 OOP project, we were asked to create a terminal program for the management of a marina in C++. This will allow to consult the list of available places, to create a reservation, to manage prices and the list of clients, to issue an invoice and to save the transactions carried out in a text file via [TinyXML2](https://github.com/leethomason/tinyxml2).   
 
@@ -98,6 +98,7 @@ The license is available [here](https://github.com/oreLINK/MIAGE-Port-Management
 ## Contributors
 
 * [oreLINK](https://github.com/oreLINK)
+* [YessohB](https://github.com/YessohB)
 
 ## Contributions
 
