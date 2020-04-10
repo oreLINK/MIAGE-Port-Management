@@ -1,6 +1,6 @@
 # MIAGE-Port-Management
 
-![version](https://img.shields.io/badge/version-beta-blue.svg)
+![version](https://img.shields.io/badge/version-1.0.0-blue.svg)
 [![CodeFactor](https://www.codefactor.io/repository/github/orelink/miage-port-management/badge/master?s=b8acf7096d67bac96af4c57ba32b734b3658349c)](https://www.codefactor.io/repository/github/orelink/miage-port-management/overview/master)
 ![contribution](https://img.shields.io/badge/contribution-no-red.svg)
 
@@ -22,8 +22,8 @@ Latest ✔ | Latest ✔ | Latest ✔ | Latest ✔ | Latest ✔ | 11 ✔ |
 
 In the context of L3 MIAGE's semester 6 OOP project, we were asked to create a terminal program for the management of a marina in C++. This will allow to consult the list of available places, to create a reservation, to manage prices and the list of clients, to issue an invoice and to save the transactions carried out in a text file via [TinyXML2](https://github.com/leethomason/tinyxml2).   
 
-![#ffa500](https://placehold.it/15/ffa500/000000?text=+)   *Ongoing project*
-<!---![#008000](https://placehold.it/15/008000/000000?text=+)   *Project completed*--->
+<!---![#ffa500](https://placehold.it/15/ffa500/000000?text=+)   *Ongoing project*--->
+![#008000](https://placehold.it/15/008000/000000?text=+)   *Project completed*
 
 ## Prerequisites
 
@@ -83,13 +83,13 @@ To use the program, go to the [wiki](https://github.com/oreLINK/MIAGE-Port-Manag
 
 ## Release history
 
-<!---
+
     
 | Release | Description | Release date |
 | ------- | ----------- | ------------ |
-|  1.0.0  | Finalization of the project | Nov. 18 2019 |
+|  1.0.0  | Launch of the first version of the application with the basic functionalities requested (creation of a new reservation, creation of a new customer, display of the list of reservations and customers, saving data in xml files...etc). | Apr. 10 2020 |
 
---->
+
     
 ## License
 
