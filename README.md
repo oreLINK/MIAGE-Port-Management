@@ -87,7 +87,7 @@ To use the program, go to the [wiki](https://github.com/oreLINK/MIAGE-Port-Manag
     
 | Release | Description | Release date |
 | ------- | ----------- | ------------ |
-|  1.0.0  | Launch of the first version of the application with the basic functionalities requested (creation of a new reservation, creation of a new customer, display of the list of reservations and customers, saving data in xml files...etc). | Apr. 10 2020 |
+|  1.0.0  | **Launch of the first version of the application with the basic functionalities requested** : *creation of a new reservation, creation of a new customer, display of the list of reservations and customers, saving data in xml files...etc).* | Apr. 10 2020 |
 
 
     
