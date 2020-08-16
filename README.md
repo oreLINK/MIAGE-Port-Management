@@ -20,7 +20,8 @@ Latest ✔ | Latest ✔ | Latest ✔ | Latest ✔ | Latest ✔ | 11 ✔ |
 
 
 
-In the context of L3 MIAGE's semester 6 OOP project, we were asked to create a terminal program for the management of a marina in C++. This will allow to consult the list of available places, to create a reservation, to manage prices and the list of clients, to issue an invoice and to save the transactions carried out in a text file via [TinyXML2](https://github.com/leethomason/tinyxml2).   
+In the context of L3 MIAGE's semester 6 OOP project, we were asked to create a terminal program for the management of a marina in C++. This will allow to consult the list of available places, to create a reservation, to manage prices and the list of clients, to issue an invoice and to save the transactions carried out in a text file via [TinyXML2](https://github.com/leethomason/tinyxml2).
+Project carried out in a university setting. Final grade: **17/20** (**A+**)
 
 <!---![#ffa500](https://placehold.it/15/ffa500/000000?text=+)   *Ongoing project*--->
 ![#008000](https://placehold.it/15/008000/000000?text=+)   *Project completed*
